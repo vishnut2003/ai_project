@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #227B94;
+  --secondary-color: #0F0F0F;
+}
+
+body {
+  color: white;
+  background: var(--secondary-color);
+  font-family: Arial, Helvetica, sans-serif;
+}
