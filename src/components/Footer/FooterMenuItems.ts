@@ -47,4 +47,6 @@ const widgetMenuThree = [
     }
 ]
 
-export default { widgetMenuOne, widgetMenuTwo, widgetMenuThree }
+const FooterMenuItems = { widgetMenuOne, widgetMenuTwo, widgetMenuThree }
+
+export default FooterMenuItems

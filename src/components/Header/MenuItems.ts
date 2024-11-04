@@ -1,5 +1,4 @@
-
-export default [
+const HeaderMenuItems = [
     {
         text: 'Home',
         url: '/'
@@ -17,3 +16,5 @@ export default [
         url: '/contact'
     }
 ]
+
+export default HeaderMenuItems

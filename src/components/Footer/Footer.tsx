@@ -3,7 +3,7 @@ import FooterMenu from "./FooterMenu"
 const Footer = () => {
   return (
     <footer className="flex justify-center items-center p-10 md:px-10 md:py-20 relative -z-50">
-      <div className="absolute top-0 left-0 w-full h-full bg-white opacity-5 -z-10"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-primary-color to-secodary-color opacity-[0.03] -z-10"></div>
       <div className="flex flex-col-reverse md:flex-row md:flex-nowrap gap-10 justify-between items-stretch max-w-screen-xl w-full z-0">
 
         <div className="flex flex-col justify-between gap-3">

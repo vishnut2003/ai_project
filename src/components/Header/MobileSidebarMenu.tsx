@@ -18,7 +18,7 @@ const MobileSidebarMenu = () => {
             </button>
 
             {/* Mobile sidebar */}
-            <div className={`fixed top-0 left-0 p-10 bg-secodary-color h-full shadow-lg shadow-black flex flex-col justify-between overflow-hidden transition-all ${!mobileSidebar ? 'w-0 px-0' : 'w-3/4'}`}>
+            <div className={`fixed top-0 left-0 p-10 bg-secodary-color h-full shadow-lg shadow-black flex flex-col justify-between overflow-hidden transition-all z-10 ${!mobileSidebar ? 'w-0 px-0' : 'w-3/4'}`}>
                 <div className='flex flex-col gap-10'>
                     <div className='z-10'>
                         <h2 className="text-3xl font-bold">LOGO</h2>
