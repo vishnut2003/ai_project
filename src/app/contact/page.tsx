@@ -1,17 +1,21 @@
-import React from 'react';
-import ContactForm from '@/components/ContactPage/contactForm';
-import ContactDetails from '@/components/ContactPage/contactDetails';
-import BasicLayout from '@/layouts/BasicLayout';
-import Container, { ContainerWithChildren } from 'postcss/lib/container';
-import ContactSideBar from '@/components/ContactPage/contactSideBar';
+import React from "react";
+import ContactForm from "@/components/ContactPage/contactForm";
+import ContactDetails from "@/components/ContactPage/contactDetails";
+import BasicLayout from "@/layouts/BasicLayout";
+import ContactSideBar from "@/components/ContactPage/contactSideBar";
 const page = () => {
   return (
     <BasicLayout>
-    <ContactDetails />
-    <ContactForm />
-    <ContactSideBar />
-    </BasicLayout>
-  )
-}
+      <div className="flex">
+        <div className="flex flex-col">
+          <ContactDetails />
+          <ContactForm />
+        </div>
 
-export default page
+        <ContactSideBar />
+      </div>
+    </BasicLayout>
+  );
+};
+
+export default page;
