@@ -1,8 +1,8 @@
 
 const ContactSideBar = () =>{
-    return(<div  /*MAIN DIV */>
-    <div className="max-w-2xl mx-auto p-6 bg-secodary-color rounded-lg shadow-md">
-        <a href="/contact"><img className="hover:opacity-75 transition" src="/ContactPage/contact-up.jpg" alt=""/></a>
+    return(<div className="sticky top-0"  /*MAIN DIV */>
+    <div className="max-w-2xl mx-auto p-2 bg-secodary-color rounded-lg shadow-md">
+        <a href="/contact"><img className="hover:opacity-75 transition rounded-lg" src="/ContactPage/contact-up.jpg" alt=""/></a>
     </div>
         
     <div className="flex items-center max-w- mx-auto p-1 bg-primary-color rounded-lg shadow-md">
@@ -16,8 +16,8 @@ const ContactSideBar = () =>{
         </div>
     </div>
 
-    <div className="max-w-2xl mx-auto p-6 bg-secodary-color rounded-lg shadow-md">
-    <a href="/contact"><img className="hover:opacity-75 transition" src="/ContactPage/contact-down.jpg" alt=""/></a>
+    <div className="max-w-2xl mx-auto p-2 bg-secodary-color rounded-lg shadow-md">
+    <a href="/contact"><img className="hover:opacity-75 transition rounded-lg" src="/ContactPage/contact-down.jpg" alt=""/></a>
     </div>
     </div>
     )

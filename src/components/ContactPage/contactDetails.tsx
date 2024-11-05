@@ -1,7 +1,7 @@
 const ContactDetails = () =>{
     return (
         <div className="max-w-2xl mx-auto p-6 bg-secodary-color rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-4">CONTACT</h2>
+          <h2 className=" text-3xl font-bold mb-4">CONTACT</h2>
           <hr className="mb-4 border-gray-300" />
           <p className="text-white-700 mb-4">
             Atlas 1031 Exchange has proudly served clients seeking I.R.C § 1031 counsel as Qualified Intermediaries with precision and excellence for over 16 years. We often personally meet with clients, and speak at educational events on “Tax Deferred Exchanges.”

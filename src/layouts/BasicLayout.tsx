@@ -6,6 +6,7 @@ const BasicLayout = ({ children }: Readonly<{children: React.ReactNode}>) => {
   return (
     <>
         <Header/>
+        
         {children}
         <Footer/>
     </>

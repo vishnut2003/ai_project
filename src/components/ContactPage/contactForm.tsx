@@ -88,6 +88,7 @@ const ContactForm = () => {
         </div>
 
         {/* Dropdown for Contract */}
+        
         <div>
             
           <label htmlFor="contract" className="block font-medium mb-1">
@@ -139,7 +140,7 @@ const ContactForm = () => {
             name="message"
             required
             rows={4}
-            className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
+            className="text-black w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500 focus:placeholder-transparent"
             placeholder="Help me understand how I can help you?"
           ></textarea>
         </div>
