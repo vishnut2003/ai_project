@@ -26,7 +26,7 @@ const CustomerLogosCarousel = () => {
   }, [width, xTranslation])
 
   return (
-    <div className='flex flex-col justify-center items-center gap-3'>
+    <div className='flex flex-col justify-center items-center gap-3 py-12'>
       <h2 className='text-xl md:text-4xl font-normal text-center'>Engineered for Market Leaders</h2>
       <div className='w-full relative py-5'>
         <div className='overflow-hidden w-full'>
