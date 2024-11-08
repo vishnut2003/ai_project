@@ -25,12 +25,13 @@ export  interface postItem {
   excerpt:{rendered: string},
 
 }
+
 export default function fetchPost(){
   
   return new Promise((resolve,reject)=>{
     
-    const url = process.env.WORDPRESS_BASE_URL!;
-    // console.log(url)
+    const url = "https://vansh.gogalax.in/wp-json/wp/v2/posts";
+    console.log(url)
     axios.get(url).then((response : AxiosResponse)=>{
       resolve(response.data);
     })

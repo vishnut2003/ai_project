@@ -85,30 +85,42 @@
 //   export default BlogsFeaturedItems;
 
 
-import { useEffect, useState } from "react";
-import fetchPost from "./blogsFeaturedItems";
+// import { useEffect, useState } from "react";
+// import fetchPost from "./blogsFeaturedItems";
 
-const BlogFeatured = () => {
-  const [posts, setPosts] = useState<any[]>([]);
+// const BlogFeatured = () => {
+//   const [posts, setPosts] = useState<any[]>([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result: any = await fetchPost();
-      setPosts(result);
-    };
-    fetchData();
-  }, []);
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const result: any = await fetchPost();
+//       setPosts(result);
+//     };
+//     fetchData();
+//   }, []);
 
-  return (
-    <div>
-      <h2>ksadnasnd</h2>
-      <ol className="flex flex-col gap-4">
-        {posts.map((post, index) => (
-          <li key={index}>{post.title}</li>
-        ))}
-      </ol>
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       <h2>ksadnasnd</h2>
+//       <ol className="flex flex-col gap-4">
+//         {posts.map((post, index) => (
+//           <li key={index}>{post.title}</li>
+//         ))}
+//       </ol>
+//     </div>
+//   );
+// };
 
+// export default BlogFeatured;
+
+import BlogFeaturedClient from "./blogsFeaturedClient";
+
+const BlogFeatured = ()=>{
+  return(
+    <>
+      <h2><span>HEllo</span></h2>
+    </>
+  )
+}
 export default BlogFeatured;
+
