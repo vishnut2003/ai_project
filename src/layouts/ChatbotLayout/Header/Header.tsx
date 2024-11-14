@@ -1,4 +1,4 @@
-import { RiArrowDownSFill, RiArrowDropDownLine, RiArrowDropLeftLine } from "@remixicon/react"
+import { RiArrowDownSFill, RiArrowDropLeftLine } from "@remixicon/react"
 import Link from "next/link"
 
 const Header = () => {
