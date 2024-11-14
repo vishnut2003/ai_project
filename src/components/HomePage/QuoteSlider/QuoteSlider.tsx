@@ -3,22 +3,24 @@
 import Image from "next/image"
 import slides from "./SliderItems"
 import { RiDoubleQuotesL } from "@remixicon/react";
-import { motion } from 'framer-motion';
+import { motion, useMotionValue } from 'framer-motion';
 import { useState } from "react";
+import NavigationDot from "./NavigationDot";
 
 const QuoteSlider = () => {
 
-  const [dragging, setDragging] = useState(false);
+  const DRAG_BUFFER = 50;
   const [slideIndex, setSlideIndex] = useState(0);
-
-  const onDragStart = () => {
-    setDragging(true);
-    console.log('Start')
-  }
+  const dragX = useMotionValue(0);
 
   const onDragEnd = () => {
-    setDragging(false);
-    console.log('End')
+    const x = dragX.get();
+
+    if(x <= -DRAG_BUFFER && slideIndex < slides.length - 1) {
+      setSlideIndex(prevIdx => prevIdx + 1);
+    } else if (x >= DRAG_BUFFER && slideIndex > 0) {
+      setSlideIndex(prevIdx => prevIdx - 1)
+    }
   }
 
   return (
@@ -29,10 +31,12 @@ const QuoteSlider = () => {
           left: 0,
           right: 0
         }}
-        animate={{
-          translateX: `-${slideIndex}%`
+        style={{
+          x: dragX
         }}
-        onDragStart={onDragStart}
+        animate={{
+          translateX: `-${slideIndex * 100}%`
+        }}
         onDragEnd={onDragEnd}
         className="flex gap-0 cursor-grab active:cursor-grabbing">
         {
@@ -65,6 +69,9 @@ const QuoteSlider = () => {
           ))
         }
       </motion.div>
+      <div>
+        <NavigationDot slideIndex={slideIndex} setSlideIndex={setSlideIndex}/>
+      </div>
     </div>
   )
 }
