@@ -6,7 +6,7 @@ import ConversationInterface from "@/interfaces/conversation";
 import ChatbotLayout from "@/layouts/ChatbotLayout/ChatbotLayout"
 import { useState } from "react"
 
-const page = () => {
+const Page = () => {
 
   const [conversation, setConversation] = useState<ConversationInterface[]>([{ from: "ai_assistant", message: "Type your prompt to start!" }])
 
@@ -18,4 +18,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page;

@@ -2,7 +2,7 @@ import axiosConfig from "@/configs/axiosConfig"
 import axios, { type AxiosResponse, type AxiosError } from "axios"
 
 // Function for handle prompt submit - (Chatbot pages)
-export function handlePromptSubmit (prompt?: FormDataEntryValue | null) {
+export function handlePromptSubmit (prompt: string | undefined) {
     return new Promise<string>( async (resolve, reject) => {
         axios.post('/api/aimodel/gentext', {prompt}, axiosConfig)
             .then((response: AxiosResponse) => {

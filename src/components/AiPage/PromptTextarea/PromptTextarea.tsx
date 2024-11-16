@@ -3,7 +3,7 @@
 import ConversationInterface from '@/interfaces/conversation';
 import { handlePromptSubmit } from '@/utils/client/aiHelper';
 import { RiArrowUpLine } from '@remixicon/react'
-import React, { Dispatch, FormEvent, SetStateAction, SyntheticEvent, useRef, useState } from 'react'
+import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 
 const PromptTextarea = ({ setConversation }: Readonly<{
     setConversation: Dispatch<SetStateAction<ConversationInterface[]>>
@@ -18,7 +18,7 @@ const PromptTextarea = ({ setConversation }: Readonly<{
         if(submitInProgress) return;
 
         const form = new FormData(event.currentTarget);
-        const prompt:string = form.get('prompt')?.toString()!;
+        const prompt:string | undefined = form.get('prompt')?.toString();
 
          // reset form value
          const formEvent = event.target as HTMLFormElement

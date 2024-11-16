@@ -18,7 +18,7 @@ const Conversations = ({ conversation }: Readonly<{ conversation: ConversationIn
                     }
                     <div className="text-sm font-extralight text-left leading-6 w-full list-decimal">
                         <Markdown>
-                            {conversationTurn.message}
+                            {conversationTurn.message!}
                         </Markdown>
                     </div>
                 </div>

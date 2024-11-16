@@ -7,6 +7,12 @@
   --secondary-color: #0F0F0F;
 }
 
+body {
+  color: white;
+  background: var(--secondary-color);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 p, ol, ul {
   margin-block-end: 10px;
 }
@@ -15,8 +21,8 @@ strong {
   font-weight: 600;
 }
 
-body {
-  color: white;
-  background: var(--secondary-color);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .scrollbar {
+    @apply scrollbar-thin scrollbar-thumb-teal-500;
+  }
 }

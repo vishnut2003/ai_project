@@ -1,6 +1,4 @@
-import axiosConfig from "@/configs/axiosConfig";
 import { GoogleGenerativeAI } from "@google/generative-ai"
-import axios, { AxiosError } from "axios"
 
 const GENAI_API_KEY: string = 'AIzaSyBv0FS6bz3SJrUWwyfP4FOUoT1lxUR336Q';
 const GENAI_MODEL_NAME: string = 'gemini-pro';
@@ -20,6 +18,7 @@ export function generateTextResponse(prompt: string) {
             const responseText: string = result.response.text();
             return resolve(responseText);
         } catch (err) {
+            console.log(err);
             // Return if somthing we wrong
             return reject(GENAI_ERROR);
         }
