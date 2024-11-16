@@ -11,7 +11,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }: Readonly<{
   const [isMyAccountPopup, setIsMyAccountPop] = useState(false);
 
   return (
-    <div className="py-4 px-5 flex flex-nowrap justify-between items-center absolute top-0 left-0 w-full">
+    <div className="py-4 px-5 flex flex-nowrap justify-between items-center w-full backdrop-blur-md">
       <div>
         {
           !sidebarOpen &&

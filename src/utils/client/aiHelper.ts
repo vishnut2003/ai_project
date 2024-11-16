@@ -1,14 +1,15 @@
 import axiosConfig from "@/configs/axiosConfig"
-import axios from "axios"
+import axios, { type AxiosResponse, type AxiosError } from "axios"
 
 // Function for handle prompt submit - (Chatbot pages)
 export function handlePromptSubmit (prompt?: FormDataEntryValue | null) {
-    return new Promise( async (resolve, reject) => {
-        try {
-            const response = await axios.post('/api/aimodel/gentext', {prompt}, axiosConfig);
-            console.log(response)
-        } catch (err) {
-            console.log(err)
-        }
+    return new Promise<string>( async (resolve, reject) => {
+        axios.post('/api/aimodel/gentext', {prompt}, axiosConfig)
+            .then((response: AxiosResponse) => {
+                return resolve(response.data);
+            })
+            .catch((err: AxiosError) => {
+                return reject(err.response?.data);
+            })
     })
 }

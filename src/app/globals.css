@@ -7,6 +7,14 @@
   --secondary-color: #0F0F0F;
 }
 
+p, ol, ul {
+  margin-block-end: 10px;
+}
+
+strong {
+  font-weight: 600;
+}
+
 body {
   color: white;
   background: var(--secondary-color);

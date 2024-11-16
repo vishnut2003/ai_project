@@ -11,11 +11,13 @@ const ChatbotLayout = ({ children }: Readonly<{ children: React.ReactNode }>) =>
 
   return (
     <div className="bg-[#ffffff07]">
-      <div className="flex w-screen h-dvh">
+      <div className="flex max-w-[100vw] h-dvh">
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        <div className="w-full relative flex flex-col justify-end">
+        <div className="max-h-[100vh] w-full flex flex-col justify-between">
           <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-          {children}
+          <div className="flex flex-col h-full overflow-hidden">
+            {children}
+          </div>
           <Footer />
         </div>
       </div>
