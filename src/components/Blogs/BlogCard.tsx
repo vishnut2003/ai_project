@@ -48,6 +48,8 @@ interface BlogCardProps {
   post: Post;
 }
 
+
+
 const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
   // Function to extract the image URL from the content if available
   const extractImageUrl = (htmlContent: string): string | null => {

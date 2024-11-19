@@ -78,7 +78,7 @@ import { redirect } from "next/navigation";
 
 async function fetchPosts(id: string) {
   const res = await fetch(`${process.env.WORDPRESS_BASE_URL}/posts?per_page=6&page=${id}&orderby=date`);
-
+ 
   if (!res.ok) {
     throw new Error('Failed to fetch posts');
   }
