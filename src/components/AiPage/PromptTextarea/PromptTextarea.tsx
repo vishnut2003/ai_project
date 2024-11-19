@@ -10,37 +10,36 @@ const PromptTextarea = ({ setConversation }: Readonly<{
 }>) => {
 
     const [submitInProgress, setSubmitInProgress] = useState(false);
+    const [inputPrompt, setInputPrompt] = useState<string>('')
 
     function _PromptSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
         // return if submit in progress
-        if(submitInProgress) return;
+        if (submitInProgress) return;
 
-        const form = new FormData(event.currentTarget);
-        const prompt:string | undefined = form.get('prompt')?.toString();
+        const prompt: string = inputPrompt;
 
-         // reset form value
-         const formEvent = event.target as HTMLFormElement
-         formEvent.reset();
-         
+        // reset form value
+        setInputPrompt('');
+
         // change status to submit in progress
         setSubmitInProgress(true);
 
         // Add user prompt to conversation
-        setConversation(prev => [...prev, {from: 'user', message: prompt}]);
-        
+        setConversation(prev => [...prev, { from: 'user', message: prompt }]);
+
         handlePromptSubmit(prompt)
             .then((response: string) => {
                 // Add new response to conversation
-                setConversation(prevConversation => [...prevConversation, {from: 'ai_assistant', message: response}]);
+                setConversation(prevConversation => [...prevConversation, { from: 'ai_assistant', message: response }]);
             })
             .catch((errResponse) => {
                 // Add new response to conversation
                 setConversation(prevConversation => [...prevConversation, {
-                    from: 'ai_assistant', 
+                    from: 'ai_assistant',
                     message: errResponse,
-                    error: true 
+                    error: true
                 }]);
             })
             .finally(() => {
@@ -50,15 +49,21 @@ const PromptTextarea = ({ setConversation }: Readonly<{
     }
 
     return (
-        <div className='flex justify-center px-5 md:px-0 h-16'>
+        <div className='flex flex-col items-center justify-center px-5 md:px-0 h-max'>
+            <div className='w-full md:w-3/4 '>
+                Prompts
+            </div>
             <div className='flex flex-nowrap justify-between w-full md:w-3/4 bg-[#ffffff07] p-3 pl-9 rounded-full'>
                 <form onSubmit={_PromptSubmit} className='flex flex-nowrap justify-between w-full'>
-                    <input required type="text" name='prompt' placeholder='Type Something...' className='bg-transparent w-full outline-none' />
+                    <input
+                        value={inputPrompt}
+                        onChange={(event) => setInputPrompt(event.target.value)}
+                        required type="text" name='prompt' placeholder='Type Something...' className='bg-transparent w-full outline-none' />
                     <button className='bg-secodary-color p-1 rounded-full w-10 h-10 flex justify-center items-center'>
                         {
                             submitInProgress ?
-                            <div className='w-4 h-4 border-r border-b border-white animate-spin rounded-full'></div> :
-                            <RiArrowUpLine size={15} />
+                                <div className='w-4 h-4 border-r border-b border-white animate-spin rounded-full'></div> :
+                                <RiArrowUpLine size={15} />
                         }
                     </button>
                 </form>
