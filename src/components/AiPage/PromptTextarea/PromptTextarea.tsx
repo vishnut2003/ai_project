@@ -2,8 +2,9 @@
 
 import ConversationInterface from '@/interfaces/conversation';
 import { handlePromptSubmit } from '@/utils/client/aiHelper';
-import { RiArrowUpLine } from '@remixicon/react'
+import { RiArrowUpLine, RiSendPlaneFill } from '@remixicon/react'
 import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react'
+import PromptActions from './PromptActions';
 
 const PromptTextarea = ({ setConversation }: Readonly<{
     setConversation: Dispatch<SetStateAction<ConversationInterface[]>>
@@ -50,20 +51,18 @@ const PromptTextarea = ({ setConversation }: Readonly<{
 
     return (
         <div className='flex flex-col items-center justify-center px-5 md:px-0 h-max'>
-            <div className='w-full md:w-3/4 '>
-                Prompts
-            </div>
-            <div className='flex flex-nowrap justify-between w-full md:w-3/4 bg-[#ffffff07] p-3 pl-9 rounded-full'>
+            <PromptActions/>
+            <div className='flex flex-nowrap justify-between w-full md:w-3/4 bg-[#ffffff07] p-3 pl-9 rounded-lg rounded-tr-none'>
                 <form onSubmit={_PromptSubmit} className='flex flex-nowrap justify-between w-full'>
                     <input
                         value={inputPrompt}
                         onChange={(event) => setInputPrompt(event.target.value)}
                         required type="text" name='prompt' placeholder='Type Something...' className='bg-transparent w-full outline-none' />
-                    <button className='bg-secodary-color p-1 rounded-full w-10 h-10 flex justify-center items-center'>
+                    <button className='bg-gradient-to-br from-white to-[#ffffff80] text-secodary-color p-1 rounded-lg w-10 h-10 flex justify-center items-center'>
                         {
                             submitInProgress ?
-                                <div className='w-4 h-4 border-r border-b border-white animate-spin rounded-full'></div> :
-                                <RiArrowUpLine size={15} />
+                                <div className='w-3 h-3 animate-bounce shadow-md shadow-black rounded-full bg-secodary-color'></div> :
+                                <RiSendPlaneFill size={20}/>
                         }
                     </button>
                 </form>
