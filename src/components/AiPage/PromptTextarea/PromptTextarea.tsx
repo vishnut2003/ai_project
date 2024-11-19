@@ -2,7 +2,7 @@
 
 import ConversationInterface from '@/interfaces/conversation';
 import { handlePromptSubmit } from '@/utils/client/aiHelper';
-import { RiArrowUpLine, RiSendPlaneFill } from '@remixicon/react'
+import { RiSendPlaneFill } from '@remixicon/react'
 import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import PromptActions from './PromptActions';
 
