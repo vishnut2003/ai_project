@@ -10,22 +10,23 @@ import {
 
 
 
-const BlogsPagination = () => {
+const BlogsPagination = ({ id }: { id: string }) => {
+  
   return (
     
       <Pagination>
         <PaginationContent>
           <PaginationItem>
-            <PaginationPrevious href="#" />
+            <PaginationPrevious href={`/blogs/${parseInt(id) - 1}`} />
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink className="text-black" isActive href="">1</PaginationLink>
+            <PaginationLink className="text-black" isActive href={`/blogs/${id}`}>{id}</PaginationLink>
           </PaginationItem>
           <PaginationItem>
             <PaginationEllipsis />
           </PaginationItem>
           <PaginationItem>
-            <PaginationNext href="/contact" />
+            <PaginationNext href={`/blogs/${parseInt(id) + 1}`} />
           </PaginationItem>
         </PaginationContent>
       </Pagination>
