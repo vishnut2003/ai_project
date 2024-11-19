@@ -94,7 +94,7 @@ async function countPosts() {
     throw new Error("Failed to count posts");
   }
   const countData = await countRes.json();
-  return countData[0].count; // Assuming the count is in the first item of the array
+  return countData[0].count; 
 }
 
 const BlogsPagination = async ({ id }: { id: string }) => {
