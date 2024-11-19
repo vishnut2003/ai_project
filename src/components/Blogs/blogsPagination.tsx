@@ -8,6 +8,8 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
+
+
 const BlogsPagination = () => {
   return (
     
@@ -17,13 +19,13 @@ const BlogsPagination = () => {
             <PaginationPrevious href="#" />
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
+            <PaginationLink className="text-black" isActive href="">1</PaginationLink>
           </PaginationItem>
           <PaginationItem>
             <PaginationEllipsis />
           </PaginationItem>
           <PaginationItem>
-            <PaginationNext href="#" />
+            <PaginationNext href="/contact" />
           </PaginationItem>
         </PaginationContent>
       </Pagination>
@@ -32,3 +34,4 @@ const BlogsPagination = () => {
 };
 
 export default BlogsPagination;
+

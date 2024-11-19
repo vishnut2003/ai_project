@@ -6,12 +6,12 @@ import ContactSideBar from "@/components/ContactPage/contactSideBar";
 const page = () => {
   return (
     <BasicLayout>
-      <div className="flex mx-48 relative">
-        <div className="flex flex-col  ">
+      <div className="flex justify-center space-x-10">
+        <div className="flex flex-col mr-7 ">
           <ContactDetails />
           <ContactForm />
         </div >
-        <div className="w-1/3 ">
+        <div className="w-96 ">
         <ContactSideBar />
         </div>
       </div>

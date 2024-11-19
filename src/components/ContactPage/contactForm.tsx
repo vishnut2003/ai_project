@@ -1,24 +1,31 @@
-import { contractItems, identityItems, propertyItems } from "./contactFormItems";
+import {
+  contractItems,
+  identityItems,
+  propertyItems,
+} from "./contactFormItems";
 
 const ContactForm = () => {
-        
-        
   return (
-    
     <div className="max-w-2xl mx-auto p-6 bg-secodary-color rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold mb-4">What You Get When Asking Your Question</h2>
-        <div className="px-5">
+      <h2 className="text-2xl font-semibold mb-4">
+        What You Get When Asking Your Question
+      </h2>
+      <div className="px-5">
         <ul className="list-disc pl-5 marker:text-white text-white">
-            <li>Less than 12-hour response to your question.</li>
-            <li>Thoroughness and expertise of a Certified Exchange Specialist®</li>
-            <li>Plan of action summarized in an email follow up.</li>
+          <li>Less than 12-hour response to your question.</li>
+          <li>
+            Thoroughness and expertise of a Certified Exchange Specialist®
+          </li>
+          <li>Plan of action summarized in an email follow up.</li>
         </ul>
-        </div>  
+      </div>
       <form className="space-y-4 py-7">
         {/* Grid for First Name and Last Name */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="firstName" className="block font-medium mb-1">First Name <span className="text-red-500">*</span></label>
+            <label htmlFor="firstName" className="block font-medium mb-1">
+              First Name <span className="text-red-500">*</span>
+            </label>
             <input
               type="text"
               id="firstName"
@@ -28,7 +35,9 @@ const ContactForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="lastName" className="block font-medium mb-1">Last Name <span className="text-red-500">*</span></label>
+            <label htmlFor="lastName" className="block font-medium mb-1">
+              Last Name <span className="text-red-500">*</span>
+            </label>
             <input
               type="text"
               id="lastName"
@@ -39,10 +48,14 @@ const ContactForm = () => {
           </div>
         </div>
 
+
+
         {/* Grid for Email Address and Phone Number */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="email" className="block font-medium mb-1">Email Address <span className="text-red-500">*</span></label>
+            <label htmlFor="email" className="block font-medium mb-1">
+              Email Address <span className="text-red-500">*</span>
+            </label>
             <input
               type="email"
               id="email"
@@ -52,7 +65,9 @@ const ContactForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="phone" className="block font-medium mb-1">Phone Number</label>
+            <label htmlFor="phone" className="block font-medium mb-1">
+              Phone Number
+            </label>
             <input
               type="tel"
               id="phone"
@@ -62,15 +77,13 @@ const ContactForm = () => {
           </div>
         </div>
 
-       
         {/**/}
 
-
-        
         {/* Dropdown for Property */}
         <div>
           <label htmlFor="property" className="block font-medium mb-1">
-            What is the property being sold? <span className="text-red-500">*</span>
+            What is the property being sold?{" "}
+            <span className="text-red-500">*</span>
           </label>
           <select
             id="property"
@@ -88,12 +101,14 @@ const ContactForm = () => {
         </div>
 
         {/* Dropdown for Contract */}
-        
+
         <div>
-            
           <label htmlFor="contract" className="block font-medium mb-1">
-            <h1 className="py-2"><b>In Contract*</b></h1>
-            Have you signed an agreement with the buyer? <span className="text-red-500">*</span>
+            <h1 className="py-2">
+              <b>In Contract*</b>
+            </h1>
+            Have you signed an agreement with the buyer?{" "}
+            <span className="text-red-500">*</span>
           </label>
           <select
             id="contract"
@@ -113,7 +128,8 @@ const ContactForm = () => {
         {/* Dropdown for Identity */}
         <div>
           <label htmlFor="identity" className="block font-medium mb-1">
-            How do you identify yourself? <span className="text-red-500">*</span>
+            How do you identify yourself?{" "}
+            <span className="text-red-500">*</span>
           </label>
           <select
             id="identity"
@@ -161,14 +177,20 @@ const ContactForm = () => {
           type="submit"
           className="w-28 bg-primary-color text-white py-2 rounded-md hover:opacity-75 transition"
         >
-          Send 
+          Send
         </button>
         <div>
-            <p>Experience matters when deferring federal and state capital gains and recaptured depreciation taxes. We are incredibly responsive to your requests and value your questions. They are an indication of taking ownership of the tax deferral strategy whether that is a 1031 exchange or Deferred Sales Trust. Taking ownership relates to better questions, communication and deferral outcome.</p>
+          <p>
+            Experience matters when deferring federal and state capital gains
+            and recaptured depreciation taxes. We are incredibly responsive to
+            your requests and value your questions. They are an indication of
+            taking ownership of the tax deferral strategy whether that is a 1031
+            exchange or Deferred Sales Trust. Taking ownership relates to better
+            questions, communication and deferral outcome.
+          </p>
         </div>
       </form>
     </div>
-    
   );
 };
 

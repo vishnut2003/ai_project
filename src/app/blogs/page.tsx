@@ -24,7 +24,6 @@
 
 // export default page;
 
-
 import BasicLayout from "@/layouts/BasicLayout"
 import React from 'react';
 import BlogsPagination from "@/components/Blogs/blogsPagination";

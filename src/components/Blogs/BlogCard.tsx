@@ -56,6 +56,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
   };
 
   const imageUrl = extractImageUrl(post.content.rendered);
+  
 
   return (
     <div className="bg-gray-800 rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
@@ -76,8 +77,8 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
         </h3>
         <p
           className="text-sm text-gray-400"
-          dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
-        />
+          dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}>
+          </p>
       </div>
     </div>
   );
