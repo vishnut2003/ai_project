@@ -113,7 +113,7 @@ const BlogsPagination = async ({ id }: { id: string }) => {
       <PaginationContent>
         <div className="px-3">
           <PaginationItem>
-            <PaginationPrevious href={`/blogs/${intID - 1}`}  />
+            {intID > 1 && <PaginationPrevious href={`/blogs/${intID - 1}`} />}
           </PaginationItem>
         </div>
         {intID > 1 && (
@@ -141,7 +141,7 @@ const BlogsPagination = async ({ id }: { id: string }) => {
         )}
         <div className="px-3">
           <PaginationItem>
-            <PaginationNext href={`/blogs/${intID+1}`}  />
+            {isNextDisabled ? null : <PaginationNext href={`/blogs/${intID + 1}`} />}
           </PaginationItem>
         </div>
       </PaginationContent>
