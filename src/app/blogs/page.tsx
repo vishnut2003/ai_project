@@ -24,15 +24,14 @@
 
 // export default page;
 
-// src/app/blogs/page.tsx
+
+import BasicLayout from "@/layouts/BasicLayout"
 import React from 'react';
+import BlogsPagination from "@/components/Blogs/blogsPagination";
 import BlogList from '@/components/Blogs/BlogList';
 
 async function fetchPosts() {
-  const res = await fetch('https://vansh.gogalax.in/wp-json/wp/v2/posts', {
-    // Set caching options here if desired, e.g., `cache: 'no-store'` for no caching
-    next: { revalidate: 10 }, // Revalidate every 10 seconds
-  });
+  const res = await fetch(process.env.WORDPRESS_BASE_URL!+"/posts?per_page=6&orderby=date");
 
   if (!res.ok) {
     throw new Error('Failed to fetch posts');
@@ -45,10 +44,17 @@ const BlogPage = async () => {
   const posts = await fetchPosts();
 
   return (
-    <div>
-      <h1>Blog Posts</h1>
-      <BlogList posts={posts} />
-    </div>
+            <div >
+        <BasicLayout>
+            <div className="flex flex-col mx-48 justify-center items-center">
+                
+                <BlogList posts={posts} />
+            </div>
+            <div>
+                <BlogsPagination/>
+            </div>
+        </BasicLayout>
+        </div>
   );
 };
 
