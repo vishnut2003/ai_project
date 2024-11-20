@@ -10,7 +10,7 @@ const Sidebar = ({sidebarOpen, setSidebarOpen}: Readonly<{sidebarOpen: boolean, 
         className="hover:bg-[#ffffff07] p-2 rounded-md">
           <RiBarChartHorizontalLine size={25} />
         </button>
-        <button className="bg-[#ffffff07] hover:bg-[#ffffff] hover:text-secodary-color p-2 rounded-md">
+        <button className="hover:bg-[#ffffff07] bg-[#ffffff] text-secodary-color hover:text-white transition-all p-2 rounded-md">
           <RiEdit2Line size={24}/>
         </button>
       </div>

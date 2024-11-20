@@ -13,7 +13,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-p, ol, ul {
+p,
+ol,
+ul {
   margin-block-end: 10px;
 }
 
@@ -21,8 +23,15 @@ strong {
   font-weight: 600;
 }
 
-@layer utilities {
-  .scrollbar {
-    @apply scrollbar-thin scrollbar-thumb-teal-500;
-  }
+*::-webkit-scrollbar {
+  width: 7px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #ffffff10;
+  border-radius: 30px;
 }

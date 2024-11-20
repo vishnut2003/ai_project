@@ -1,10 +1,12 @@
 import { RiAddLine, RiCloseLargeFill, RiMenuAddFill, RiSearchLine } from "@remixicon/react"
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { motion } from 'framer-motion';
 import PromptItemTemplate from "./PromptItemTemplate";
+import PromptSearchTemplate from "./PromptSearchTemplate";
 
-const PrebuildPrompts = () => {
-    const [promptPopup, setPromptPopup] = useState(false);
+const PrebuildPrompts = ({setInputPrompt}: Readonly<{setInputPrompt: Dispatch<SetStateAction<string>>}>) => {
+    const [promptPopup, setPromptPopup] = useState<boolean>(false);
+    const [promptSearch, setPromptSearch] = useState<string>('');
     return (
         <div>
             <button
@@ -25,7 +27,7 @@ const PrebuildPrompts = () => {
                         animate={{
                             scale: 1
                         }}
-                        className="max-w-md w-full bg-secodary-color p-6 rounded-lg shadow-2xl shadow-[#00000080] flex flex-col gap-5 justify-between items-center">
+                        className="max-w-md w-full bg-secodary-color p-6 rounded-lg shadow-2xl shadow-[#00000080] flex flex-col gap-5 justify-between items-center max-h-[80dvh] h-full overflow-hidden">
 
                         <div className="flex w-full justify-between items-center">
                             <h2 className="text-xl font-thin">Prebuild Prompts</h2>
@@ -33,17 +35,27 @@ const PrebuildPrompts = () => {
                                 <RiCloseLargeFill size={23} />
                             </button>
                         </div>
-                        <div className="w-full">
-                            <div className="flex flex-col gap-3 justify-between items-center w-full">
+                        <div className="w-full h-full overflow-hidden">
+                            <div className="flex flex-col gap-6 justify-between items-center w-full h-full">
                                 <button className="flex justify-between items-center w-full rounded-md bg-gradient-to-br from-white to-[#ffffff90] text-secodary-color px-4 py-3">
                                     <p className="m-0">Create new prompt</p>
                                     <RiMenuAddFill size={20} />
                                 </button>
                                 <div className="flex justify-center w-full gap-3 items-center">
                                     <RiSearchLine size={20} />
-                                    <input type="text" placeholder="Search Prompt..." className="bg-transparent outline-none w-full" />
+                                    <input 
+                                    value={promptSearch}
+                                    onChange={(event) => setPromptSearch(event.target.value)}
+                                    type="text" 
+                                    placeholder="Search Prompt..." 
+                                    className="bg-transparent outline-none w-full" />
                                 </div>
-                                <PromptItemTemplate/>
+                                {
+                                    promptSearch ? 
+                                    <PromptSearchTemplate promptSearch={promptSearch} setInputPrompt={setInputPrompt} setPromptPopup={setPromptPopup}/> :
+                                    <PromptItemTemplate setInputPrompt={setInputPrompt} setPromptPopup={setPromptPopup}/>
+                                }
+                                
                             </div>
                         </div>
                     </motion.div>
