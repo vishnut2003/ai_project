@@ -15,22 +15,6 @@ export async function TopSection() {
           <span className="text-[#5046e6]">law firms</span>, professional service providers, and the Fortune 500.
         </h2>
       </BoxReveal>
-
-      {/* <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-        <div className="mt-6">
-          <p>
-            -&gt; 20+ free and open-source animated components built with
-            <span className="font-semibold text-[#5046e6]"> React</span>,
-            <span className="font-semibold text-[#5046e6]"> Typescript</span>,
-            <span className="font-semibold text-[#5046e6]"> Tailwind CSS</span>,
-            and
-            <span className="font-semibold text-[#5046e6]"> Framer Motion</span>
-            . <br />
-            -&gt; 100% open-source, and customizable. <br />
-          </p>
-        </div>
-      </BoxReveal> */}
-
       <BoxReveal boxColor={"#5046e6"} duration={0.5}>
         <Button className="mt-[1.6rem] bg-[#5046e6]" >Contact Us</Button>
         

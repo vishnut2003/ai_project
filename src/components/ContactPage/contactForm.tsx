@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   contractItems,
   identityItems,
@@ -169,16 +170,15 @@ const ContactForm = () => {
             name="blogSignup"
             className="h-4 w-4 text-blue-500 focus:ring-blue-500 border-gray-300 rounded"
           />
-          <label htmlFor="blogSignup" className="ml-2 block text-sm">
+          <label htmlFor="blogSignup" className="ml-2 mb-10 block text-sm">
             Sign Up for 1031 Exchange Blog?
           </label>
         </div>
-        <button
-          type="submit"
-          className="w-28 bg-primary-color text-white py-2 rounded-md hover:opacity-75 transition"
-        >
+        <Link 
+        className=' text-base font-semibold bg-gradient-to-br from-white to-slate-300 text-secodary-color py-3 px-5 rounded-md'
+        href={'/contact'}>
           Send
-        </button>
+        </Link>
         <div>
           <p>
             Experience matters when deferring federal and state capital gains
