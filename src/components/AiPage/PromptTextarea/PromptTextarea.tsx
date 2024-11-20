@@ -6,8 +6,9 @@ import { RiCloseLargeLine, RiSendPlaneFill } from '@remixicon/react'
 import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import PromptActions from './PromptActions';
 
-const PromptTextarea = ({ setConversation }: Readonly<{
-    setConversation: Dispatch<SetStateAction<ConversationInterface[]>>
+const PromptTextarea = ({ setConversation, conversation }: Readonly<{
+    setConversation: Dispatch<SetStateAction<ConversationInterface[]>>,
+    conversation: ConversationInterface[]
 }>) => {
 
     const [submitInProgress, setSubmitInProgress] = useState(false);
@@ -30,7 +31,7 @@ const PromptTextarea = ({ setConversation }: Readonly<{
         // Add user prompt to conversation
         setConversation(prev => [...prev, { from: 'user', message: prompt }]);
 
-        handlePromptSubmit(prompt)
+        handlePromptSubmit(prompt, conversation)
             .then((response: string) => {
                 // Add new response to conversation
                 setConversation(prevConversation => [...prevConversation, { from: 'ai_assistant', message: response }]);

@@ -13,7 +13,7 @@ const Page = () => {
   return (
     <ChatbotLayout>
       <ConversationTemplate conversation={conversation} />
-      <PromptTextarea setConversation={setConversation} />
+      <PromptTextarea setConversation={setConversation} conversation={conversation} />
     </ChatbotLayout>
   )
 }
