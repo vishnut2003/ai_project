@@ -6,8 +6,7 @@ import { withAuth } from "@workos-inc/authkit-nextjs";
 
 
 export default async function Home() {
-  const { user } = await withAuth();
-
+  await withAuth();
   return (
     <BasicLayout>
       <HeroSection/>
