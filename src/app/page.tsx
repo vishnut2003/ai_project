@@ -2,8 +2,12 @@ import CustomerLogosCarousel from "@/components/HomePage/CustomerLogosCarousel/C
 import HeroSection from "@/components/HomePage/HeroSection/HeroSection";
 import BasicLayout from "@/layouts/BasicLayout";
 import QuoteSlider from "@/components/HomePage/QuoteSlider/QuoteSlider";
+import { withAuth } from "@workos-inc/authkit-nextjs";
 
-export default function Home() {
+
+export default async function Home() {
+  const { user } = await withAuth();
+
   return (
     <BasicLayout>
       <HeroSection/>

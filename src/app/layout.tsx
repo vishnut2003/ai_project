@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { AuthKitProvider } from "@workos-inc/authkit-nextjs";
+
 
 const rubik = localFont({
   src: './fonts/RubikFont.ttf',
@@ -21,8 +23,9 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${rubik.className} antialiased`}
-      >
+      ><AuthKitProvider>
         {children}
+        </AuthKitProvider>
       </body>
     </html>
   );
