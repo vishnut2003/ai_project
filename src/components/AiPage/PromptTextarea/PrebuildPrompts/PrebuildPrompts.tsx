@@ -19,7 +19,7 @@ const PrebuildPrompts = ({setInputPrompt}: Readonly<{setInputPrompt: Dispatch<Se
             {/* Prompt Popup */}
             {
                 promptPopup &&
-                <div className="fixed top-0 left-0 w-full h-full flex flex-col justify-center items-center p-5 bg-[#00000000]">
+                <div className="fixed top-0 left-0 w-full h-full flex flex-col justify-center items-center p-5 bg-[#00000000] z-10">
                     <motion.div
                         initial={{
                             scale: 0.5,
