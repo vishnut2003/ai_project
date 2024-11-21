@@ -3,6 +3,7 @@ import ConversationInterface from "@/interfaces/conversation";
 import TypingEffect from "./ConversationTypingEffect";
 import ConversationLoadingEffect from "./ConversationLoadingEffect";
 import { useEffect } from "react";
+
 const Conversations = ({
   conversation,
   requestInProgress,
@@ -10,7 +11,7 @@ const Conversations = ({
 }: Readonly<{
   conversation: ConversationInterface[];
   requestInProgress: boolean;
-  scrollToBottom: () => null;
+  scrollToBottom: () => void;
 }>) => {
   useEffect(() => {
     scrollToBottom();
@@ -27,7 +28,7 @@ const Conversations = ({
                     ? "flex-row-reverse self-end"
                     : "flex-row self-start"
                 }
-                ${conversationTurn.error && "bg-red-600"}`}
+                ${conversationTurn.error ? "bg-red-600" : ""}`}
         >
           {conversationTurn.from === "ai_assistant" ? (
             conversationTurn.error ? (
@@ -38,10 +39,9 @@ const Conversations = ({
           ) : (
             <RiUser6Line size={17} className="min-w-7" />
           )}
-          <div className="text-sm font-extralight text-left leading-6 w-full list-decimal">
-            
+          <div className="text-sm font-extralight text-left leading-6 w-full">
             {conversationTurn.from === "ai_assistant" ? (
-                <TypingEffect text={conversationTurn.message!} typingSpeed={90} />
+              <TypingEffect text={conversationTurn.message!} typingSpeed={30} />
             ) : (
               conversationTurn.message
             )}
