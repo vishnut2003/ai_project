@@ -5,7 +5,7 @@ import MobileSidebarMenu from './MobileSidebarMenu';
 const Menu = () => {
   return (
     <>
-      <ol className='gap-10 hidden md:flex'>
+      <ol className='gap-10 hidden md:flex m-0'>
         {menuItems.map((menuItem) => (
           <li key={menuItem.text} className='text-sm font-medium hover:text-slate-300 hover:scale-105 transition-all'><Link href={menuItem.url}>{menuItem.text}</Link></li>
         ))}

@@ -4,6 +4,7 @@ import {motion} from "framer-motion"
 const MyAccountPopup = ({ isMyAccountPopup }: Readonly<{
     isMyAccountPopup: boolean
 }>) => {
+
     if (isMyAccountPopup) {
         return (
             <motion.div 

@@ -12,7 +12,7 @@ const Conversations = ({ conversation, requestInProgress, scrollToBottom }: Read
 
     useEffect(() => {
         scrollToBottom();
-    }, [conversation]);
+    }, [conversation, scrollToBottom]);
 
     return (
         <div className="flex flex-col gap-5 w-full h-max">

@@ -1,6 +1,10 @@
+import { withAuth } from "@workos-inc/authkit-nextjs"
+import LoginButton from "./AuthComponents/LoginButton"
 import Menu from "./Menu"
+import UserCard from "./AuthComponents/UserCard";
 
-const Header = () => {
+const Header = async () => {
+  const {user} = await withAuth();
   return (
     <header className="flex justify-center items-center px-10 py-5">
       <div className="flex flex-nowrap gap-5 justify-between items-center max-w-screen-xl w-full">
@@ -17,7 +21,10 @@ const Header = () => {
         
         {/* Action but col */}
         <div className="hidden md:flex">
-          <button className="py-3 px-8 bg-gradient-to-br from-white to-slate-300 hover:from-white hover:to-white transition-all text-secodary-color font-semibold text-sm rounded-md">Sign  In</button>
+          {
+            user ? <UserCard/> : <LoginButton/>
+          }
+          
         </div>
       </div>
     </header>

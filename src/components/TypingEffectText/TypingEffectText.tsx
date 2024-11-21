@@ -30,7 +30,7 @@ function TypingEffectText({
         return () => {
             clearInterval(typingEffect);
         };
-    }, [duration, i]);
+    }, [duration, i, text]);
 
     return (
         <h2

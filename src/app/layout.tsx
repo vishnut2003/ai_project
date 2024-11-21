@@ -1,3 +1,5 @@
+import { AuthKitProvider } from "@workos-inc/authkit-nextjs"
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -19,10 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${rubik.className} antialiased`}
-      >
-        {children}
+      <body className={`${rubik.className} antialiased`}>
+        <AuthKitProvider>
+          {children}
+        </AuthKitProvider>
       </body>
     </html>
   );
