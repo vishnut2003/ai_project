@@ -3,6 +3,7 @@ import PromptTextarea from "../PromptTextarea/PromptTextarea"
 import { Dispatch, SetStateAction } from "react"
 import supportLinkItems from "./supportLinkItems"
 import Link from "next/link"
+import TypingEffectText from "@/components/TypingEffectText/TypingEffectText"
 
 const IntroPromptArea = ({ conversation, setConversation, setRequestInProgress }: Readonly<{
     conversation: ConversationInterface[],
@@ -12,7 +13,7 @@ const IntroPromptArea = ({ conversation, setConversation, setRequestInProgress }
     return (
         <div className="w-full h-full flex justify-center items-center">
             <div className="max-w-4xl w-full flex flex-col gap-4">
-                <h2 className="text-2xl text-center">Im <b>AI Law</b>, your legal expert</h2>
+                <TypingEffectText text="Im AI Law, your legal expert!" className="text-2xl text-center" duration={100}/>
                 <PromptTextarea conversation={conversation} setConversation={setConversation} setRequestInProgress={setRequestInProgress} />
                 <div className="flex justify-center gap-3 md:gap-10 opacity-65">
                     {supportLinkItems.map((supportItem, index) => (

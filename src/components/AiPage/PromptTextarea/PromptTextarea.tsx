@@ -60,7 +60,7 @@ const PromptTextarea = ({ setConversation, conversation, setRequestInProgress }:
     return (
         <div className='flex flex-col items-center justify-center px-5 md:px-0 h-max'>
             <PromptActions setInputPrompt={setInputPrompt} />
-            <div className='flex flex-nowrap justify-between w-full md:w-3/4 bg-[#ffffff07] p-3 pl-6 rounded-lg rounded-tr-none'>
+            <div className='flex flex-nowrap justify-between w-full md:w-3/4 bg-[#ffffff07] p-3 pl-6 rounded-lg rounded-tr-none shadow-md shadow-[#00000026]'>
                 <form onSubmit={_PromptSubmit} className='flex flex-nowrap justify-between items-center gap-2 w-full'>
 
                     {/* Prompt Input area */}

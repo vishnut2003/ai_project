@@ -17,7 +17,8 @@ const Conversations = ({ conversation, requestInProgress, scrollToBottom }: Read
     return (
         <div className="flex flex-col gap-5 w-full h-max">
             {conversation.map((conversationTurn, index) => (
-                <div key={index} className={
+                <div 
+                key={index} className={
                     `flex flex-nowrap gap-2 max-w-[90%] bg-gradient-to-br from-[#ffffff01] to-[#ffffff05] px-6 py-3 rounded-md
                 ${conversationTurn.from === "user" ? 'flex-row-reverse self-end' : 'flex-row self-start'}
                 ${conversationTurn.error && 'bg-red-600'}`}>
