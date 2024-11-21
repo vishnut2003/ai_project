@@ -1,8 +1,19 @@
 import ConversationInterface from "@/interfaces/conversation"
 import { RiBardFill, RiErrorWarningFill, RiUser6Line } from "@remixicon/react"
 import Markdown from "markdown-to-jsx"
+import ConversationLoadingEffect from "./ConversationLoadingEffect"
+import { useEffect } from "react"
 
-const Conversations = ({ conversation }: Readonly<{ conversation: ConversationInterface[] }>) => {
+const Conversations = ({ conversation, requestInProgress, scrollToBottom }: Readonly<{
+    conversation: ConversationInterface[],
+    requestInProgress: boolean,
+    scrollToBottom: () => null
+}>) => {
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [conversation]);
+
     return (
         <div className="flex flex-col gap-5 w-full h-max">
             {conversation.map((conversationTurn, index) => (
@@ -23,6 +34,10 @@ const Conversations = ({ conversation }: Readonly<{ conversation: ConversationIn
                     </div>
                 </div>
             ))}
+            {
+                requestInProgress &&
+                <ConversationLoadingEffect/>
+            }
         </div>
     )
 }

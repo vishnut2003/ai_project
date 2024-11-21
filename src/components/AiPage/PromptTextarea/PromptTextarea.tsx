@@ -6,9 +6,10 @@ import { RiCloseLargeLine, RiSendPlaneFill } from '@remixicon/react'
 import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import PromptActions from './PromptActions';
 
-const PromptTextarea = ({ setConversation, conversation }: Readonly<{
+const PromptTextarea = ({ setConversation, conversation, setRequestInProgress }: Readonly<{
     setConversation: Dispatch<SetStateAction<ConversationInterface[]>>,
-    conversation: ConversationInterface[]
+    conversation: ConversationInterface[],
+    setRequestInProgress: Dispatch<SetStateAction<boolean>>
 }>) => {
 
     const [submitInProgress, setSubmitInProgress] = useState(false);
@@ -25,8 +26,11 @@ const PromptTextarea = ({ setConversation, conversation }: Readonly<{
         // reset form value
         setInputPrompt('');
 
-        // change status to submit in progress
+        // change status to submit in progress for button loading effect
         setSubmitInProgress(true);
+
+        // Change status enable of request inprogress for loading effect in conversation template
+        setRequestInProgress(true);
 
         // Add user prompt to conversation
         setConversation(prev => [...prev, { from: 'user', message: prompt }]);
@@ -47,12 +51,15 @@ const PromptTextarea = ({ setConversation, conversation }: Readonly<{
             .finally(() => {
                 // change status of submit in progress to false
                 setSubmitInProgress(false);
+
+                // Change status disable of request inprogress for loading effect in conversation template
+                setRequestInProgress(false);
             })
     }
 
     return (
         <div className='flex flex-col items-center justify-center px-5 md:px-0 h-max'>
-            <PromptActions setInputPrompt={setInputPrompt}/>
+            <PromptActions setInputPrompt={setInputPrompt} />
             <div className='flex flex-nowrap justify-between w-full md:w-3/4 bg-[#ffffff07] p-3 pl-6 rounded-lg rounded-tr-none'>
                 <form onSubmit={_PromptSubmit} className='flex flex-nowrap justify-between items-center gap-2 w-full'>
 
@@ -65,18 +72,18 @@ const PromptTextarea = ({ setConversation, conversation }: Readonly<{
                     {/* Clear Prompt button */}
                     {
                         inputPrompt &&
-                        <RiCloseLargeLine 
-                        onClick={() => setInputPrompt('')}
-                        size={20} 
-                        className='w-8 opacity-55 cursor-pointer'/>
+                        <RiCloseLargeLine
+                            onClick={() => setInputPrompt('')}
+                            size={20}
+                            className='w-8 opacity-55 cursor-pointer' />
                     }
-                    
+
                     {/* Prompt Submit Button */}
                     <button className='bg-gradient-to-br from-white to-[#ffffff80] text-secodary-color p-1 rounded-lg w-12 h-10 flex justify-center items-center'>
                         {
                             submitInProgress ?
                                 <div className='w-3 h-3 animate-bounce shadow-md shadow-black rounded-full bg-secodary-color'></div> :
-                                <RiSendPlaneFill size={20}/>
+                                <RiSendPlaneFill size={20} />
                         }
                     </button>
                 </form>
