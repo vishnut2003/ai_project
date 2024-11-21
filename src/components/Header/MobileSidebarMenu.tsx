@@ -2,10 +2,23 @@
 
 import Link from 'next/link';
 import menuItems from './MenuItems';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import SidebarSignupButton from './AuthComponents/SidebarSignupButton';
+import SignupSigninButton from './AuthComponents/SignupSigninButton';
+import { authVerify } from '@/utils/client/authHelper';
+import { NoUserInfo, UserInfo } from '@workos-inc/authkit-nextjs/dist/esm/interfaces';
+import MobileUserCard from './AuthComponents/MobileUserCard';
 
 const MobileSidebarMenu = () => {
     const [mobileSidebar, setMobileSibar] = useState(false)
+    const [userInfo, setUserInfo] = useState<UserInfo | NoUserInfo>({ user: null })
+
+    useEffect(() => {
+        authVerify()
+            .then((userInfo) => {
+                setUserInfo(userInfo);
+            })
+    }, [setUserInfo])
 
     return (
         <div>
@@ -29,10 +42,20 @@ const MobileSidebarMenu = () => {
                         ))}
                     </ol>
                 </div>
-                <div className='flex flex-nowrap justify-center gap-2 z-10'>
-                    <button className='py-2 w-full bg-gradient-to-br from-white to-slate-300 text-secodary-color rounded-md'>SignIn</button>
-                    <button className='py-2 w-full border-2 border-white rounded-md'>SignUp</button>
+
+                {/* Mobile sidebar signin signup button or user card for signin user */}
+                <div className='flex flex-nowrap justify-center items-center gap-2 z-10'>
+                    {
+                        !userInfo.user ?
+                        <>
+                            <SignupSigninButton />
+                            <SidebarSignupButton />
+                        </>:
+                        <MobileUserCard userInfo={userInfo}/>
+                    }
                 </div>
+
+                {/* Sidebar overlay bg */}
                 <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-br from-secodary-color to-primary-color opacity-10 z-0'></div>
             </div>
         </div>
