@@ -16,6 +16,7 @@
     "cookies-next": "^5.0.2",
     "framer-motion": "^11.11.11",
     "markdown-to-jsx": "^7.6.2",
+    "mongoose": "^8.8.2",
     "next": "15.0.1",
     "react": "19.0.0-rc-69d4b800-20241021",
     "react-dom": "19.0.0-rc-69d4b800-20241021",

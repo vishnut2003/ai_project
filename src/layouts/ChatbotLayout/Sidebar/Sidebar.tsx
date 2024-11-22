@@ -1,9 +1,10 @@
 import { RiBarChartHorizontalLine, RiEdit2Line } from "@remixicon/react"
 import { Dispatch, SetStateAction } from "react"
+import ChatHistory from "./ChatHistory/ChatHistory"
 
 const Sidebar = ({sidebarOpen, setSidebarOpen}: Readonly<{sidebarOpen: boolean, setSidebarOpen: Dispatch<SetStateAction<boolean>>}>) => {
   return (
-    <div className={`${sidebarOpen ? 'min-w-[270px]' : 'min-w-0 px-0'} fixed md:static z-20 h-full transition-all overflow-hidden w-0 bg-secodary-color p-5`}>
+    <div className={`${sidebarOpen ? 'min-w-[270px]' : 'min-w-0 px-0'} fixed md:static z-20 h-full transition-all overflow-hidden w-0 bg-secodary-color p-5 flex flex-col gap-3`}>
       <div className="flex justify-between">
         <button 
         onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -14,6 +15,7 @@ const Sidebar = ({sidebarOpen, setSidebarOpen}: Readonly<{sidebarOpen: boolean, 
           <RiEdit2Line size={24}/>
         </button>
       </div>
+      <ChatHistory/>
     </div>
   )
 }

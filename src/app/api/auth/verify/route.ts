@@ -2,6 +2,8 @@ import { getSession } from "@workos-inc/authkit-nextjs";
 import { NextResponse } from "next/server";
 
 export async function GET () {
-    const userInfo = await getSession()
+    let userInfo = await getSession()
+    if(!userInfo) userInfo = {user: null}
+
     return NextResponse.json(userInfo)
 }
