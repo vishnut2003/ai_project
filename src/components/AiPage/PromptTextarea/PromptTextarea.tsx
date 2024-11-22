@@ -5,15 +5,18 @@ import { handlePromptSubmit } from '@/utils/client/aiHelper';
 import { RiCloseLargeLine, RiSendPlaneFill } from '@remixicon/react'
 import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import PromptActions from './PromptActions';
+import { useSearchParams } from 'next/navigation';
 
 const PromptTextarea = ({ setConversation, conversation, setRequestInProgress }: Readonly<{
     setConversation: Dispatch<SetStateAction<ConversationInterface[]>>,
     conversation: ConversationInterface[],
-    setRequestInProgress: Dispatch<SetStateAction<boolean>>
+    setRequestInProgress: Dispatch<SetStateAction<boolean>>,
 }>) => {
+    const queryParams = useSearchParams();
+    const queryPrompt = queryParams.get('prompt');
 
     const [submitInProgress, setSubmitInProgress] = useState(false);
-    const [inputPrompt, setInputPrompt] = useState<string>('')
+    const [inputPrompt, setInputPrompt] = useState<string>(queryPrompt ? queryPrompt : '');
 
     function _PromptSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();

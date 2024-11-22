@@ -5,7 +5,7 @@ import IntroPromptArea from "@/components/AiPage/IntroPromptArea/IntroPromptArea
 import PromptTextarea from "@/components/AiPage/PromptTextarea/PromptTextarea"
 import ConversationInterface from "@/interfaces/conversation";
 import ChatbotLayout from "@/layouts/ChatbotLayout/ChatbotLayout"
-import { useState } from "react"
+import { Suspense, useState } from "react"
 
 const Page = () => {
 
@@ -16,12 +16,21 @@ const Page = () => {
     <ChatbotLayout>
       {
         conversation.length <= 1 ?
-        <IntroPromptArea conversation={conversation} setConversation={setConversation} setRequestInProgress={setRequestInProgress}/>
-        :
-        <>
-        <ConversationTemplate conversation={conversation} requestInProgress={requestInProgress} />
-        <PromptTextarea setConversation={setConversation} conversation={conversation} setRequestInProgress={setRequestInProgress} />
-        </>
+          <IntroPromptArea
+            conversation={conversation}
+            setConversation={setConversation}
+            setRequestInProgress={setRequestInProgress}
+          />
+          :
+          <>
+            <ConversationTemplate conversation={conversation} requestInProgress={requestInProgress} />
+            <Suspense>
+              <PromptTextarea
+                setConversation={setConversation}
+                conversation={conversation}
+                setRequestInProgress={setRequestInProgress} />
+            </Suspense>
+          </>
       }
     </ChatbotLayout>
   )
