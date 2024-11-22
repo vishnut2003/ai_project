@@ -1,9 +1,13 @@
+import LoginButton from "@/components/Header/LoginButton";
 import { RiLogoutBoxRLine, RiUser6Line } from "@remixicon/react";
+
 import {motion} from "framer-motion"
+
 
 const MyAccountPopup = ({ isMyAccountPopup }: Readonly<{
     isMyAccountPopup: boolean
 }>) => {
+    
     if (isMyAccountPopup) {
         return (
             <motion.div 
@@ -24,7 +28,7 @@ const MyAccountPopup = ({ isMyAccountPopup }: Readonly<{
                 <div>
                     <div className="flex flex-nowrap justify-start items-center gap-2 hover:bg-[#ffffff10] py-2 px-3 rounded-md cursor-pointer">
                         <RiLogoutBoxRLine size={15} />
-                        <p className="text-sm whitespace-nowrap">Log out</p>
+                        
                     </div>
                 </div>
             </motion.div>

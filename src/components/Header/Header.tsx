@@ -1,7 +1,7 @@
 import LoginButton from "./LoginButton";
 import Menu from "./Menu"
 
-const Header = async () => {
+const HeaderMain = async () => {
   return (
     <header className="flex justify-center items-center px-10 py-5">
       <div className="flex flex-nowrap gap-5 justify-between items-center max-w-screen-xl w-full">
@@ -27,4 +27,4 @@ const Header = async () => {
   )
 }
 
-export default Header
+export default HeaderMain
