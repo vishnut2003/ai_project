@@ -39,3 +39,18 @@ export function authSigninUrl () {
             })
     })
 }
+
+export async function authSignoutUrl(): Promise<string> {
+  try {
+    const response = await axios.get("/api/auth/get-signout-url");
+    if (response.data?.signoutUrl) {
+
+      return response.data.signoutUrl;
+    } else {
+      throw new Error("No signout URL received");
+    }
+  } catch (error) {
+    console.error("Error fetching signout URL:", error);
+    throw error;
+  }
+}

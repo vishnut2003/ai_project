@@ -50,6 +50,7 @@ const MobileSidebarMenu = () => {
                         <>
                             <SignupSigninButton />
                             <SidebarSignupButton />
+                            
                         </>:
                         <MobileUserCard userInfo={userInfo}/>
                     }
