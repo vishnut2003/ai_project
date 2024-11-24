@@ -18,7 +18,7 @@ export function udateHistoryChat ({chatId, userPrompt, modelPrompt}: {
     userPrompt: ConversationInterface,
     modelPrompt: ConversationInterface
 }) {
-    return new Promise <string> ((resolve, reject) => {
+    return new Promise <string> ((resolve) => {
         axios.post('/api/chat-history/add', {chatId, userPrompt, modelPrompt})
             .then((res) => {
                 const data: {chatId: string} = res.data;
