@@ -9,6 +9,7 @@ import { Suspense, useState } from "react"
 
 const Page = () => {
 
+  const [chatId, setChatId] = useState<string>('')
   const [conversation, setConversation] = useState<ConversationInterface[]>([{ from: "ai_assistant", message: "Type your prompt to start!" }]);
   const [requestInProgress, setRequestInProgress] = useState<boolean>(false);
 
@@ -20,6 +21,8 @@ const Page = () => {
             conversation={conversation}
             setConversation={setConversation}
             setRequestInProgress={setRequestInProgress}
+            chatId={chatId}
+            setChatId={setChatId}
           />
           :
           <>
@@ -28,7 +31,10 @@ const Page = () => {
               <PromptTextarea
                 setConversation={setConversation}
                 conversation={conversation}
-                setRequestInProgress={setRequestInProgress} />
+                setRequestInProgress={setRequestInProgress}
+                chatId={chatId}
+                setChatId={setChatId}
+                 />
             </Suspense>
           </>
       }

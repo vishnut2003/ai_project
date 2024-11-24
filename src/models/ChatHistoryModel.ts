@@ -5,7 +5,8 @@ export interface ChatHistoryInterface extends mongoose.Document {
     userId: string,
     history: {
         chatName: string,
-        history: ConversationInterface[]
+        chatId: string,
+        chatRecords: ConversationInterface[]
     }[]
 }
 
@@ -17,7 +18,7 @@ const chatHistory = new mongoose.Schema<ChatHistoryInterface>({
     history: [{
         chatName: String,
         chatId: String,
-        chatRecord: [{
+        chatRecords: [{
             from: {
                 type: String,
                 required: true
@@ -36,4 +37,4 @@ const chatHistory = new mongoose.Schema<ChatHistoryInterface>({
 
 
 
-export default mongoose.models.ChatHistory || mongoose.model('ChatHistory', chatHistory);
+export default mongoose.models.ChatHistory || mongoose.model<ChatHistoryInterface>('ChatHistory', chatHistory);

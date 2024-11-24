@@ -6,11 +6,14 @@ import { RiCloseLargeLine, RiSendPlaneFill } from '@remixicon/react'
 import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import PromptActions from './PromptActions';
 import { useSearchParams } from 'next/navigation';
+import { udateHistoryChat } from '@/utils/client/historyHelper';
 
-const PromptTextarea = ({ setConversation, conversation, setRequestInProgress }: Readonly<{
+const PromptTextarea = ({ setConversation, conversation, setRequestInProgress, chatId, setChatId }: Readonly<{
     setConversation: Dispatch<SetStateAction<ConversationInterface[]>>,
     conversation: ConversationInterface[],
     setRequestInProgress: Dispatch<SetStateAction<boolean>>,
+    chatId: string,
+    setChatId: Dispatch<SetStateAction<string>>
 }>) => {
     const queryParams = useSearchParams();
     const queryPrompt = queryParams.get('prompt');
@@ -42,6 +45,23 @@ const PromptTextarea = ({ setConversation, conversation, setRequestInProgress }:
             .then((response: string) => {
                 // Add new response to conversation
                 setConversation(prevConversation => [...prevConversation, { from: 'ai_assistant', message: response }]);
+
+                // update chat history
+                udateHistoryChat({
+                    chatId: chatId,
+                    userPrompt: {
+                        from: 'user',
+                        message: prompt,
+                    },
+                    modelPrompt: {
+                        from: 'ai_assistant',
+                        message: response
+                    }
+                })
+                .then((newChatId) => {
+                    // Assign the newChatid or updated chatid
+                    setChatId(newChatId);
+                })
             })
             .catch((errResponse) => {
                 // Add new response to conversation

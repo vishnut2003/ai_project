@@ -5,10 +5,12 @@ import supportLinkItems from "./supportLinkItems"
 import Link from "next/link"
 import TypingEffectText from "@/components/TypingEffectText/TypingEffectText"
 
-const IntroPromptArea = ({ conversation, setConversation, setRequestInProgress }: Readonly<{
+const IntroPromptArea = ({ conversation, setConversation, setRequestInProgress, chatId, setChatId }: Readonly<{
     conversation: ConversationInterface[],
     setConversation: Dispatch<SetStateAction<ConversationInterface[]>>,
     setRequestInProgress: Dispatch<SetStateAction<boolean>>,
+    chatId: string,
+    setChatId: Dispatch<SetStateAction<string>>
 }>) => {
     return (
         <div className="w-full h-full flex justify-center items-center">
@@ -19,6 +21,8 @@ const IntroPromptArea = ({ conversation, setConversation, setRequestInProgress }
                         conversation={conversation}
                         setConversation={setConversation}
                         setRequestInProgress={setRequestInProgress}
+                        chatId={chatId}
+                        setChatId={setChatId}
                     />
                 </Suspense>
                 <div className="flex justify-center gap-3 md:gap-10 opacity-65">
