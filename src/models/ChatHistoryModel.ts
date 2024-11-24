@@ -38,3 +38,4 @@ const chatHistory = new mongoose.Schema<ChatHistoryInterface>({
 
 
 export default mongoose.models.ChatHistory || mongoose.model<ChatHistoryInterface>('ChatHistory', chatHistory);
+// export default mongoose.model<ChatHistoryInterface>('ChatHistory', chatHistory);

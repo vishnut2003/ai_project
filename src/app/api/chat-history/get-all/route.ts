@@ -4,6 +4,7 @@ import { getSession } from "@workos-inc/authkit-nextjs";
 import { NextResponse } from "next/server";
 
 export async function GET() {
+    // get current user
     const userInfo = await getSession();
 
     // Return if no user fount
@@ -12,9 +13,8 @@ export async function GET() {
     // Connect Database
     await dbConnect();
 
-    // Testing
     try {
-        const chats = await ChatHistoryModel.find({});
+        const chats = await ChatHistoryModel.findOne({userId: userInfo.user.id});
         return NextResponse.json(chats)
     } catch (err) {
         return NextResponse.json({err}, {status: 500});
