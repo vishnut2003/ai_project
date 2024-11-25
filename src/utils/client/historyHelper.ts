@@ -29,3 +29,14 @@ export function udateHistoryChat ({chatId, userPrompt, modelPrompt}: {
             .catch((err) => console.log(err))
     })
 }
+
+export function getChatRecordByChatId (chatId: string) {
+    return new Promise<ConversationInterface[]>((resolve) => {
+        axios.post('/api/chat-history/get-by-chatid', {chatId})
+            .then((res) => {
+                const response: {chatRecord: ConversationInterface[]} = res.data;
+                resolve(response.chatRecord);
+            })
+            .catch((err) => console.log(err));
+    })
+}

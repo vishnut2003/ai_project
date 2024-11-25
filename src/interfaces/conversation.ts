@@ -1,5 +1,6 @@
 export default interface ConversationInterface {
     from: "user" | "ai_assistant",
     message: string | undefined,
-    error?: boolean
+    error?: boolean,
+    _id?: string
 }
