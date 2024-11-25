@@ -4,7 +4,7 @@ import { authSigninUrl } from '@/utils/client/authHelper';
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
-const SignupSigninButton = () => {
+const SidebarSigninButton = () => {
 
     const [signinUrl, setSigninUrl] = useState<string>('')
 
@@ -22,4 +22,4 @@ const SignupSigninButton = () => {
   )
 }
 
-export default SignupSigninButton
+export default SidebarSigninButton

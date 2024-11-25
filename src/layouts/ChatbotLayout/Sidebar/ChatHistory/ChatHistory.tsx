@@ -18,14 +18,14 @@ const ChatHistory = () => {
   }, [])
 
   return (
-    <div className="w-full flex flex-col gap-5 overflow-hidden">
+    <div className="w-full flex flex-col gap-3 overflow-hidden">
       <h2 className="text-base font-semibold">Recent Chats</h2>
 
       {/* Chat history list */}
       <div className="h-full overflow-y-auto">
         <div className="flex flex-col-reverse gap-2 h-max">
           {chatHistory?.history.map((chat, index) => (
-            <div key={index} className="py-2 px-4 bg-[#ffffff08] rounded-md shadow-md border-l-2 border-white relative">
+            <div key={index} className="py-2 px-4 bg-[#ffffff08] rounded-md shadow-md relative">
               <div className="flex flex-nowrap items-center justify-between gap-2">
                 <p className="truncate m-0">
                   <Link href={`/ai/${chat.chatId}`} className="text-sm w-full">

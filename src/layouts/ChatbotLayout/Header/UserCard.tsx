@@ -1,12 +1,14 @@
+import { clientSignout } from "@/components/Header/AuthComponents/MobileSidebarComponents/clientSignout"
 import { authVerify } from "@/utils/client/authHelper"
 import { RiArrowRightSLine } from "@remixicon/react"
 import { NoUserInfo, UserInfo } from "@workos-inc/authkit-nextjs/dist/esm/interfaces"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useActionState, useEffect, useState } from "react"
 
 const UserCard = () => {
 
     const [userInfo, setUserInfo] = useState<UserInfo | NoUserInfo>({ user: null });
+    const [signoutState, signoutAction] = useActionState(clientSignout, null);
 
     useEffect(() => {
         authVerify()
@@ -24,10 +26,12 @@ const UserCard = () => {
                     <div className="flex flex-col">
                         <p className="m-0 font-semibold text-base whitespace-nowrap">Hello, {userInfo.user?.firstName}</p>
 
-                        <button className="flex flex-nowrap gap-1 items-center justify-end">
-                            <p className="m-0 font-thin text-xs whitespace-nowrap">Log out</p>
-                            <RiArrowRightSLine size={16} />
-                        </button>
+                        <form action={signoutAction} className="flex justify-end">
+                            <button className="flex flex-nowrap gap-1 items-center justify-end">
+                                <p className="m-0 font-thin text-xs whitespace-nowrap">Log out</p>
+                                {!signoutState && <RiArrowRightSLine size={16} />}
+                            </button>
+                        </form>
                     </div>
                     <div>
                         <Image

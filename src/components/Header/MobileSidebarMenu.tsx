@@ -3,11 +3,11 @@
 import Link from 'next/link';
 import menuItems from './MenuItems';
 import { useEffect, useState } from 'react';
-import SidebarSignupButton from './AuthComponents/SidebarSignupButton';
-import SignupSigninButton from './AuthComponents/SignupSigninButton';
+import SidebarSignupButton from './AuthComponents/MobileSidebarComponents/SidebarSignupButton';
+import SidebarSigninButton from './AuthComponents/MobileSidebarComponents/SidebarSigninButton';
 import { authVerify } from '@/utils/client/authHelper';
 import { NoUserInfo, UserInfo } from '@workos-inc/authkit-nextjs/dist/esm/interfaces';
-import MobileUserCard from './AuthComponents/MobileUserCard';
+import MobileUserCard from './AuthComponents/MobileSidebarComponents/MobileUserCard';
 
 const MobileSidebarMenu = () => {
     const [mobileSidebar, setMobileSibar] = useState(false)
@@ -48,7 +48,7 @@ const MobileSidebarMenu = () => {
                     {
                         !userInfo.user ?
                         <>
-                            <SignupSigninButton />
+                            <SidebarSigninButton />
                             <SidebarSignupButton />
                         </>:
                         <MobileUserCard userInfo={userInfo}/>
