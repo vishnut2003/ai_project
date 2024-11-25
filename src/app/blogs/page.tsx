@@ -1,10 +1,9 @@
-import FeaturedBlogs from "@/components/BlogsPage/FeaturedBlogs/FeaturedBlogs"
 import BasicLayout from "@/layouts/BasicLayout"
 
 const page = () => {
   return (
     <BasicLayout>
-        <FeaturedBlogs/>
+      <h2>Blogs page</h2>
     </BasicLayout>
   )
 }

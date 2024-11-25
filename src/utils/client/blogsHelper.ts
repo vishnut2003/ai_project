@@ -5,11 +5,10 @@ export async function fetchBlogs({
 }: {
     pageId: string
 }) {
-    return new Promise <void> ( async (resolve, reject) => {
+    return new Promise <void> ( async () => {
         const WORDPRESS_URL = process.env.WORDPRESS_URL;
         try {
-            const response = await axios.get(`${WORDPRESS_URL}/wp-json/wp/v2/posts?page=${pageId}`)
-            console.log(response.data);
+            await axios.get(`${WORDPRESS_URL}/wp-json/wp/v2/posts?page=${pageId}`);
         } catch (err) {
             console.log(err);
         }
