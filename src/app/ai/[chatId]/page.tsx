@@ -1,7 +1,6 @@
 'use client';
 
 import ConversationTemplate from "@/components/AiPage/Conversation/ConversationTemplate";
-import IntroPromptArea from "@/components/AiPage/IntroPromptArea/IntroPromptArea";
 import PromptTextarea from "@/components/AiPage/PromptTextarea/PromptTextarea"
 import TripleDotLoading from "@/components/TripleDotLoading/TripleDotLoading";
 import ConversationInterface from "@/interfaces/conversation";
