@@ -1,9 +1,11 @@
+import LatestBlogs from "@/components/BlogsPage/LatestBlogs/LatestBlogs"
 import BasicLayout from "@/layouts/BasicLayout"
 
-const page = () => {
+const page = async ({searchParams}: {searchParams: Promise<{page: string | undefined}>}) => {
+  const pageId = (await searchParams).page
   return (
     <BasicLayout>
-      <h2>Blogs page</h2>
+      <LatestBlogs  pageId={pageId} postPerPage="9"/>
     </BasicLayout>
   )
 }

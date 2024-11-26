@@ -2,16 +2,38 @@
 export default interface WordpressBlogInterface {
     date: string | null,
     date_gmt: string | null,
-    guid: object,
+    guid: {
+        rendered: string
+    },
     id: number,
-    link: string,
     modified: string,
     modified_gmt: string,
     slug: string,
     status: string,
     type: string,
-    password: string,
-    permalink_template: string,
-    generated_slug: string,
-    title: string
+    link: string,
+    title: {
+        rendered: string
+    },
+    content: {
+        rendered: string
+    },
+    excerpt: {
+        rendered: string,
+        protected: boolean
+    },
+    author: number,
+    featured_media: number,
+    comment_status: string,
+    ping_status: string,
+    sticky: boolean,
+    template: string,
+    format: string,
+    meta: {
+        footnotes: string
+    },
+    categories: string[],
+    tags: string[],
+    class_list: string[],
+    featured_media_src_url: string
 }

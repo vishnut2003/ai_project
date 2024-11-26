@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'workoscdn.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'vansh.gogalax.in',
       }
     ]
   }
