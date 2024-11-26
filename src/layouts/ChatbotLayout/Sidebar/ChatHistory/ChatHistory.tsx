@@ -4,26 +4,35 @@ import { RiPencilLine } from "@remixicon/react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import ChatItemOptions from "./ChatItemOptions"
+import TripleDotLoading from "@/components/TripleDotLoading/TripleDotLoading"
 
 const ChatHistory = () => {
 
   const [chatHistory, setChatHistory] = useState<ChatHistoryInterface>();
   const [chatOptionPopup, setChatOptionPopup] = useState({})
+  const [historyLoading, setHistoryLoading] = useState(false);
 
   useEffect(() => {
+    setHistoryLoading(true)
     getHistoryChat()
       .then((userHistory: ChatHistoryInterface) => {
         setChatHistory(userHistory)
+        setHistoryLoading(false);
       })
   }, [])
 
   return (
     <div className="w-full flex flex-col gap-3 overflow-hidden">
-      <h2 className="text-base font-semibold">Recent Chats</h2>
 
       {/* Chat history list */}
       <div className="h-full overflow-y-auto">
         <div className="flex flex-col-reverse gap-2 h-max">
+
+          {/* Loading Effect */}
+          { historyLoading && <TripleDotLoading/>}
+
+
+          {/* Loop the chats */}
           {chatHistory?.history.map((chat, index) => (
             <div key={index} className="py-2 px-4 bg-[#ffffff08] rounded-md shadow-md relative">
               <div className="flex flex-nowrap items-center justify-between gap-2">
@@ -44,6 +53,12 @@ const ChatHistory = () => {
               }
             </div>
           ))}
+
+          {!chatHistory || chatHistory.history.length === 0 ?
+            <div>
+              <p className="text-xs text-center font-extralight text-[#ffffff50]">Your chat history will show here. you can select or delete from here</p>
+            </div> : ''
+          }
         </div>
       </div>
     </div>
