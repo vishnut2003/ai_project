@@ -3,6 +3,7 @@
 import ConversationTemplate from "@/components/AiPage/Conversation/ConversationTemplate";
 import IntroPromptArea from "@/components/AiPage/IntroPromptArea/IntroPromptArea";
 import PromptTextarea from "@/components/AiPage/PromptTextarea/PromptTextarea"
+import TripleDotLoading from "@/components/TripleDotLoading/TripleDotLoading";
 import ConversationInterface from "@/interfaces/conversation";
 import ChatbotLayout from "@/layouts/ChatbotLayout/ChatbotLayout"
 import { getChatRecordByChatId } from "@/utils/client/historyHelper";
@@ -33,13 +34,9 @@ const Page = ({params}: Readonly<{
     <ChatbotLayout>
       {
         conversation.length <= 1 ?
-          <IntroPromptArea
-            conversation={conversation}
-            setConversation={setConversation}
-            setRequestInProgress={setRequestInProgress}
-            chatId={chatId}
-            setChatId={setChatId}
-          />
+          <div className="w-full h-full flex justify-center items-center">
+            <TripleDotLoading/>
+          </div>
           :
           <>
             <ConversationTemplate conversation={conversation} requestInProgress={requestInProgress} />

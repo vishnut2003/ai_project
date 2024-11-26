@@ -34,7 +34,7 @@ const ChatHistory = () => {
 
           {/* Loop the chats */}
           {chatHistory?.history.map((chat, index) => (
-            <div key={index} className="py-2 px-4 bg-[#ffffff08] rounded-md shadow-md relative">
+            <div key={index} className="py-2 px-4 hover:bg-[#ffffff04] rounded-md relative">
               <div className="flex flex-nowrap items-center justify-between gap-2">
                 <p className="truncate m-0">
                   <Link href={`/ai/${chat.chatId}`} className="text-sm w-full">
@@ -43,7 +43,7 @@ const ChatHistory = () => {
                 </p>
                 <RiPencilLine
                   onClick={() => setChatOptionPopup({ ...chatOptionPopup, [index]: !chatOptionPopup[index as keyof typeof chatOptionPopup] })}
-                  size={20}
+                  size={16}
                   className="cursor-pointer min-w-6" />
               </div>
 
