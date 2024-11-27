@@ -2,6 +2,7 @@ import { RiBarChartHorizontalLine, RiEdit2Line } from "@remixicon/react"
 import { Dispatch, SetStateAction } from "react"
 import ChatHistory from "./ChatHistory/ChatHistory"
 import SidebarFooter from "./SidebarFooter/SidebarFooter"
+import Link from "next/link"
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: Readonly<{ sidebarOpen: boolean, setSidebarOpen: Dispatch<SetStateAction<boolean>> }>) => {
   return (
@@ -14,9 +15,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Readonly<{ sidebarOpen: boolea
             <RiBarChartHorizontalLine size={25} />
           </button>
           <button className="hover:bg-[#ffffff07] bg-[#ffffff] text-secodary-color hover:text-white transition-all p-2 rounded-md">
-            <a href="/ai">
+            <Link href={'/ai'}>
               <RiEdit2Line size={24} />
-            </a>
+            </Link>
           </button>
         </div>
         <ChatHistory />

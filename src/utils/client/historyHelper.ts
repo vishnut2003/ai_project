@@ -43,7 +43,7 @@ export function getChatRecordByChatId (chatId: string) {
 }
 
 export function deleteChatRecordByChatId (chatId: string) {
-    return new Promise<boolean>( async (resolve, reject) => {
+    return new Promise<boolean>( async (resolve) => {
         try {
             const response = await axios.post('/api/chat-history/delete-by-chatid', {chatId}, axiosConfig);
             const data: {success: boolean} = response.data;
