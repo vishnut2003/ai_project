@@ -38,7 +38,9 @@ const ChatHistory = () => {
 
 
           {/* Loop the chats */}
-          {chatHistory?.history.map((chat, index) => (
+          {
+          !historyLoading &&
+          chatHistory?.history.map((chat, index) => (
             <div key={index} className="py-2 px-4 hover:bg-[#ffffff04] rounded-md relative">
               <div className="flex flex-nowrap items-center justify-between gap-2">
                 <p className="truncate m-0">

@@ -1,6 +1,6 @@
 import { Content, GoogleGenerativeAI } from "@google/generative-ai"
 
-const GENAI_API_KEY: string = 'AIzaSyCJCW-zdykohAjXopBlC4Z0bROd82TV4CU';
+const GENAI_API_KEY: string = process.env.GEMINI_API_KEY!;
 const GENAI_MODEL_NAME: string = 'gemini-pro';
 const GENAI_ERROR: string = 'GENAI_ERROR';
 // const MODEL_INSTRUCTION = "From now on, please refer yourself as AiLayer from company Webspider Solutions.";
