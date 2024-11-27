@@ -1,3 +1,4 @@
+import axiosConfig from "@/configs/axiosConfig";
 import WordpressBlogInterface from "@/interfaces/wordpressBlog";
 import axios from "axios";
 
@@ -26,7 +27,7 @@ export async function totalBlogsPageCount ({postPerPage}: {
 }) {
     return new Promise<number>( async (resolve) => {
         try {
-            const response = await axios.get(`${WORDPRESS_URL}/wp-json/wp/v2/posts?per_page=${postPerPage}`);
+            const response = await axios.get(`${WORDPRESS_URL}/wp-json/wp/v2/posts?per_page=${postPerPage}`, axiosConfig);
             const postPageCountString: string = response.headers['x-wp-totalpages'];
             const postPageCount = parseInt(postPageCountString);
 
@@ -42,7 +43,7 @@ export async function getSingleBlog ({slug}: {
 }) {
     return new Promise<WordpressBlogInterface>( async (resolve) => {
         try {
-            const response = await axios.get(`${WORDPRESS_URL}/wp-json/wp/v2/posts?slug=${slug}`)
+            const response = await axios.get(`${WORDPRESS_URL}/wp-json/wp/v2/posts?slug=${slug}`, axiosConfig)
             const singleBlog: WordpressBlogInterface = response.data[0];
             resolve(singleBlog);
         } catch (err) {
