@@ -12,14 +12,19 @@ const ChatHistory = () => {
   const [chatOptionPopup, setChatOptionPopup] = useState({})
   const [historyLoading, setHistoryLoading] = useState(false);
 
-  useEffect(() => {
+  function refreshChatHistory() {
     setHistoryLoading(true)
     getHistoryChat()
       .then((userHistory: ChatHistoryInterface) => {
         setChatHistory(userHistory)
         setHistoryLoading(false);
       })
+  }
+
+  useEffect(() => {
+    refreshChatHistory()
   }, [])
+
 
   return (
     <div className="w-full flex flex-col gap-3 overflow-hidden">
@@ -29,7 +34,7 @@ const ChatHistory = () => {
         <div className="flex flex-col-reverse gap-2 h-max">
 
           {/* Loading Effect */}
-          { historyLoading && <TripleDotLoading/>}
+          {historyLoading && <TripleDotLoading />}
 
 
           {/* Loop the chats */}
@@ -49,7 +54,7 @@ const ChatHistory = () => {
 
               {/* Chat edit option */
                 chatOptionPopup[index as keyof typeof chatOptionPopup] &&
-                <ChatItemOptions />
+                <ChatItemOptions chatId={chat.chatId} refreshChatHistory={refreshChatHistory} />
               }
             </div>
           ))}

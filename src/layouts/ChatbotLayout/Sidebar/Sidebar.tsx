@@ -14,15 +14,17 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Readonly<{ sidebarOpen: boolea
             <RiBarChartHorizontalLine size={25} />
           </button>
           <button className="hover:bg-[#ffffff07] bg-[#ffffff] text-secodary-color hover:text-white transition-all p-2 rounded-md">
-            <RiEdit2Line size={24} />
+            <a href="/ai">
+              <RiEdit2Line size={24} />
+            </a>
           </button>
         </div>
         <ChatHistory />
       </div>
-      
+
       {/* Sidebar Footer */}
       <div>
-        <SidebarFooter/>
+        <SidebarFooter />
       </div>
     </div>
   )

@@ -1,3 +1,4 @@
+import axiosConfig from "@/configs/axiosConfig";
 import ConversationInterface from "@/interfaces/conversation";
 import { ChatHistoryInterface } from "@/models/ChatHistoryModel";
 import axios from "axios"
@@ -38,5 +39,17 @@ export function getChatRecordByChatId (chatId: string) {
                 resolve(response.chatRecord);
             })
             .catch((err) => console.log(err));
+    })
+}
+
+export function deleteChatRecordByChatId (chatId: string) {
+    return new Promise<boolean>( async (resolve, reject) => {
+        try {
+            const response = await axios.post('/api/chat-history/delete-by-chatid', {chatId}, axiosConfig);
+            const data: {success: boolean} = response.data;
+            return resolve(data.success);
+        } catch (err) {
+            console.log(err);
+        }
     })
 }

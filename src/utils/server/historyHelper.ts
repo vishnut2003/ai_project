@@ -158,3 +158,22 @@ async function findChatRecordFromHistory({ userHistory, chatId }: {
         }
     })
 }
+
+export async function deleteChatRecordByChatId ({chatId, userId}: {
+    chatId: string,
+    userId: string
+}) {
+    return new Promise<void>( async (resolve, reject) => {
+        try {
+            await ChatHistoryModel.findOneAndUpdate({userId}, {
+                $pull: {
+                    history: {chatId}
+                }
+            })
+
+            resolve()
+        } catch (err) {
+            return reject(err);
+        }
+    })
+}
