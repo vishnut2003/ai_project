@@ -16,7 +16,7 @@ const ConversationTemplate = ({conversation, requestInProgress}: Readonly<{
 
   return (
     <div className={`h-full overflow-y-auto flex flex-col items-center`}>
-        <div className='flex flex-col justify-between min-h-full items-center w-full h-max md:w-3/4 p-3'>
+        <div className='flex flex-col justify-between min-h-full items-center w-full h-max md:w-3/4 md:max-w-screen-md p-3'>
             <Conversations conversation={conversation} requestInProgress={requestInProgress} scrollToBottom={scrollToBottom}/>
             
             {/* This Empty div using for scroll to bottom */}

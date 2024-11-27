@@ -1,0 +1,8 @@
+
+.custom-response-style ul, .custom-response-style ol {
+    list-style: unset;
+    padding-left: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
