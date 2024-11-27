@@ -2,13 +2,12 @@ import WordpressBlogInterface from "@/interfaces/wordpressBlog"
 import Image from "next/image"
 import Link from "next/link"
 
-const BlogCard = ({ key, post }: {
-    key: number,
+const BlogCard = ({ post }: {
     post: WordpressBlogInterface
 }) => {
 
     return (
-        <div key={key} className="flex flex-col gap-5 p-6 hover:bg-[#ffffff05] rounded-3xl md:hover:scale-105 transition-all">
+        <div className="flex flex-col gap-5 p-6 hover:bg-[#ffffff05] rounded-3xl md:hover:scale-105 transition-all">
             <Image
                 src={post.featured_media_src_url}
                 alt={post.title.rendered}
