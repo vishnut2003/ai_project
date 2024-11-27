@@ -4,6 +4,7 @@ import ConversationLoadingEffect from "./ConversationLoadingEffect"
 import { useEffect } from "react"
 import "./responseStyle.css";
 import { RiBardFill } from "@remixicon/react";
+import DownloadPdf from "./ConversationActions/DownloadPdf";
 
 const Conversations = ({ conversation, requestInProgress, scrollToBottom }: Readonly<{
     conversation: ConversationInterface[],
@@ -24,7 +25,7 @@ const Conversations = ({ conversation, requestInProgress, scrollToBottom }: Read
                 return (
                     <div
                         key={index} className={
-                            `flex flex-nowrap gap-2 w-full py-6
+                            `flex flex-col gap-2 w-full py-6
                     ${conversationTurn.from === "user" && "mt-10 pt-10 border-t border-white/10"}
                     ${conversationTurn.error && 'bg-red-600'}`}>
                         <div className={`custom-response-style font-extralight text-left leading-6 w-full list-decimal
@@ -41,6 +42,15 @@ const Conversations = ({ conversation, requestInProgress, scrollToBottom }: Read
                                 {conversationTurn.message!}
                             </Markdown>
                         </div>
+
+                        {/* actions button for messages */
+
+                            conversationTurn.from === "ai_assistant" &&
+                            <div>
+                                <DownloadPdf/>
+                            </div>
+                        }
+                        
                     </div>
                 )
             })}
