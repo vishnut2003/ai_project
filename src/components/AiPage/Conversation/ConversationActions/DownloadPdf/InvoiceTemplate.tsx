@@ -15,7 +15,12 @@ const InvoiceTemplate = ({ content }: {
 
     return (
         <Document>
-            <Page size={'A4'}>
+            <Page 
+            size={'A4'}
+            style={{
+                padding: '40px'
+            }}
+            >
                 {pdfElements}
             </Page>
         </Document>

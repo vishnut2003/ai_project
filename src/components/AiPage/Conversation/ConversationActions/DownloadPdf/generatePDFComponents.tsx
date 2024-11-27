@@ -1,13 +1,19 @@
 import React from "react";
-import { View, Text } from "@react-pdf/renderer"
+import { View, Text, Font } from "@react-pdf/renderer"
 import { v4 as v4uuid } from "uuid";
 
 export function generatePDFComponents({ nodeJson }: { nodeJson: Document | ChildNode }): React.ReactNode {
     const nodeObject = nodeJson;
 
+    // Register Font
+    Font.register({family: 'Open Sans', fonts: [
+        {src: 'https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-regular.ttf'},
+        {src: 'https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-600.ttf', fontWeight: 600}
+    ]})
+
     // return id no childNodes
-    if(!nodeObject.childNodes) {
-        return createTextElement({child: nodeObject})
+    if (!nodeObject.childNodes) {
+        return createTextElement({ child: nodeObject })
     }
 
     // Convert NodeList to Actual Array
@@ -23,7 +29,7 @@ export function generatePDFComponents({ nodeJson }: { nodeJson: Document | Child
                     case "p":
                         return createPElement({ childrenNodes: child.childNodes });
                     case "strong":
-                        return createPElement({ childrenNodes: child.childNodes });
+                        return createStrongElement({ childrenNodes: child.childNodes });
                     case "hr":
                         return createPElement({ childrenNodes: child.childNodes });
                     case "ul":
@@ -41,7 +47,7 @@ export function generatePDFComponents({ nodeJson }: { nodeJson: Document | Child
                         break;
                 }
             case 3:
-                return createTextElement({child: child})
+                return createTextElement({ child: child })
             default:
                 console.log("Skipping Node", child);
                 break;
@@ -59,13 +65,17 @@ function createDivElement({ childrenNodes }: {
         View,
         {
             minPresenceAhead: 1,
-            key: v4uuid()
+            key: v4uuid(),
+            style: {
+                fontFamily: 'Open Sans',
+                fontSize: '15px',
+            }
         },
         nodesArray.map((child) => generatePDFComponents({ nodeJson: child }))
     )
 }
 
-function createListUlOlElement ({childrenNodes}: {
+function createListUlOlElement({ childrenNodes }: {
     childrenNodes: NodeListOf<ChildNode>
 }): React.ReactNode {
 
@@ -76,11 +86,11 @@ function createListUlOlElement ({childrenNodes}: {
         View,
         {
             minPresenceAhead: 1,
-            key: v4uuid()
+            key: v4uuid(),
         },
         nodesArray.map((child) => generatePDFComponents({ nodeJson: child }))
     )
-} 
+}
 
 function createPElement({ childrenNodes }: {
     childrenNodes: NodeListOf<ChildNode>
@@ -92,7 +102,10 @@ function createPElement({ childrenNodes }: {
         View,
         {
             minPresenceAhead: 1,
-            key: v4uuid()
+            key: v4uuid(),
+            style: {
+                marginBottom: '10px'
+            }
         },
         React.createElement(
             Text,
@@ -102,6 +115,26 @@ function createPElement({ childrenNodes }: {
             },
             nodesArray.map((child) => generatePDFComponents({ nodeJson: child }))
         )
+    )
+}
+
+function createStrongElement({ childrenNodes }: {
+    childrenNodes: NodeListOf<ChildNode>
+}): React.ReactNode {
+
+    const nodesArray = Array.from(childrenNodes)
+
+    return React.createElement(
+        Text,
+        {
+            minPresenceAhead: 1,
+            style: {
+                fontWeight: "extrabold",
+                marginBottom: '10px'
+            },
+            key: v4uuid()
+        },
+        nodesArray.map((child) => generatePDFComponents({ nodeJson: child }))
     )
 }
 
