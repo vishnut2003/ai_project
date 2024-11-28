@@ -40,12 +40,12 @@ strong {
 /* Chat conversation loading bg effect */
 
 .animate-block {
-  animation-duration: 0.8s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
   animation-name: placeHolderShimmer;
   animation-timing-function: linear;
-  background: linear-gradient(to right, #ffffff05 10%, #227B9410 40%, #ffffff05 83%);
+  background: linear-gradient(to right, #ffffff02 10%, #ffffff10 40%, #ffffff02 83%);
   background-size: 1000px 104px;
 }
 
