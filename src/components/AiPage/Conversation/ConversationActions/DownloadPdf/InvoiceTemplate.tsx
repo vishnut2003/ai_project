@@ -1,4 +1,4 @@
-import { Document, Page, View } from "@react-pdf/renderer";
+import { Document, Page, View, Text } from "@react-pdf/renderer";
 import Markdown from "markdown-to-jsx";
 
 const InvoiceTemplate = ({ content }: {
@@ -8,9 +8,9 @@ const InvoiceTemplate = ({ content }: {
         <Document>
             <Page size={'A4'}>
                 <View>
-                    <Markdown>
+                    <Text>
                         {content}
-                    </Markdown>
+                    </Text>
                 </View>
             </Page>
         </Document>
