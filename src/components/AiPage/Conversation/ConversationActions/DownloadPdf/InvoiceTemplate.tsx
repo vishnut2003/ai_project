@@ -4,6 +4,9 @@ import Markdown from "markdown-to-jsx";
 const InvoiceTemplate = ({ content }: {
     content: string
 }) => {
+
+    
+
     return (
         <Document>
             <Page size={'A4'}>
