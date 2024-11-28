@@ -47,7 +47,7 @@ const Conversations = ({ conversation, requestInProgress, scrollToBottom }: Read
 
                             conversationTurn.from === "ai_assistant" &&
                             <div>
-                                <DownloadPdf/>
+                                <DownloadPdf content={conversationTurn.message!}/>
                             </div>
                         }
                         
