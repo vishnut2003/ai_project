@@ -1,7 +1,7 @@
 import { View, Text } from '@react-pdf/renderer';
 import React from 'react';
 
-export const JsonToPdfComponent = (input: string, bodyTextColorString: string) => {
+export const JsonToPdfComponent = (input: Document, bodyTextColorString: string) => {
     
     /*
         the object was created with following values 
@@ -16,16 +16,16 @@ export const JsonToPdfComponent = (input: string, bodyTextColorString: string) =
     */
     
     //first we have an error handler which will result in blank elements in the pdf rather than crashes
-    if (input === undefined) { console.error("JsonToPdfComponent: Undefined JSON Input"); return null; }
+    // if (input === undefined) { console.error("JsonToPdfComponent: Undefined JSON Input"); return null; }
     
     //create the object, either parsing a JSON string or just using an existing javascript object
-    let json = typeof input === 'string' ? JSON.parse(input) : input;
+    let json = input;
     
     //define the node type
     let nodeType = json.nodeType;
     
     //define the tag type
-    let tagType = json.nodeTagName;
+    let tagType = json.nodeName;
     
     //then the construction process is different depending on the type of node
     switch (nodeType) {

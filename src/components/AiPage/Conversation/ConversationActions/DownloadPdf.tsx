@@ -1,17 +1,10 @@
-import { PDFDownloadLink, render } from "@react-pdf/renderer"
+import { PDFDownloadLink } from "@react-pdf/renderer"
 import { RiFilePdf2Line } from "@remixicon/react"
 import InvoiceTemplate from "./DownloadPdf/InvoiceTemplate"
-import Markdown from "markdown-to-jsx"
-import { renderToString } from "react-dom/server"
 
 const DownloadPdf = ({ content }: {
   content: string
 }) => {
-
-  // function savePdf() {
-  //   const html = renderToString(<Markdown children={content} />);
-
-  // }
 
   return (
     <PDFDownloadLink document={<InvoiceTemplate content={content} />}>
