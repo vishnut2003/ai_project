@@ -1,50 +1,52 @@
 import React from "react";
 import { View, Text } from "@react-pdf/renderer"
+import { v4 as v4uuid } from "uuid";
 
 export function generatePDFComponents({ nodeJson }: { nodeJson: Document | ChildNode }): React.ReactNode {
     const nodeObject = nodeJson;
 
     // return id no childNodes
-    if(!nodeObject.childNodes) return createTextElement({child: nodeObject})
+    if(!nodeObject.childNodes) {
+        return createTextElement({child: nodeObject})
+    }
 
     // Convert NodeList to Actual Array
     const childrensArray = Array.from(nodeObject.childNodes);
 
-    // Loop childNodes
-    for (let i = 0; i < childrensArray.length; i++) {
-        switch (childrensArray[i].nodeType) {
+    // Loop childNode
+    return childrensArray.map((child) => {
+        switch (child.nodeType) {
             case 1:
-                switch (childrensArray[i].nodeName) {
-                    case 'div':
-                        return createDivElement({ childrenNodes: childrensArray[i].childNodes });
-                    case 'p':
-                        return createPElement({ childrenNodes: childrensArray[i].childNodes });
-                    case 'strong':
-                        return createPElement({ childrenNodes: childrensArray[i].childNodes });
-                    case 'hr':
-                        return createPElement({ childrenNodes: childrensArray[i].childNodes });
-                    case 'ul':
-                        return createPElement({ childrenNodes: childrensArray[i].childNodes });
-                    case 'ol':
-                        return createPElement({ childrenNodes: childrensArray[i].childNodes });
-                    case 'li':
-                        return createPElement({ childrenNodes: childrensArray[i].childNodes });
-                    case 'em':
-                        return createPElement({ childrenNodes: childrensArray[i].childNodes });
-                    case '#Text':
-                        return createPElement({ childrenNodes: childrensArray[i].childNodes });
+                switch (child.nodeName) {
+                    case "div":
+                        return createDivElement({ childrenNodes: child.childNodes });
+                    case "p":
+                        return createPElement({ childrenNodes: child.childNodes });
+                    case "strong":
+                        return createPElement({ childrenNodes: child.childNodes });
+                    case "hr":
+                        return createPElement({ childrenNodes: child.childNodes });
+                    case "ul":
+                        return createListUlOlElement({ childrenNodes: child.childNodes });
+                    case "ol":
+                        return createListUlOlElement({ childrenNodes: child.childNodes });
+                    case "li":
+                        return createPElement({ childrenNodes: child.childNodes });
+                    case "em":
+                        return createPElement({ childrenNodes: child.childNodes });
+                    case "#Text":
+                        return createPElement({ childrenNodes: child.childNodes });
                     default:
-                        console.log(`No Processing for Tag ${childrensArray[i].childNodes}`);
-                        console.log(childrensArray[i])
+                        console.log(`No Processing for Tag ${child.childNodes}`);
                         break;
                 }
             case 3:
-                return createTextElement({child: childrensArray[i]})
+                return createTextElement({child: child})
             default:
-                console.log("Skipping Node", childrensArray[i]);
+                console.log("Skipping Node", child);
                 break;
         }
-    }
+    })
 }
 
 function createDivElement({ childrenNodes }: {
@@ -57,10 +59,28 @@ function createDivElement({ childrenNodes }: {
         View,
         {
             minPresenceAhead: 1,
+            key: v4uuid()
         },
         nodesArray.map((child) => generatePDFComponents({ nodeJson: child }))
     )
 }
+
+function createListUlOlElement ({childrenNodes}: {
+    childrenNodes: NodeListOf<ChildNode>
+}): React.ReactNode {
+
+    const nodesArray = Array.from(childrenNodes)
+    console.log(nodesArray)
+
+    return React.createElement(
+        View,
+        {
+            minPresenceAhead: 1,
+            key: v4uuid()
+        },
+        nodesArray.map((child) => generatePDFComponents({ nodeJson: child }))
+    )
+} 
 
 function createPElement({ childrenNodes }: {
     childrenNodes: NodeListOf<ChildNode>
@@ -72,11 +92,13 @@ function createPElement({ childrenNodes }: {
         View,
         {
             minPresenceAhead: 1,
+            key: v4uuid()
         },
         React.createElement(
             Text,
             {
                 minPresenceAhead: 1,
+                key: v4uuid()
             },
             nodesArray.map((child) => generatePDFComponents({ nodeJson: child }))
         )
@@ -91,6 +113,7 @@ function createTextElement({ child }: {
         Text,
         {
             minPresenceAhead: 1,
+            key: v4uuid()
         },
         child.nodeValue
     )

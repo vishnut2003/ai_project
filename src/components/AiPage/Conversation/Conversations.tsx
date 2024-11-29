@@ -45,7 +45,7 @@ const Conversations = ({ conversation, requestInProgress, scrollToBottom }: Read
 
                         {/* actions button for messages */
 
-                            conversationTurn.from === "ai_assistant" &&
+                            !requestInProgress && conversationTurn.from === "ai_assistant" &&
                             <div>
                                 <DownloadPdf content={conversationTurn.message!}/>
                             </div>
