@@ -1,9 +1,9 @@
 import ConversationInterface from "@/interfaces/conversation"
 import Markdown from "markdown-to-jsx"
 import ConversationLoadingEffect from "./ConversationLoadingEffect"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import "./responseStyle.css";
-import { RiBardFill } from "@remixicon/react";
+import { RiBardFill, RiShare2Line } from "@remixicon/react";
 import DownloadPdf from "./ConversationActions/DownloadPdf";
 
 const Conversations = ({ conversation, requestInProgress, scrollToBottom }: Readonly<{
@@ -11,6 +11,8 @@ const Conversations = ({ conversation, requestInProgress, scrollToBottom }: Read
     requestInProgress: boolean,
     scrollToBottom: () => null
 }>) => {
+
+    const [messageActions, setMessageActions] = useState({})
 
     useEffect(() => {
         scrollToBottom();
@@ -20,7 +22,7 @@ const Conversations = ({ conversation, requestInProgress, scrollToBottom }: Read
         <div className="flex flex-col gap-1 w-full h-max">
             {conversation.map((conversationTurn, index) => {
 
-                if(conversationTurn.from === "ai_assistant" && index == 0) return;
+                if (conversationTurn.from === "ai_assistant" && index == 0) return;
 
                 return (
                     <div
@@ -43,14 +45,23 @@ const Conversations = ({ conversation, requestInProgress, scrollToBottom }: Read
                             </Markdown>
                         </div>
 
-                        {/* actions button for messages */
-
+                        {
                             !requestInProgress && conversationTurn.from === "ai_assistant" &&
                             <div>
-                                <DownloadPdf content={conversationTurn.message!}/>
+                                <button onClick={() => setMessageActions({
+                                    [index]: !messageActions[index as keyof typeof messageActions]
+                                })}>
+                                    <RiShare2Line size={20} />
+                                </button>
+                                {/* actions button for messages */
+
+                                    messageActions[index as keyof typeof messageActions] &&
+                                    <DownloadPdf content={conversationTurn.message ? conversationTurn.message : ''} />
+
+                                }
                             </div>
                         }
-                        
+
                     </div>
                 )
             })}
