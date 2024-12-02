@@ -1,5 +1,5 @@
 import { dbConnect } from "@/database/ConnectDB"
-import CustomPromptsModel, { CustomPromptInterface } from "@/models/CustomPromptModel"
+import CustomPromptsModel from "@/models/CustomPromptModel"
 
 export async function createCustomePrompt ({customPrompt, userId}: {
     customPrompt: string,
