@@ -3,10 +3,12 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { motion } from 'framer-motion';
 import PromptItemTemplate from "./PromptItemTemplate";
 import PromptSearchTemplate from "./PromptSearchTemplate";
+import CreatePromptForm from "./CreatePromptForm";
 
 const PrebuildPrompts = ({setInputPrompt}: Readonly<{setInputPrompt: Dispatch<SetStateAction<string>>}>) => {
     const [promptPopup, setPromptPopup] = useState<boolean>(false);
     const [promptSearch, setPromptSearch] = useState<string>('');
+    const [createPromptForm, setCreatePromptForm] = useState<boolean>(false)
     return (
         <div>
             <button
@@ -37,10 +39,19 @@ const PrebuildPrompts = ({setInputPrompt}: Readonly<{setInputPrompt: Dispatch<Se
                         </div>
                         <div className="w-full h-full overflow-hidden">
                             <div className="flex flex-col gap-6 justify-between items-center w-full h-full">
-                                <button className="flex justify-between items-center w-full rounded-md bg-gradient-to-br from-white to-[#ffffff90] text-secodary-color px-4 py-3">
+
+                                {/* Create custom Prompt form open/close button */}
+                                <button 
+                                onClick={() => setCreatePromptForm(prevState => !prevState)}
+                                className="flex justify-between items-center w-full rounded-md bg-gradient-to-br from-white to-[#ffffff90] text-secodary-color px-4 py-3">
                                     <p className="m-0">Create new prompt</p>
                                     <RiMenuAddFill size={20} />
                                 </button>
+
+                                {/* Create custom Prompt Form */}
+                                {createPromptForm && <CreatePromptForm/>}
+
+                                {/* Prompt search option. */}
                                 <div className="flex justify-center w-full gap-3 items-center">
                                     <RiSearchLine size={20} />
                                     <input 
