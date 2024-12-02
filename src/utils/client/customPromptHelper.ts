@@ -10,3 +10,15 @@ export function createCustomePrompt ({customPrompt}: {customPrompt: string}) {
         }
     })
 }
+
+export function getAllCustomPrompt () {
+    return new Promise<string[] | undefined>( async (resolve, reject) => {
+        try {
+            const response = await axios.get('/api/custom-prompt/get-all');
+            const prompts: string[] | undefined = response.data.prompts;
+            resolve(prompts);
+        } catch (err) {
+            console.log(err);
+        }
+    })
+}

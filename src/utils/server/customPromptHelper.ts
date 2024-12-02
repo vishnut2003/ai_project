@@ -26,3 +26,16 @@ export async function createCustomePrompt ({customPrompt, userId}: {
         }
     })
 }
+
+export async function getAllCustomPrompt ({userId}: {
+    userId: string
+}) {
+    return new Promise<string[]>( async (resolve, reject) => {
+        try {
+            const userPrompts = await CustomPromptsModel.findOne({userId}, 'prompts');
+            resolve(userPrompts.prompts || []);
+        } catch (err) {
+            return reject(err);
+        }
+    })
+}

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import PromptItemTemplate from "./PromptItemTemplate";
 import PromptSearchTemplate from "./PromptSearchTemplate";
 import CreatePromptForm from "./CreatePromptForm";
+import CustomPromptsTemplate from "./CustomPrompts/CustomPromptsTemplate";
 
 const PrebuildPrompts = ({setInputPrompt}: Readonly<{setInputPrompt: Dispatch<SetStateAction<string>>}>) => {
     const [promptPopup, setPromptPopup] = useState<boolean>(false);
@@ -50,6 +51,9 @@ const PrebuildPrompts = ({setInputPrompt}: Readonly<{setInputPrompt: Dispatch<Se
 
                                 {/* Create custom Prompt Form */}
                                 {createPromptForm && <CreatePromptForm/>}
+
+                                {/* Custom prompt list items */}
+                                <CustomPromptsTemplate setInputPrompt={setInputPrompt} setPromptPopup={setPromptPopup}/>
 
                                 {/* Prompt search option. */}
                                 <div className="flex justify-center w-full gap-3 items-center">
