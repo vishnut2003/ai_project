@@ -27,7 +27,7 @@ const ChatHistory = () => {
 
 
   return (
-    <div className="w-full flex flex-col gap-3 overflow-hidden">
+    <div className="w-full flex flex-col gap-3 overflow-hidden h-full">
 
       {/* Chat history list */}
       <div className="h-full overflow-y-auto">
