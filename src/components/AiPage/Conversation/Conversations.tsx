@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import "./responseStyle.css";
 import { RiBardFill, RiShare2Line } from "@remixicon/react";
 import DownloadPdf from "./ConversationActions/DownloadPdf";
+import DownloadWord from "./ConversationActions/DownloadWord";
 
 const Conversations = ({ conversation, requestInProgress, scrollToBottom }: Readonly<{
     conversation: ConversationInterface[],
@@ -56,7 +57,10 @@ const Conversations = ({ conversation, requestInProgress, scrollToBottom }: Read
                                 {/* actions button for messages */
 
                                     messageActions[index as keyof typeof messageActions] &&
-                                    <DownloadPdf content={conversationTurn.message ? conversationTurn.message : ''} />
+                                    <div className="flex gap-2">
+                                        <DownloadPdf content={conversationTurn.message ? conversationTurn.message : ''} />
+                                        <DownloadWord />
+                                    </div>
 
                                 }
                             </div>
