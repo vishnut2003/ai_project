@@ -1,5 +1,5 @@
 import BasicLayout from "@/layouts/BasicLayout"
-import { HeadingText, ListItems, ParaText } from "../privacy-policy/page"
+import { HeadingText, ListItems, ParaText } from "@/components/SupportPage/CommonTextStyles"
 import Link from "next/link"
 
 const page = () => {
