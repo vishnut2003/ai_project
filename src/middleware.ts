@@ -4,7 +4,14 @@ export default authkitMiddleware({
     middlewareAuth: {
         enabled: true,
         // Allow logged out users to view these paths
-        unauthenticatedPaths: ['/', '/blogs/:path*', '/contact',],
+        unauthenticatedPaths: [
+            '/', 
+            '/blogs/:path*', 
+            '/contact', 
+            '/support/privacy-policy',
+            '/support/terms-conditions',
+            '/support/cookies-policy'
+        ],
     },
 });
 
