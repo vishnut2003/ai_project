@@ -11,7 +11,7 @@ const Header = async () => {
 
         {/* Logo col */}
         <div>
-          <h2 className="text-3xl font-bold">LOGO</h2>
+          <h2 className="text-3xl font-bold">Legally Ours</h2>
         </div>
 
         {/* Menu col */}
