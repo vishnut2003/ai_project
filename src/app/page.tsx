@@ -1,7 +1,6 @@
 import CustomerLogosCarousel from "@/components/HomePage/CustomerLogosCarousel/CustomerLogosCarousel";
 import HeroSection from "@/components/HomePage/HeroSection/HeroSection";
 import BasicLayout from "@/layouts/BasicLayout";
-import QuoteSlider from "@/components/HomePage/QuoteSlider/QuoteSlider";
 import PromptCarousel from "../components/HomePage/PromptCarousel/PromptCarousel";
 
 export default function Home() {
@@ -9,7 +8,7 @@ export default function Home() {
     <BasicLayout>
       <HeroSection/>
       <CustomerLogosCarousel/>
-      <QuoteSlider/>
+      {/* <QuoteSlider/> */}
       <PromptCarousel/>
     </BasicLayout>
   );
