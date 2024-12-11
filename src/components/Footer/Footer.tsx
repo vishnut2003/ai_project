@@ -1,9 +1,10 @@
 import Image from "next/image"
 import FooterMenu from "./FooterMenu"
+import Link from "next/link"
 
 const Footer = () => {
   return (
-    <footer className="flex justify-center items-center p-10 md:px-10 md:py-20 relative -z-50">
+    <footer className="flex justify-center items-center p-10 md:px-10 md:py-20 relative">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-primary-color to-secodary-color opacity-[0.03] -z-10"></div>
       <div className="flex flex-col-reverse md:flex-row md:flex-nowrap gap-10 justify-between items-stretch max-w-screen-xl w-full z-0">
 
@@ -20,7 +21,8 @@ const Footer = () => {
 
           {/* Copyright */}
           <div>
-            <p className="text-base font-thin opacity-50">&#xa9; 2024 All rights reserved</p>
+            <p className="text-base font-thin">&#xa9; 2024 All rights reserved</p>
+            <p className="text-base font-thin">Site designed and developed by <Link className="font-semibold" href={'https://webspidersolutions.com/'}>Web Spider Solutions</Link></p>
           </div>
         </div>
 
@@ -39,10 +41,10 @@ const Footer = () => {
           </div>
 
           {/* Widget 3 */}
-          <div className="flex flex-col gap-5">
+          {/* <div className="flex flex-col gap-5">
             <h3 className="text-base text-white opacity-50 font-light">Follow</h3>
             <FooterMenu menu="widgetMenuThree" />
-          </div>
+          </div> */}
 
         </div>
       </div>

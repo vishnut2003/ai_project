@@ -7,7 +7,7 @@ const FooterMenu = ({ menu }: Readonly<{ menu: 'widgetMenuOne' | 'widgetMenuTwo'
         {
             footerMenus[menu].map((menuItem) => (
                 <li className='text-sm font-light' key={menuItem.text}>
-                  <Link href={menuItem.url}>{menuItem.text}</Link>
+                  <p><Link href={menuItem.url}>{menuItem.text}</Link></p>
                 </li>
             ))
         }
