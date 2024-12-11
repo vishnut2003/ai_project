@@ -1,4 +1,4 @@
-import { RemixiconComponentType, RiAtLine, RiMapPinLine, RiPhoneLine } from '@remixicon/react'
+import { RemixiconComponentType, RiAtLine, RiPhoneLine } from '@remixicon/react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -30,7 +30,7 @@ const ContactDetails = () => {
         <div className='w-full'>
             <div className='flex flex-col gap-5'>
                 {contactDetails.map((item, index) => (
-                    <div className='flex justify-start gap-5'>
+                    <div key={index} className='flex justify-start gap-5'>
                         <p className='m-0'>{<item.icon size={20}/>}</p>
                         <div className='flex flex-col gap-1'>
                             <p className='m-0 font-semibold text-lg'>{item.key}</p>
