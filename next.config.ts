@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'vansh.gogalax.in',
+        hostname: 'ailawgpt.webspidersolutions.com',
       }
     ]
   }
