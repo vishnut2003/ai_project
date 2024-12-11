@@ -15,7 +15,7 @@ const LatestBlogs = async ({pageId, postPerPage}: {
                 <h2 className="text-3xl font-semibold">Latest Blogs</h2>
 
                 {/* Latest blogs */}
-                <div className="grid grid-cols-3 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                     {
                         posts.map((post, index) => (
                             <BlogCard key={index} post={post} />
