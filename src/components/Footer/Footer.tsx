@@ -1,3 +1,4 @@
+import Image from "next/image"
 import FooterMenu from "./FooterMenu"
 
 const Footer = () => {
@@ -9,7 +10,12 @@ const Footer = () => {
         <div className="flex flex-col justify-between gap-3">
           {/* Logo */}
           <div>
-            <h2 className="text-4xl font-bold">LOGO</h2>
+            <Image
+              width={403}
+              height={157}
+              src={'/legallyours-logo.png'}
+              alt="site-logo"
+              style={{ width: "150px", borderRadius: "8px" }}/>
           </div>
 
           {/* Copyright */}
@@ -17,25 +23,25 @@ const Footer = () => {
             <p className="text-base font-thin opacity-50">&#xa9; 2024 All rights reserved</p>
           </div>
         </div>
-        
+
         <div className="flex flex-row md:flex-nowrap gap-5 md:gap-20 justify-between">
 
           {/* Widget 1 */}
           <div className="flex flex-col gap-5">
             <h3 className="text-base text-white opacity-50 font-light">About</h3>
-            <FooterMenu menu="widgetMenuOne"/>
+            <FooterMenu menu="widgetMenuOne" />
           </div>
 
           {/* Widget 2 */}
           <div className="flex flex-col gap-5">
             <h3 className="text-base text-white opacity-50 font-light">Resources</h3>
-            <FooterMenu menu="widgetMenuTwo"/>
+            <FooterMenu menu="widgetMenuTwo" />
           </div>
 
           {/* Widget 3 */}
           <div className="flex flex-col gap-5">
             <h3 className="text-base text-white opacity-50 font-light">Follow</h3>
-            <FooterMenu menu="widgetMenuThree"/>
+            <FooterMenu menu="widgetMenuThree" />
           </div>
 
         </div>

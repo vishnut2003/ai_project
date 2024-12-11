@@ -2,6 +2,7 @@ import { withAuth } from "@workos-inc/authkit-nextjs"
 import LoginButton from "./AuthComponents/LoginButton"
 import Menu from "./Menu"
 import UserCard from "./AuthComponents/UserCard";
+import Image from "next/image";
 
 const Header = async () => {
   const {user} = await withAuth();
@@ -10,8 +11,14 @@ const Header = async () => {
       <div className="flex flex-nowrap gap-5 justify-between items-center max-w-screen-xl w-full">
 
         {/* Logo col */}
-        <div>
-          <h2 className="text-3xl font-bold">Legally Ours</h2>
+        <div >
+          <Image 
+          width={403}
+          height={157}
+          src={'/legallyours-logo.png'} 
+          alt="site-logo"
+          style={{width: "150px", borderRadius: "8px"}}
+          />
         </div>
 
         {/* Menu col */}
