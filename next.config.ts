@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'ailawgpt.webspidersolutions.com',
+        hostname: 'wordpress.ailawgpt.com',
       }
     ]
   }
