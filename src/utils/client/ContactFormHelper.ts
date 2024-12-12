@@ -6,7 +6,7 @@ export function handleContactFormSubmit ({formData}: {
 }) {
     return new Promise<void>( async (resolve, reject) => {
         try {
-            const response = await axios.post('/api/contact-form/submit', formData);
+            await axios.post('/api/contact-form/submit', formData);
             resolve();
         } catch (err) {
             console.log(err);
