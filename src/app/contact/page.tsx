@@ -11,7 +11,7 @@ const Contact = () => {
           <h2 className='text-3xl font-semibold text-center'>Contact Us</h2>
 
           <div className='w-full flex justify-center'>
-            <div className='w-full flex justify-center items-center max-w-screen-md gap-5'>
+            <div className='w-full flex flex-col md:flex-row justify-center items-center max-w-screen-md gap-5'>
               <ContactDetails />
               <ContactForm />
             </div>

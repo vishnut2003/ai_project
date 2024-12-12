@@ -15,6 +15,7 @@ const Header = async () => {
           <Image 
           width={403}
           height={157}
+          priority
           src={'/legallyours-logo.png'} 
           alt="site-logo"
           style={{width: "150px", borderRadius: "8px"}}
