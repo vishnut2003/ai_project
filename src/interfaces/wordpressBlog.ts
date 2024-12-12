@@ -35,5 +35,9 @@ export default interface WordpressBlogInterface {
     categories: string[],
     tags: string[],
     class_list: string[],
-    featured_media_src_url: string
+    featured_media_src_url: string,
+    yoast_head_json: {
+        title: string,
+        description: string
+    }
 }

@@ -2,6 +2,27 @@ import ContentSection from "@/components/BlogsPage/SingleBlog/ContentSection"
 import BasicLayout from "@/layouts/BasicLayout"
 import { getSingleBlog } from "@/utils/server/blogsHelper"
 import { RiArrowRightSLine } from "@remixicon/react"
+import { Metadata } from "next"
+
+type Props = {
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export async function generateMetadata(
+  { params }: Props,
+): Promise<Metadata> {
+  // read route params
+  const slug = (await params).slug
+ 
+  // fetch data
+  const singleBlog = await getSingleBlog({ slug });
+ 
+  return {
+    title: singleBlog.yoast_head_json.title,
+    description: singleBlog.yoast_head_json.description
+  }
+}
 
 const page = async ({ params }: {
   params: Promise<{
