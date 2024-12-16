@@ -10,7 +10,7 @@ const rubik = localFont({
 })
 
 export const metadata: Metadata = {
-  title: "Legall yours",
+  title: "LegallYours",
 };
 
 export default function RootLayout({
