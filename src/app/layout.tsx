@@ -1,4 +1,5 @@
-import { AuthKitProvider } from "@workos-inc/authkit-nextjs"
+import { AuthKitProvider } from "@workos-inc/authkit-nextjs";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -11,6 +12,9 @@ const rubik = localFont({
 
 export const metadata: Metadata = {
   title: "LegallYours",
+  verification: {
+    google: 'gkssNx_aviEPb8KcfQLRDvP8dtP7ZAegAje5s4Ia1HY'
+  }
 };
 
 export default function RootLayout({
@@ -21,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${rubik.className} antialiased`}>
+        <GoogleAnalytics gaId="G-HGGSWKXE3Y"/>
         <AuthKitProvider>
           {children}
         </AuthKitProvider>

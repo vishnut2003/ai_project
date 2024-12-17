@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
+    "@next/third-parties": "^15.1.0",
     "@react-pdf/renderer": "^4.1.5",
     "@remixicon/react": "^4.5.0",
     "@workos-inc/authkit-nextjs": "^0.16.0",
