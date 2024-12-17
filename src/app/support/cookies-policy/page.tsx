@@ -13,7 +13,7 @@ const page = () => {
           <div>
 
             <ParaText>
-              To improve your experience when visiting Legall your, we employ the use of cookies.
+              To improve your experience when visiting LegallYour, we employ the use of cookies.
               This Cookies Policy describes what cookies are, how we use collecting cookies, and how you can control cookies.
             </ParaText>
 

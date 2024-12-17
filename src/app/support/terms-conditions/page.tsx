@@ -12,7 +12,7 @@ const TermsCondition = () => {
           {/* Content */}
           <div>
             <ParaText>
-              Welcome to Legall yours. You agree to these Terms & Conditions every time you visit and/or have an interaction with our
+              Welcome to LegallYours. You agree to these Terms & Conditions every time you visit and/or have an interaction with our
               website. Any user who is accessing this Website and its products or services or any user providing information in forms
               on the Website agrees to the terms stated on this policy.
             </ParaText>
@@ -49,7 +49,7 @@ const TermsCondition = () => {
 
             <ParaText>
               All text, graphics, logos, icons, images, computer software, and other materials on this Web site,
-              unless otherwise stated, are protected by copyright as the work of Legall Yours or its content suppliers.
+              unless otherwise stated, are protected by copyright as the work of LegallYours or its content suppliers.
               It is prohibited to copy, distribute, modify or otherwise utilise any of the content on this website in any
               way unless prior permission has been granted.
             </ParaText>
@@ -65,16 +65,16 @@ const TermsCondition = () => {
             <HeadingText>Limitation of Liability</HeadingText>
 
             <ParaText>
-              Notwithstanding the foregoing provisions of this Legall yours shall not be liable for any damages whatsoever,
+              Notwithstanding the foregoing provisions of this LegallYours shall not be liable for any damages whatsoever,
               whether direct, indirect, punitive, special, incidental or consequential relating to the use or inability to use any of our website or services,
-              or otherwise arising out of your use of the website even if Legall yours have been advised of the possibility of such damages.
+              or otherwise arising out of your use of the website even if LegallYours have been advised of the possibility of such damages.
             </ParaText>
 
             <HeadingText>Indemnification</HeadingText>
 
             <ParaText>
               With regard to your use of the website and adherence to these Terms & Conditions,
-              you also assume full legal responsibility to indemnify all in connection to Legall yours including but
+              you also assume full legal responsibility to indemnify all in connection to LegallYours including but
               not limited to officers, employees, agents, and affiliates from all claims, damages, liabilities, and expenses.
             </ParaText>
 

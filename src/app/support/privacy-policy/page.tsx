@@ -14,7 +14,7 @@ const PrivacyPolicy = () => {
           <div>
 
             <ParaText>
-              We understand that privacy is important to you, and Legall yours is designed with this in mind therefore protecting your personal information.
+              We understand that privacy is important to you, and LegallYours is designed with this in mind therefore protecting your personal information.
               This Privacy Policy explains what information we collect when you access our website or when you use our services of a legal nature.
             </ParaText>
 
