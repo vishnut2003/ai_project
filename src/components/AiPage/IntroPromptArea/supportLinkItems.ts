@@ -1,19 +1,15 @@
 const supportLinkItems = [
     {
         text: 'Terms & Condition',
-        link: '/terms-condition'
+        link: '/support/terms-conditions'
     },
     {
         text: 'Privacy Policy',
-        link: '/privacy-policy'
+        link: '/support/privacy-policy'
     },
     {
         text: 'Cookie Policy',
-        link: '/cookie-policy'
-    },
-    {
-        text: 'Disclosure',
-        link: '/disclosure'
+        link: '/support/cookies-policy'
     },
 ]
 
