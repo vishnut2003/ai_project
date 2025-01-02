@@ -8,6 +8,7 @@ export interface formFields {
     name: string,
     phone: string,
     email: string,
+    message: string,
 }
 
 const ContactForm = () => {
@@ -18,6 +19,7 @@ const ContactForm = () => {
         name: '',
         phone: '',
         email: '',
+        message: '',
     })
     const [submitStatus, setSubmitStatus] = useState<{
         status: 'pending' | 'error' | 'success',
@@ -56,9 +58,25 @@ const ContactForm = () => {
                 <FormFields fieldType="text" label="Name" name="name" placeholder="Name" setStateObject={setFormData} stateObject={formData} required />
                 <FormFields fieldType="text" label="Phone Number" name="phone" placeholder="Phone Number" setStateObject={setFormData} stateObject={formData} required />
                 <FormFields fieldType="email" label="Email" name="email" placeholder="Email Address" setStateObject={setFormData} stateObject={formData} />
+                
+                <div className="flex flex-col gap-1">
+                    <label className="font-semibold">Message</label>
+                    <textarea
+                        rows={3}
+                        placeholder="Message"
+                        className="text-secodary-color py-2 px-3 rounded-md"
+                        value={formData.message}
+                        onChange={(e) => {
+                            setFormData({
+                                ...formData,
+                                message: e.target.value
+                            })
+                        }}
+                    ></textarea>
+                </div>
 
                 <button
-                disabled={submitStatus.status !== "pending"}
+                    disabled={submitStatus.status !== "pending"}
                     className="w-full p-3 bg-secodary-color shadow-md shadow-black/50 font-semibold text-base text-white mt-4 rounded-md border"
                 >
                     {buttonProgress ? <TripleDotLoading/> : <>Get In Touch</>}
