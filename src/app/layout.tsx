@@ -11,8 +11,8 @@ const rubik = localFont({
 })
 
 export const metadata: Metadata = {
-  title: "LegallYours",
-  description: "Get instant legal drafts with our AI-powered law chatbot. Ask questions, draft legal documents, and simplify your legal needs seamlessly. Start now!",
+  title: "Legallyours | AI Legal Chatbot for Instant Document Drafting",
+  description: "Legallyours: Your AI-powered legal assistant for drafting documents. Ask questions, create accurate legal drafts, and simplify your legal needs effortlessly.",
   verification: {
     google: 'gkssNx_aviEPb8KcfQLRDvP8dtP7ZAegAje5s4Ia1HY'
   }
