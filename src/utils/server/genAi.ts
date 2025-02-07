@@ -1,9 +1,9 @@
 import { Content, GoogleGenerativeAI } from "@google/generative-ai"
 
 const GENAI_API_KEY: string = process.env.GEMINI_API_KEY!;
-const GENAI_MODEL_NAME: string = 'gemini-pro';
+const GENAI_MODEL_NAME: string = 'gemini-2.0-flash';
 const GENAI_ERROR: string = 'GENAI_ERROR';
-// const MODEL_INSTRUCTION = "From now on, please refer yourself as AiLayer from company Webspider Solutions.";
+const MODEL_INSTRUCTION = "From now on, please refer yourself as AiLayer from company Webspider Solutions.";
 
 // GenAi text response functions
 export function generateTextResponse(historyConversation: Content[]) {
@@ -14,10 +14,10 @@ export function generateTextResponse(historyConversation: Content[]) {
             const genAI = new GoogleGenerativeAI(GENAI_API_KEY);
             const model = genAI.getGenerativeModel({
                 model: GENAI_MODEL_NAME,
-                // systemInstruction: {
-                //     role: "system",
-                //     parts: [{text: MODEL_INSTRUCTION}]
-                // }
+                systemInstruction: {
+                    role: "system",
+                    parts: [{text: MODEL_INSTRUCTION}]
+                }
             });
             const result = await model.generateContent({
                 contents: historyConversation
