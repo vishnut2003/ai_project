@@ -1,6 +1,13 @@
 import BasicLayout from '@/layouts/BasicLayout'
 import { HeadingText, ListItems, ParaText } from '@/components/SupportPage/CommonTextStyles'
 import Link from 'next/link'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://ailawgpt.com/support/terms-contitions",
+  }
+}
 
 const TermsCondition = () => {
   return (

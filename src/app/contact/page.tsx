@@ -1,7 +1,14 @@
 import ContactDetails from '@/components/ContactPage/ContactDetails/ContactDetails'
 import ContactForm from '@/components/ContactPage/ContactForm/ContactForm'
 import BasicLayout from '@/layouts/BasicLayout'
+import { Metadata } from 'next'
 import React from 'react'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://ailawgpt.com/contact"
+  }
+}
 
 const Contact = () => {
   return (

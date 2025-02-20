@@ -1,7 +1,14 @@
 import { HeadingText, ListItems, ParaText } from '@/components/SupportPage/CommonTextStyles'
 import BasicLayout from '@/layouts/BasicLayout'
+import { Metadata } from 'next'
 import Link from 'next/link'
 import React from 'react'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://ailawgpt.com/support/privacy-policy",
+  }
+}
 
 const PrivacyPolicy = () => {
   return (
