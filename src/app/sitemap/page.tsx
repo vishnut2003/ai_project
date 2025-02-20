@@ -1,4 +1,5 @@
 import BasicLayout from '@/layouts/BasicLayout'
+import Link from 'next/link'
 import React from 'react'
 
 const Sitemap = () => {
@@ -15,22 +16,22 @@ const Sitemap = () => {
             className='list-disc pl-4'
           >
             <li>
-              <a href="/">Home</a>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <a href="/blogs">Blogs</a>
+              <Link href="/blogs">Blogs</Link>
             </li>
             <li>
-              <a href="/contact">Contact</a>
+              <Link href="/contact">Contact</Link>
             </li>
             <li>
-              <a href="/support/cookies-policy">Cookies Policy</a>
+              <Link href="/support/cookies-policy">Cookies Policy</Link>
             </li>
             <li>
-              <a href="/support/privacy-policy">Privacy Policy</a>
+              <Link href="/support/privacy-policy">Privacy Policy</Link>
             </li>
             <li>
-              <a href="/support/terms-conditions">Terms and Conditions</a>
+              <Link href="/support/terms-conditions">Terms and Conditions</Link>
             </li>
           </ul>
         </div>
