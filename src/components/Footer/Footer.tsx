@@ -21,7 +21,9 @@ const Footer = () => {
 
           {/* Copyright */}
           <div>
-            <p className="text-base font-thin">&#xa9; 2024 All rights reserved</p>
+            <p className="text-base font-thin">
+              &#xa9; {new Date().getFullYear()} All rights reserved
+            </p>
             <p className="text-base font-thin">Site designed and developed by <Link className="font-semibold" href={'https://webspidersolutions.com/'}>Web Spider Solutions</Link></p>
           </div>
         </div>
