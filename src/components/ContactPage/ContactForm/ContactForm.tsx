@@ -29,10 +29,27 @@ const ContactForm = () => {
         message: ''
     });
 
-    function _submitContactform(e: FormEvent) {
+    async function _submitContactform(e: FormEvent) {
         e.preventDefault();
-        setButtonProgress(true)
+        setButtonProgress(true);
+        setSubmitStatus({
+            status: "pending",
+            message: "",
+        })
 
+        // validate contact form
+        
+        // validate for phone
+        if (!/^\d{10}$/.test(formData.phone)) {
+            setSubmitStatus({
+                status: "error",
+                message: "Please enter valid phone number",
+            })
+            setButtonProgress(false);
+            return;
+        } 
+        
+        // Submit form data
         handleContactFormSubmit({ formData: formData })
             .then(() => {
                 setSubmitStatus({
@@ -76,7 +93,7 @@ const ContactForm = () => {
                 </div>
 
                 <button
-                    disabled={submitStatus.status !== "pending"}
+                    disabled={buttonProgress}
                     className="w-full p-3 bg-secodary-color shadow-md shadow-black/50 font-semibold text-base text-white mt-4 rounded-md border"
                 >
                     {buttonProgress ? <TripleDotLoading/> : <>Get In Touch</>}
@@ -114,6 +131,15 @@ function FormFields({ setStateObject, stateObject, name, placeholder, label, fie
             <input
                 value={stateObject[name as keyof formFields]}
                 onChange={(e) => {
+
+                    // validate for name
+                    if (name === "name") {
+                        if (/\d/.test(e.target.value)) {
+                            return;
+                        }
+                    }
+
+                    // change value
                     setStateObject({
                         ...stateObject,
                         [name]: e.target.value
