@@ -7,7 +7,7 @@ import Image from "next/image";
 const Header = async () => {
   const {user} = await withAuth();
   return (
-    <header className="flex justify-center items-center px-10 py-5">
+    <header className="flex justify-center items-center px-10 py-5 sticky top-0 bg-secodary-color z-[99]">
       <div className="flex flex-nowrap gap-5 justify-between items-center max-w-screen-xl w-full">
 
         {/* Logo col */}

@@ -1,6 +1,5 @@
 import Image from "next/image"
 import FooterMenu from "./FooterMenu"
-import Link from "next/link"
 
 const Footer = () => {
   return (
@@ -24,7 +23,9 @@ const Footer = () => {
             <p className="text-base font-thin">
               &#xa9; {new Date().getFullYear()} All rights reserved
             </p>
-            <p className="text-base font-thin">Site designed and developed by <Link className="font-semibold" href={'https://webspidersolutions.com/'}>Web Spider Solutions</Link></p>
+            <p className="text-base font-thin">
+              Site designed and developed by <a className="font-semibold" rel="noopener noreferrer nofollow" target="_blank" href={'https://webspidersolutions.com/'}>Web Spider Solutions</a>
+            </p>
           </div>
         </div>
 
