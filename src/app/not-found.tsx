@@ -15,7 +15,7 @@ export default function NotFound() {
         >Oops! Page Not Found</h2>
         <p
             className="font-light leading-[30px]"
-        >Oops! The page you're looking for isn't here. Check the URL or return home</p>
+        >Oops! The page you&apos;re looking for isn&apos;t here. Check the URL or return home</p>
 
         <Link
             href={'/'}
