@@ -2,6 +2,7 @@
 
 import TripleDotLoading from "@/components/TripleDotLoading/TripleDotLoading";
 import { handleContactFormSubmit } from "@/utils/client/ContactFormHelper";
+import { useRouter } from "next/navigation";
 import { Dispatch, FormEvent, SetStateAction, useState } from "react"
 
 export interface formFields {
@@ -12,6 +13,8 @@ export interface formFields {
 }
 
 const ContactForm = () => {
+
+    const router = useRouter();
 
     const [buttonProgress, setButtonProgress] = useState(false);
 
@@ -56,6 +59,7 @@ const ContactForm = () => {
                     status: "success",
                     message: "Form submit successfully..."
                 });
+                router.push('/contact/thank-you');
             })
             .catch(() => {
                 setSubmitStatus({

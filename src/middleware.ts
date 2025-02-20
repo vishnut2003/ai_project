@@ -8,6 +8,7 @@ export default authkitMiddleware({
             '/', 
             '/blogs/:path*', 
             '/contact', 
+            '/contact/thank-you',
             '/support/privacy-policy',
             '/support/terms-conditions',
             '/support/cookies-policy',
