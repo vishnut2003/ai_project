@@ -5,7 +5,7 @@ const Sitemap = () => {
   return (
     <BasicLayout>
       <div
-        className='flex justify-center items-center py-20'
+        className='flex justify-center items-center py-20 px-5'
       >
         <div className='max-w-screen-md w-full text-left flex flex-col justify-center items-start gap-5'>
           <h1
