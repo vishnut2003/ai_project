@@ -12,7 +12,7 @@ const LatestBlogs = async ({pageId, postPerPage}: {
     return (
         <div className="w-full flex flex-col items-center p-10">
             <div className="max-w-screen-xl w-full flex flex-col gap-5">
-                <h2 className="text-3xl font-semibold">Latest Blogs</h2>
+                <h1 className="text-3xl font-semibold">Latest Blogs</h1>
 
                 {/* Latest blogs */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
