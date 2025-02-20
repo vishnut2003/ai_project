@@ -10,7 +10,8 @@ export default authkitMiddleware({
             '/contact', 
             '/support/privacy-policy',
             '/support/terms-conditions',
-            '/support/cookies-policy'
+            '/support/cookies-policy',
+            '/sitemap',
         ],
     },
 });
