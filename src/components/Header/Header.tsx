@@ -3,6 +3,7 @@ import LoginButton from "./AuthComponents/LoginButton"
 import Menu from "./Menu"
 import UserCard from "./AuthComponents/UserCard";
 import Image from "next/image";
+import SearchBar from "./SearchPost/SearchBar";
 
 const Header = async () => {
   const {user} = await withAuth();
@@ -23,8 +24,9 @@ const Header = async () => {
         </div>
 
         {/* Menu col */}
-        <div  className="flex">
+        <div  className="flex flex-row-reverse md:flex-row items-center gap-5">
           <Menu/>
+          <SearchBar/>
         </div>
         
         {/* Action but col */}

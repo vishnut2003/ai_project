@@ -51,3 +51,16 @@ export async function getSingleBlog ({slug}: {
         }
     })
 }
+
+export async function getBlogsBySearchText (searchText: string) {
+    return new Promise<WordpressBlogInterface[]>(async (resolve, reject) => {
+        try {
+            const response = await axios.get(`${WORDPRESS_URL}/wp-json/wp/v2/posts?search=${searchText}`, axiosConfig);
+            const blogsList: WordpressBlogInterface[] = response.data;
+            return resolve(blogsList);
+        } catch (err) {
+            console.log(err);
+            return reject(err);
+        }
+    })
+}
