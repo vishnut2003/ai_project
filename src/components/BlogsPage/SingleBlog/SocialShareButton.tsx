@@ -62,7 +62,7 @@ const SocialShareButton = () => {
                         >
                             <a
                                 href={social.link}
-                                className='flex flex-col gap-2'
+                                className='flex flex-col gap-2 text-black'
                             >
                                 <social.icon
                                     size={20}

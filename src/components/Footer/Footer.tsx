@@ -24,7 +24,7 @@ const Footer = () => {
               &#xa9; {new Date().getFullYear()} All rights reserved
             </p>
             <p className="text-base font-thin">
-              Site designed and developed by <a className="font-semibold" rel="noopener noreferrer nofollow" target="_blank" href={'https://webspidersolutions.com/'}>Web Spider Solutions</a>
+              Site designed and developed by <a className="font-semibold text-white" rel="noopener noreferrer nofollow" target="_blank" href={'https://webspidersolutions.com/'}>Web Spider Solutions</a>
             </p>
           </div>
         </div>
