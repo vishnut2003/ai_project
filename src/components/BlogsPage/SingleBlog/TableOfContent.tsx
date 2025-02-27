@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 interface TableOfContentItem {
     element: "h2" | "h3" | "h4" | string,
     value: string,
+    nativeElem: Element,
 }
 
 const TableOfContent = () => {
@@ -17,6 +18,7 @@ const TableOfContent = () => {
         .map((elem) => ({
             element: elem.tagName,
             value: elem.textContent || "",
+            nativeElem: elem,
         }))
 
         elements.pop();
@@ -48,8 +50,13 @@ const TableOfContent = () => {
                     {
                         headings.map((heading, index) => (
                             <li
-                                className={`text-sm font-medium m-0`}
+                                className={`text-sm font-medium m-0 cursor-pointer`}
                                 key={index}
+                                onClick={(e) => {
+                                    heading.nativeElem.scrollIntoView({
+                                        behavior: "smooth"
+                                    })
+                                }}
                             >
                                 {heading.value}
                             </li>
