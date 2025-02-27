@@ -52,7 +52,7 @@ const TableOfContent = () => {
                             <li
                                 className={`text-sm font-medium m-0 cursor-pointer`}
                                 key={index}
-                                onClick={(e) => {
+                                onClick={() => {
                                     heading.nativeElem.scrollIntoView({
                                         behavior: "smooth"
                                     })
