@@ -33,7 +33,7 @@ const BlogCard = ({ post }: {
 
                 {/* Post except */}
                 <div
-                    className="text-sm font-extralight pl-4 border-l-2 border-primary-color pt-2"
+                    className="text-sm font-extralight pl-4 border-l-2 border-primary-color pt-2 line-clamp-3 leading-6"
                     dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
                 ></div>
             </div>

@@ -39,7 +39,7 @@ const page = async ({ params }: {
 
           {/* Blogs bredcrump */}
           <div>
-            <p className="flex gap-2 items-center m-0 font-semibold">Home <RiArrowRightSLine size={18} /> Blogs <RiArrowRightSLine size={18} /> {singleBlog.title.rendered}</p>
+            <p className="flex gap-2 items-center m-0 font-semibold truncate">Home <RiArrowRightSLine size={18} /> Blogs <RiArrowRightSLine size={18} /> {singleBlog.title.rendered}</p>
           </div>
 
           {/* Content section */}

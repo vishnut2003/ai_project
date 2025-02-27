@@ -17,11 +17,11 @@ const ContentSection = ({ blogContent }: {
         src={blogContent.featured_media_src_url}
         width={600}
         height={0}
-        className='w-[60%] h-auto rounded-lg shadow-md shadow-gray-300'
+        className='w-full md:w-[60%] h-auto rounded-lg shadow-md shadow-gray-300'
       />
 
       <div
-        className='w-full flex gap-5 justify-center'
+        className='w-full flex flex-col-reverse md:flex-row gap-5 justify-center'
       >
         <div
           className='w-full'
@@ -35,7 +35,7 @@ const ContentSection = ({ blogContent }: {
 
         {/* Col 2 */}
         <div
-          className='w-[40%] flex flex-col gap-5'
+          className='w-full md:w-[40%] flex flex-col gap-5'
         >
           <div
             className='flex md:justify-end'
@@ -43,7 +43,9 @@ const ContentSection = ({ blogContent }: {
             <SocialShareButton />
           </div>
 
-          <div>
+          <div
+            className='sticky top-[115px]'
+          >
             <TableOfContent/>
           </div>
         </div>
