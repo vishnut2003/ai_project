@@ -16,3 +16,17 @@ p {
     font-weight: 300;
     margin-bottom: 20px;
 }
+
+ol {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+ul {
+    list-style-type: decimal;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 20px;
+}

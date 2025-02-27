@@ -48,7 +48,7 @@ const TableOfContent = () => {
                     {
                         headings.map((heading, index) => (
                             <li
-                                className={`text-sm font-medium`}
+                                className={`text-sm font-medium m-0`}
                                 key={index}
                             >
                                 {heading.value}

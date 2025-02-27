@@ -36,9 +36,9 @@ const MobileSidebarMenu = () => {
                     <div className='z-10'>
                         <h2 className="text-3xl font-bold">LOGO</h2>
                     </div>
-                    <ol className='flex flex-col gap-5 z-10'>
+                    <ol className='flex flex-col gap-5 z-10 list-none p-0'>
                         {menuItems.map((menuItem) => (
-                            <li key={menuItem.text} className='text-xl font-thin hover:text-slate-300 hover:scale-105 transition-all whitespace-nowrap'><Link href={menuItem.url}>{menuItem.text}</Link></li>
+                            <li key={menuItem.text} className='text-xl font-thin hover:text-slate-300 hover:scale-105 transition-all whitespace-nowrap m-0'><Link href={menuItem.url}>{menuItem.text}</Link></li>
                         ))}
                     </ol>
                 </div>

@@ -53,7 +53,7 @@ const SocialShareButton = () => {
                 className='text-sm font-semibold'
             >Share This Post on Social Media</h2>
             <ul
-                className='flex items-center gap-5 m-0'
+                className='flex items-center gap-5 m-0 list-none pl-0'
             >
                 {
                     socialButtons.map((social, index) => (
