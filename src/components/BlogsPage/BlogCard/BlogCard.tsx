@@ -8,17 +8,22 @@ const BlogCard = ({ post }: {
 
     return (
         <div className="flex flex-col gap-5 p-6 hover:bg-[#ffffff05] rounded-3xl md:hover:scale-105 transition-all">
-            <Image
-                src={post.featured_media_src_url}
-                alt={post.title.rendered}
-                width={400} height={220}
-                style={{
-                    width: '100%',
-                    height: 'auto',
-                    borderRadius: '20px',
-                    aspectRatio: 2/1.2
-                }}
-            />
+            <Link
+                href={`/blogs/${post.slug}`}
+                className="w-full"
+            >
+                <Image
+                    src={post.featured_media_src_url}
+                    alt={post.title.rendered}
+                    width={400} height={220}
+                    style={{
+                        width: '100%',
+                        height: 'auto',
+                        borderRadius: '20px',
+                        aspectRatio: 2 / 1.2
+                    }}
+                />
+            </Link>
 
             <div className="flex flex-col gap-2">
 
@@ -26,7 +31,7 @@ const BlogCard = ({ post }: {
                 <div className="w-full truncate">
                     <Link
                         href={`/blogs/${post.slug}`}
-                        className="text-2xl font-semibold"
+                        className="text-2xl font-semibold text-white"
                         dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                     ></Link>
                 </div>

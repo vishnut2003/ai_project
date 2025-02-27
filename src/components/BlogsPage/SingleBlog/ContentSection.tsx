@@ -35,18 +35,20 @@ const ContentSection = ({ blogContent }: {
 
         {/* Col 2 */}
         <div
-          className='w-full md:w-[40%] flex flex-col gap-5'
+          className='w-full md:w-[40%]'
         >
           <div
-            className='flex md:justify-end'
+            className='flex flex-col gap-5 w-full sticky top-[115px]'
           >
-            <SocialShareButton />
-          </div>
+            <div>
+              <TableOfContent />
+            </div>
 
-          <div
-            className='sticky top-[115px]'
-          >
-            <TableOfContent/>
+            <div
+              className='flex md:justify-end'
+            >
+              <SocialShareButton />
+            </div>
           </div>
         </div>
       </div>
