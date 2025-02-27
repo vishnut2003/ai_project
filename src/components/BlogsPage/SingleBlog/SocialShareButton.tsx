@@ -47,7 +47,7 @@ const SocialShareButton = () => {
 
     return (
         <div
-            className='flex flex-col gap-5 border border-white rounded-md px-5 py-4 w-max'
+            className='flex flex-col gap-5 border border-black/5 shadow-xl shadow-gray-200 rounded-md px-5 py-4 w-full'
         >
             <h2
                 className='text-sm font-semibold'

@@ -34,12 +34,12 @@ const page = async ({ params }: {
 
   return (
     <BasicLayout>
-      <div className="w-full py-10 px-7 flex justify-center items-center">
+      <div className="w-full py-10 px-7 flex justify-center items-center bg-white text-black">
         <div className="w-full max-w-screen-xl flex flex-col gap-10">
 
           {/* Blogs bredcrump */}
           <div>
-            <p className="flex gap-2 items-center m-0">Home <RiArrowRightSLine size={18} /> Blogs <RiArrowRightSLine size={18} /> {singleBlog.title.rendered}</p>
+            <p className="flex gap-2 items-center m-0 font-semibold">Home <RiArrowRightSLine size={18} /> Blogs <RiArrowRightSLine size={18} /> {singleBlog.title.rendered}</p>
           </div>
 
           {/* Content section */}

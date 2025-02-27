@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 import "./SingleBlogStyle.css"
 import SocialShareButton from './SocialShareButton'
+import TableOfContent from './TableOfContent'
 
 const ContentSection = ({ blogContent }: {
   blogContent: WordpressBlogInterface
@@ -16,20 +17,37 @@ const ContentSection = ({ blogContent }: {
         src={blogContent.featured_media_src_url}
         width={600}
         height={0}
-        className='w-[60%] h-auto rounded-lg'
+        className='w-[60%] h-auto rounded-lg shadow-md shadow-gray-300'
       />
 
       <div
-        className='flex md:justify-end'
+        className='w-full flex gap-5 justify-center'
       >
-        <SocialShareButton />
+        <div
+          className='w-full'
+        >
+          {/* blog title */}
+          <h1 className='text-4xl font-semibold mb-5'>{blogContent.title.rendered}</h1>
+
+          {/* Blog content */}
+          <div dangerouslySetInnerHTML={{ __html: blogContent.content.rendered }}></div>
+        </div>
+
+        {/* Col 2 */}
+        <div
+          className='w-[40%] flex flex-col gap-5'
+        >
+          <div
+            className='flex md:justify-end'
+          >
+            <SocialShareButton />
+          </div>
+
+          <div>
+            <TableOfContent/>
+          </div>
+        </div>
       </div>
-
-      {/* blog title */}
-      <h1 className='text-2xl font-semibold'>{blogContent.title.rendered}</h1>
-
-      {/* Blog content */}
-      <div dangerouslySetInnerHTML={{ __html: blogContent.content.rendered }}></div>
     </div>
   )
 }
