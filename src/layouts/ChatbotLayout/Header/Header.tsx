@@ -21,7 +21,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }: Readonly<{
         }
       </div>
       <div className="flex flex-nowrap gap-5">
-        <Link href={'/'} className="flex items-center justify-start gap-1 bg-white px-4 py-2 rounded-md text-secodary-color text-sm font-semibold">Home</Link>
+        <Link href={'/dashboard'} className="flex items-center justify-start gap-1 bg-white px-4 py-2 rounded-md text-secodary-color text-sm font-semibold">Dashboard</Link>
         
         <div className="relative">
           <UserCard/>
