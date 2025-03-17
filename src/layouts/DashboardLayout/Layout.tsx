@@ -3,12 +3,15 @@
 import { ReactNode, useEffect, useState } from "react"
 import Sidebar from "./Sidebar/Sidebar"
 import Header from "./Header/Header"
-import Footer from "./Footer/Footer"
 import { NoUserInfo, UserInfo } from "@workos-inc/authkit-nextjs/dist/esm/interfaces";
 import { authVerify } from "@/utils/client/authHelper";
 
-const DashboardLayout = ({ children }: {
-    children: ReactNode,
+const DashboardLayout = ({
+    children,
+    pageTitle,
+}: {
+    children?: ReactNode,
+    pageTitle?: string,
 }) => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -36,11 +39,11 @@ const DashboardLayout = ({ children }: {
                     <Header
                         sidebarOpen={sidebarOpen}
                         setSidebarOpen={setSidebarOpen}
+                        pageTitle={pageTitle}
                     />
-                    <div className="flex flex-col h-full overflow-hidden">
+                    <div className="flex flex-col h-full overflow-hidden p-5">
                         {children}
                     </div>
-                    <Footer />
                 </div>
             </div>
         </div>

@@ -4,15 +4,19 @@ import { Dispatch, SetStateAction } from "react"
 const Header = ({
   sidebarOpen,
   setSidebarOpen,
+  pageTitle,
 }: {
   sidebarOpen: boolean,
   setSidebarOpen: Dispatch<SetStateAction<boolean>>,
+  pageTitle?: string
 }) => {
   return (
     <div
       className="p-5"
     >
-      <div>
+      <div
+        className="flex items-center gap-3"
+      >
         {
           !sidebarOpen &&
           <button
@@ -23,6 +27,10 @@ const Header = ({
             />
           </button>
         }
+
+        <h2
+          className="text-xl font-semibold"
+        >{pageTitle}</h2>
       </div>
     </div>
   )

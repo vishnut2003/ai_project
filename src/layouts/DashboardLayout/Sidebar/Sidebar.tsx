@@ -1,5 +1,5 @@
 import { isDeviceMobile } from "@/utils/client/common"
-import { RiCalendarLine, RiEdit2Line, RiLoader4Line, RiLogoutCircleLine, RiSidebarFoldLine } from "@remixicon/react"
+import { RiChatAiLine, RiCloseCircleFill, RiLoader4Line, RiLogoutCircleLine, RiSidebarFoldLine } from "@remixicon/react"
 import { NoUserInfo, UserInfo } from "@workos-inc/authkit-nextjs/dist/esm/interfaces"
 import Image from "next/image"
 import Link from "next/link"
@@ -104,21 +104,28 @@ const Sidebar = ({
                         </div>
 
                         <h3
-                            className="text-lg opacity-70"
+                            className="text-lg opacity-70 whitespace-nowrap"
                         >Your Plan</h3>
 
                         <div
                             className="flex justify-start items-center gap-3"
                         >
                             <div>
-                                <RiCalendarLine
+                                <RiCloseCircleFill
                                     size={23}
+                                    className="text-red-500"
                                 />
                             </div>
                             <p
                                 className="whitespace-nowrap m-0"
                             >No Active Plans</p>
+
                         </div>
+
+                        <Link
+                            className="bg-white flex w-max whitespace-nowrap text-secodary-color py-2 px-4 font-semibold text-sm rounded-md"
+                            href={'/dashboard/pricing'}
+                        >View Pricing</Link>
 
                         <h3
                             className="text-lg opacity-70"
@@ -150,7 +157,7 @@ const Sidebar = ({
                     className="flex gap-2 items-center hover:bg-white/5 w-full px-4 py-3 rounded-md"
                     href={'/ai'}
                 >
-                    <RiEdit2Line
+                    <RiChatAiLine
                         size={25}
                     />
                     <p

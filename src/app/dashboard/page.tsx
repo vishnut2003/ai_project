@@ -3,8 +3,10 @@ import React from 'react'
 
 const Dashboard = () => {
   return (
-    <DashboardLayout>
-      Dashboard
+    <DashboardLayout
+      pageTitle='Dashboard'
+    >
+      
     </DashboardLayout>
   )
 }
