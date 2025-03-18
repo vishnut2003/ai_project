@@ -1,5 +1,6 @@
 import { dbConnect } from "@/database/ConnectDB";
-import PurchaseOrdersModel from "@/models/PurchaseOrdersModel";
+import PurchaseOrdersModel, { PurchaseOrdersModelInterface } from "@/models/PurchaseOrdersModel";
+import SubscriptionsModel, { SubscriptionsModelInterface } from "@/models/SubscriptionsModel";
 import Razorpay from "razorpay";
 
 export async function DBCreateNewOrder(entry: {
@@ -30,7 +31,7 @@ export async function DBUpdatePaymentOrderSuccess({ orderId, userId }: {
     orderId?: string,
     userId?: string,
 }) {
-    return new Promise<void>(async (resolve, reject) => {
+    return new Promise<string>(async (resolve, reject) => {
         try {
 
             const key_id = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
@@ -50,10 +51,12 @@ export async function DBUpdatePaymentOrderSuccess({ orderId, userId }: {
             });
 
             const order = await razorpay.orders.fetch(orderId)
+            
+            let orderRecord: PurchaseOrdersModelInterface | null = null;
 
             if (order.status === "paid") {
                 await dbConnect();
-                await PurchaseOrdersModel.findOneAndUpdate({
+                orderRecord = await PurchaseOrdersModel.findOneAndUpdate({
                     orderId,
                     userId,
                 }, {
@@ -64,6 +67,48 @@ export async function DBUpdatePaymentOrderSuccess({ orderId, userId }: {
             } else {
                 return reject("Payment not completed!");
             }
+
+            return resolve(orderRecord?.plan || "none");
+
+        } catch (err) {
+            return reject(err);
+        }
+    })
+}
+
+export async function ExtendPlanExpiry ({
+    userId,
+    plan,
+}: {
+    userId: string,
+    plan: string,
+}) {
+    return new Promise<void>(async (resolve, reject) => {
+        try {
+
+            const daysToIncrease = plan === "yearly" ? 365 : plan === "monthly" ? 30 : 0;
+            await dbConnect();
+
+            const subscription: SubscriptionsModelInterface | null = await SubscriptionsModel.findOne({userId});
+
+            if (subscription) {
+                const subscriptionValidity = subscription.validTill;
+                subscriptionValidity.setDate(subscriptionValidity.getDate() + daysToIncrease);
+                
+                await SubscriptionsModel.findOneAndUpdate({userId}, {
+                    validTill: subscriptionValidity,
+                })
+
+                return resolve();
+            }
+
+            const validTill = new Date();
+            validTill.setDate(validTill.getDate() + daysToIncrease);
+
+            await SubscriptionsModel.create({
+                userId,
+                validTill,
+            });
 
             return resolve();
 

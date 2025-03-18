@@ -1,12 +1,16 @@
 import { AfterSuccessRequestData } from "@/app/dashboard/pricing/page";
-import { DBUpdatePaymentOrderSuccess } from "@/utils/server/purchasePlanHelper";
+import { DBUpdatePaymentOrderSuccess, ExtendPlanExpiry } from "@/utils/server/purchasePlanHelper";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
     try {
 
         const entry = (await request.json()) as AfterSuccessRequestData;
-        await DBUpdatePaymentOrderSuccess(entry);
+        const plan = await DBUpdatePaymentOrderSuccess(entry);
+        await ExtendPlanExpiry({
+            plan,
+            userId: entry.userId,
+        });
 
         return NextResponse.json({
             success: true,
