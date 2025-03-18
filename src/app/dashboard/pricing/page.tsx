@@ -1,7 +1,7 @@
 'use client'
 
 import DashboardLayout from '@/layouts/DashboardLayout/Layout'
-import { RiCheckLine, RiLoader4Line, RiToggleLine } from '@remixicon/react'
+import { RiCheckLine, RiErrorWarningLine, RiLoader4Line } from '@remixicon/react'
 import React, { useState } from 'react'
 import { motion } from "framer-motion";
 import axios from 'axios';
@@ -18,6 +18,12 @@ const plans = {
 export interface PurchasePlanEntries {
     plan: string,
     amount: number,
+    userId: string,
+}
+
+export interface AfterSuccessRequestData {
+    userId: string,
+    orderId: string,
 }
 
 const Pricing = () => {
@@ -25,6 +31,7 @@ const Pricing = () => {
     const [selectedPlan, setSelectedPlan] = useState<string>("monthly");
     const [showPlanPopup, setShowPlanPopup] = useState<boolean>(false);
     const [inProgress, setInProgress] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
 
     const router = useRouter();
 
@@ -38,20 +45,21 @@ const Pricing = () => {
         } catch (err) {
             if (err) {
                 setInProgress(false);
-                console.log("User not authenticated!");
+                setError("User not authenticated!")
                 return;
             }
         }
 
         if (!session || !session.user) {
             setInProgress(false);
-            console.log("User not found");
+            setError("User not found");
             return;
         }
 
         const requestData: PurchasePlanEntries = {
             plan: selectedPlan,
             amount: plans[selectedPlan as keyof typeof plans],
+            userId: session.user.id,
         }
 
         try {
@@ -59,7 +67,7 @@ const Pricing = () => {
             const order = response.data.order;
 
             if (!order?.id) {
-                console.log("Order id not found!");
+                setError("Order id not found!");
                 setInProgress(false);
                 return;
             }
@@ -72,7 +80,20 @@ const Pricing = () => {
                 description: "Chatbot for Lawyers...",
                 order_id: order.id,
                 handler: async (response: RazorpayResponse) => {
-                    router.push('/dashboard/payments/success-page');
+
+                    try {
+                        session = await authVerify();
+
+                        const requestData: AfterSuccessRequestData = {
+                            userId: session.user?.id || "",
+                            orderId: response.razorpay_order_id,
+                        }
+
+                        await axios.post('/api/razorpay/purchase-plan/update-to-success', requestData)
+                        router.push('/dashboard/payments/success-page');
+                    } catch (err) {
+                        setError("Something went wrong!");
+                    }
                 },
                 prefill: {
                     name: session.user.firstName || "No name",
@@ -84,7 +105,7 @@ const Pricing = () => {
             };
 
             if (!window.Razorpay) {
-                console.log("Something went wrong!");
+                setError("Something went wrong!");
                 setInProgress(false);
                 return;
             }
@@ -95,6 +116,7 @@ const Pricing = () => {
         } catch (err) {
             setInProgress(false);
             console.log(err);
+            setError("Something went wrong!");
         }
     }
 
@@ -108,7 +130,7 @@ const Pricing = () => {
             >
                 <p
                     className='text-xl font-bold'
-                >$ {plans[selectedPlan as keyof typeof plans]}</p>
+                >&#x20B9; {plans[selectedPlan as keyof typeof plans]}</p>
 
                 <h2
                     className='text-xl font-semibold'
@@ -179,6 +201,29 @@ const Pricing = () => {
                     </button>
 
                 </div>
+
+                {
+                    error &&
+                    <motion.div
+                        initial={{
+                            y: -100,
+                        }}
+                        animate={{
+                            y: 0,
+                        }}
+                    >
+                        <div
+                            className='w-full py-3 px-5 flex items-center gap-3 bg-red-600/10 text-red-500 rounded-md'
+                        >
+                            <RiErrorWarningLine
+                                size={20}
+                            />
+                            <p
+                                className='m-0'
+                            >{error}</p>
+                        </div>
+                    </motion.div>
+                }
             </div>
         </DashboardLayout>
     )

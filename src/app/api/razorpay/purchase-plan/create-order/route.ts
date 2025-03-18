@@ -1,4 +1,5 @@
 import { PurchasePlanEntries } from "@/app/dashboard/pricing/page";
+import { DBCreateNewOrder } from "@/utils/server/purchasePlanHelper";
 import { NextRequest, NextResponse } from "next/server";
 import Razorpay from "razorpay";
 
@@ -7,6 +8,7 @@ export async function POST(request: NextRequest) {
         const {
             plan,
             amount,
+            userId,
         } = (await request.json()) as PurchasePlanEntries;
 
         const key_id = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
@@ -27,6 +29,17 @@ export async function POST(request: NextRequest) {
             amount: amount * 100,
             currency: "INR",
             receipt: `order_rcpt_${Date.now()}`,
+        })
+
+        await DBCreateNewOrder({
+            orderId: order.id,
+            userId,
+            plan,
+            amount: order.amount,
+            paid: order.amount_paid,
+            currency: order.currency,
+            method: order.method || "None",
+            status: order.status,
         })
 
         return NextResponse.json({ order });
