@@ -92,7 +92,11 @@ const Pricing = () => {
                         await axios.post('/api/razorpay/purchase-plan/update-to-success', requestData)
                         router.push('/dashboard/payments/success-page');
                     } catch (err) {
-                        setError("Something went wrong!");
+                        if (typeof err === "string") {
+                            setError(err);
+                        } else {
+                            setError("Something went wrong!");
+                        }
                     }
                 },
                 prefill: {

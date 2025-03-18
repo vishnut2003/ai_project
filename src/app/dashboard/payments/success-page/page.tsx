@@ -17,7 +17,7 @@ const PaymentSuccessPage = () => {
 
       router.push('/dashboard');
     })()
-  }, []);
+  }, [router]);
 
   return (
     <div
