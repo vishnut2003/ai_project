@@ -2,13 +2,14 @@
 
 import DashboardLayout from '@/layouts/DashboardLayout/Layout'
 import { RiCheckLine, RiErrorWarningLine, RiLoader4Line } from '@remixicon/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from "framer-motion";
 import axios from 'axios';
 import Script from 'next/script';
 import { RazorpayOptions, RazorpayResponse } from '@/interfaces/Razorpay';
 import { authVerify } from '@/utils/client/authHelper';
 import { useRouter } from 'next/navigation';
+import { validateUserSubscription, ValidUserSubscription } from '@/utils/client/subscriptionsHelper';
 
 const plans = {
     monthly: 199,
@@ -33,7 +34,16 @@ const Pricing = () => {
     const [inProgress, setInProgress] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
+    const [userSubscription, setUserSubscription] = useState<ValidUserSubscription | null | "loading">("loading");
+
     const router = useRouter();
+
+    useEffect(() => {
+        validateUserSubscription()
+            .then((subscription) => {
+                setUserSubscription(subscription);
+            })
+    }, [])
 
     async function initiatePurchase() {
         setInProgress(true);
@@ -143,6 +153,15 @@ const Pricing = () => {
                 <p
                     className='opacity-70'
                 >Choose the perfect plan for your legal needs. Get unlimited AI-powered legal assistance with flexible subscription options. Activate now!</p>
+
+                {
+                    userSubscription && userSubscription !== "loading" &&
+                    <div
+                        className='py-2 px-4 bg-green-500/5 text-green-500 rounded-md'
+                    >
+                        <p className='m-0'>You already have {userSubscription.daysLeft} Plan active, but you can extend the plan by purchase again.</p>
+                    </div>
+                }
 
                 <div
                     className='relative flex items-center gap-3'

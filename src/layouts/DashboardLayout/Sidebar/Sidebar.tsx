@@ -3,10 +3,11 @@ import { RiChatAiLine, RiCloseCircleFill, RiLoader4Line, RiLogoutCircleLine, RiS
 import { NoUserInfo, UserInfo } from "@workos-inc/authkit-nextjs/dist/esm/interfaces"
 import Image from "next/image"
 import Link from "next/link"
-import { Dispatch, SetStateAction, useActionState, useEffect } from "react"
+import { Dispatch, SetStateAction, useActionState, useEffect, useState } from "react"
 import sidebarMenuItems from "./menuItems"
 import MenuItemTemplate from "./MenuItemTemplate"
 import { clientSignout } from "@/components/Header/AuthComponents/MobileSidebarComponents/clientSignout"
+import { validateUserSubscription, ValidUserSubscription } from "@/utils/client/subscriptionsHelper"
 
 const Sidebar = ({
     sidebarOpen,
@@ -19,12 +20,18 @@ const Sidebar = ({
 }) => {
 
     const [signoutState, signoutAction] = useActionState(clientSignout, null);
+    const [userSubscription, setUserSubscription] = useState<ValidUserSubscription | null | "loading">("loading");
 
     useEffect(() => {
         const isMobile = isDeviceMobile();
         if (!isMobile) {
             setSidebarOpen(true);
         }
+
+        validateUserSubscription()
+            .then((subscription) => {
+                setUserSubscription(subscription);
+            })
     }, [setSidebarOpen]);
 
     return (
@@ -108,24 +115,53 @@ const Sidebar = ({
                         >Your Plan</h3>
 
                         <div
-                            className="flex justify-start items-center gap-3"
+                            className="flex justify-start items-center gap-3 w-full"
                         >
-                            <div>
-                                <RiCloseCircleFill
-                                    size={23}
-                                    className="text-red-500"
-                                />
-                            </div>
-                            <p
-                                className="whitespace-nowrap m-0"
-                            >No Active Plans</p>
+                            {
+                                !userSubscription ?
+                                    <>
+                                        <div>
+                                            <RiCloseCircleFill
+                                                size={23}
+                                                className="text-red-500"
+                                            />
+                                        </div>
+                                        <p
+                                            className="whitespace-nowrap m-0"
+                                        >No Active Plans</p>
+                                    </>
+                                    : userSubscription === "loading" ?
+                                        <p
+                                            className="bg-white/15 p-[10px] w-full rounded-md animate-pulse"
+                                        ></p>
+                                        : userSubscription ?
+                                        <div
+                                            className="w-full bg-white/5 py-2 px-4 rounded-md font-medium flex flex-col gap-3"
+                                        >
+                                            <p
+                                                className="m-0"
+                                            >
+                                                <b
+                                                    className="opacity-70 flex text-sm font-light"
+                                                >Days left</b>
+                                                {userSubscription.daysLeft}</p>
+                                            <p
+                                                className="m-0"
+                                            >
+                                                <b
+                                                    className="opacity-70 flex text-sm font-light"
+                                                >Valid till</b>
+                                                {userSubscription.validTill.toISOString().split('T')[0].split('-').join('/')}</p>
+                                        </div>
+                                        : ""
+                            }
 
                         </div>
 
                         <Link
                             className="bg-white flex w-max whitespace-nowrap text-secodary-color py-2 px-4 font-semibold text-sm rounded-md"
                             href={'/dashboard/pricing'}
-                        >View Pricing</Link>
+                        >{userSubscription && userSubscription !== "loading" ? "Extend Validity" : "View Pricing"}</Link>
 
                         <h3
                             className="text-lg opacity-70"

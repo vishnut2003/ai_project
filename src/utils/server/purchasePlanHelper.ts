@@ -51,7 +51,7 @@ export async function DBUpdatePaymentOrderSuccess({ orderId, userId }: {
             });
 
             const order = await razorpay.orders.fetch(orderId)
-            
+
             let orderRecord: PurchaseOrdersModelInterface | null = null;
 
             if (order.status === "paid") {
@@ -76,7 +76,7 @@ export async function DBUpdatePaymentOrderSuccess({ orderId, userId }: {
     })
 }
 
-export async function ExtendPlanExpiry ({
+export async function ExtendPlanExpiry({
     userId,
     plan,
 }: {
@@ -89,13 +89,13 @@ export async function ExtendPlanExpiry ({
             const daysToIncrease = plan === "yearly" ? 365 : plan === "monthly" ? 30 : 0;
             await dbConnect();
 
-            const subscription: SubscriptionsModelInterface | null = await SubscriptionsModel.findOne({userId});
+            const subscription: SubscriptionsModelInterface | null = await SubscriptionsModel.findOne({ userId });
 
             if (subscription) {
                 const subscriptionValidity = subscription.validTill;
                 subscriptionValidity.setDate(subscriptionValidity.getDate() + daysToIncrease);
-                
-                await SubscriptionsModel.findOneAndUpdate({userId}, {
+
+                await SubscriptionsModel.findOneAndUpdate({ userId }, {
                     validTill: subscriptionValidity,
                 })
 
@@ -112,6 +112,23 @@ export async function ExtendPlanExpiry ({
 
             return resolve();
 
+        } catch (err) {
+            return reject(err);
+        }
+    })
+}
+
+export async function fetchSubscriptionExpiryDate({ userId }: {
+    userId: string,
+}) {
+    return new Promise<Date | null>(async (resolve, reject) => {
+        try {
+            const subscription: SubscriptionsModelInterface | null = await SubscriptionsModel.findOne({ userId });
+            if (!subscription || !subscription.validTill) {
+                return resolve(null);
+            }
+
+            return resolve(subscription.validTill);
         } catch (err) {
             return reject(err);
         }
