@@ -1,3 +1,4 @@
+import { PaymentHistoryFilterRequestDataInterface } from "@/app/dashboard/payments/history/page";
 import { dbConnect } from "@/database/ConnectDB";
 import PurchaseOrdersModel, { PurchaseOrdersModelInterface } from "@/models/PurchaseOrdersModel";
 import SubscriptionsModel, { SubscriptionsModelInterface } from "@/models/SubscriptionsModel";
@@ -130,6 +131,54 @@ export async function fetchSubscriptionExpiryDate({ userId }: {
             }
 
             return resolve(subscription.validTill);
+        } catch (err) {
+            return reject(err);
+        }
+    })
+}
+
+export interface GetPurchaseOrdersResponseInterface {
+    orders: PurchaseOrdersModelInterface[],
+    count: number,
+}
+
+export async function getPurchaseOrders({ filters, userId }: {
+    filters: PaymentHistoryFilterRequestDataInterface,
+    userId: string,
+}) {
+    return new Promise<GetPurchaseOrdersResponseInterface>(async (resolve, reject) => {
+        try {
+            await dbConnect();
+            const filter: {
+                orderId?: string,
+                status?: string,
+            } = {};
+
+            if (filters.orderId) {
+                filter.orderId = filters.orderId;
+            }
+            
+            if (filters.status) {
+                filter.status = filters.status;
+            }
+
+            const limit = 10;
+            const skipedItems = (filters.pageNo - 1) * limit;
+
+            const orders: PurchaseOrdersModelInterface[] | null = await PurchaseOrdersModel.find({
+                userId,
+                ...filter,
+            }, null, {
+                limit,
+                skip: skipedItems,
+            })
+            const ordersCount: number = await PurchaseOrdersModel.countDocuments();
+
+            return resolve({
+                orders: orders || [],
+                count: ordersCount,
+            })
+
         } catch (err) {
             return reject(err);
         }

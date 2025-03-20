@@ -9,6 +9,8 @@ export interface PurchaseOrdersModelInterface extends mongoose.Document {
     currency: string,
     method?: string,
     status: "created" | "attempted" | "paid",
+    createdAt: string,
+    updatedAt: string,
 }
 
 const PurchaseOrderSchema = new mongoose.Schema<PurchaseOrdersModelInterface>({
