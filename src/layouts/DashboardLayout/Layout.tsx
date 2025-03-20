@@ -42,7 +42,15 @@ const DashboardLayout = ({
                         pageTitle={pageTitle}
                     />
                     <div className="flex flex-col h-full overflow-hidden p-5">
-                        {children}
+                        <div
+                            className="h-full overflow-auto flex justify-center"
+                        >
+                            <div
+                                className="w-full max-w-screen-xl"
+                            >
+                                {children}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

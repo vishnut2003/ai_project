@@ -41,7 +41,7 @@ const sidebarMenuItems: DashboardSidebarMenuInterface[] = [
             },
             {
                 name: "Payment history",
-                url: "#"
+                url: "/dashboard/payments/history",
             },
         ]
     }

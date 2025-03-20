@@ -123,6 +123,7 @@ export async function fetchSubscriptionExpiryDate({ userId }: {
 }) {
     return new Promise<Date | null>(async (resolve, reject) => {
         try {
+            await dbConnect();
             const subscription: SubscriptionsModelInterface | null = await SubscriptionsModel.findOne({ userId });
             if (!subscription || !subscription.validTill) {
                 return resolve(null);
