@@ -1,4 +1,4 @@
-import { RemixiconComponentType, RiCustomerService2Fill, RiMoneyDollarCircleLine, RiPassPendingLine } from "@remixicon/react"
+import { RemixiconComponentType, RiMoneyDollarCircleLine } from "@remixicon/react"
 
 export interface DashboardSidebarMenuInterface {
     name: string,
@@ -12,33 +12,9 @@ export interface DashboardSidebarMenuInterface {
 
 const sidebarMenuItems: DashboardSidebarMenuInterface[] = [
     {
-        name: "Customer Service",
-        icon: RiCustomerService2Fill,
-        subMenu: [
-            {
-                name: "Contact Support",
-                url: "#"
-            }
-        ]
-    },
-    {
-        name: "Personal Info",
-        icon: RiPassPendingLine,
-        subMenu: [
-            {
-                name: "View personal data",
-                url: "#",
-            }
-        ]
-    },
-    {
         name: "Payment & History",
         icon: RiMoneyDollarCircleLine,
         subMenu: [
-            {
-                name: "Payment method",
-                url: "#",
-            },
             {
                 name: "Payment history",
                 url: "/dashboard/payments/history",

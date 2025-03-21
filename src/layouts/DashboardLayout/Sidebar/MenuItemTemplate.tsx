@@ -9,7 +9,7 @@ const MenuItemTemplate = ({
     menuItem: DashboardSidebarMenuInterface,
 }) => {
 
-    const [subMenuOpen, setSubMenuOpen] = useState<boolean>(false);
+    const [subMenuOpen, setSubMenuOpen] = useState<boolean>(true);
 
     return (
         <div
