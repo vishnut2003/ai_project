@@ -51,3 +51,30 @@ export function ConvertToHistoryConversation(newPrompt: string | undefined, conv
         resolve(historyConversation);
     })
 }
+
+// Limit User Prompts for non subscription users
+
+export async function getRemainingPromptCount() {
+    return new Promise<number>(async (resolve) => {
+        try {
+            const { data }: {
+                data: number,
+            } = await axios.get('/api/auth/limit-user-prompt/get-remaining');
+
+            return resolve(data);
+        } catch (err) {
+            console.log(err);
+        }
+    })
+}
+
+export async function updatePromptLimitCount() {
+    return new Promise<void>(async (resolve, reject) => {
+        try {
+            await axios.post('/api/auth/limit-user-prompt/increment-prompt-count');
+            return resolve()
+        } catch (err) {
+            console.log(err);
+        }
+    })
+}

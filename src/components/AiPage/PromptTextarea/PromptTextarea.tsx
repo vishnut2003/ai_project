@@ -1,12 +1,14 @@
 'use client';
 
 import ConversationInterface from '@/interfaces/conversation';
-import { handlePromptSubmit } from '@/utils/client/aiHelper';
+import { getRemainingPromptCount, handlePromptSubmit, updatePromptLimitCount } from '@/utils/client/aiHelper';
 import { RiCloseLargeLine, RiSendPlaneFill } from '@remixicon/react'
 import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import PromptActions from './PromptActions';
 import { useSearchParams } from 'next/navigation';
 import { udateHistoryChat } from '@/utils/client/historyHelper';
+import { validateUserSubscription } from '@/utils/client/subscriptionsHelper';
+import BuyPlanPopup from './BuyPlanPopup';
 
 const PromptTextarea = ({ setConversation, conversation, setRequestInProgress, chatId, setChatId }: Readonly<{
     setConversation: Dispatch<SetStateAction<ConversationInterface[]>>,
@@ -21,11 +23,28 @@ const PromptTextarea = ({ setConversation, conversation, setRequestInProgress, c
     const [submitInProgress, setSubmitInProgress] = useState(false);
     const [inputPrompt, setInputPrompt] = useState<string>(queryPrompt ? queryPrompt : '');
 
-    function _PromptSubmit(event: FormEvent<HTMLFormElement>) {
+    const [showBuyPlanPopup, setShowBuyPlanPopup] = useState<boolean>(false);
+
+    async function _PromptSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
         // return if submit in progress
         if (submitInProgress) return;
+
+        // Limit Prompt count for non-subscription users
+        const hasActivePlan = await validateUserSubscription();
+        const remainingPromptCount = await getRemainingPromptCount();
+
+        if (
+            !hasActivePlan &&
+            remainingPromptCount <= 0
+        ) {
+            setShowBuyPlanPopup(true);
+            return;
+        } else {
+            setShowBuyPlanPopup(false);
+            await updatePromptLimitCount();
+        }
 
         const prompt: string = inputPrompt;
 
@@ -111,6 +130,7 @@ const PromptTextarea = ({ setConversation, conversation, setRequestInProgress, c
                     </button>
                 </form>
             </div>
+            {showBuyPlanPopup && <BuyPlanPopup/>}
         </div>
     )
 }
