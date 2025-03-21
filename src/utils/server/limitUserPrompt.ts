@@ -1,7 +1,7 @@
 import { dbConnect } from "@/database/ConnectDB";
 import UserPromptCountModel, { UserPromptCountModelInterface } from "@/models/UserPromptCountModel";
 
-const MaxPromptCountPerUser = 3;
+const MaxPromptCountPerUser = 20;
 
 export async function getRemainingAttempts({ userId }: {
     userId?: string,

@@ -69,7 +69,7 @@ export async function getRemainingPromptCount() {
 }
 
 export async function updatePromptLimitCount() {
-    return new Promise<void>(async (resolve, reject) => {
+    return new Promise<void>(async (resolve) => {
         try {
             await axios.post('/api/auth/limit-user-prompt/increment-prompt-count');
             return resolve()

@@ -130,7 +130,12 @@ const PromptTextarea = ({ setConversation, conversation, setRequestInProgress, c
                     </button>
                 </form>
             </div>
-            {showBuyPlanPopup && <BuyPlanPopup/>}
+            {showBuyPlanPopup && 
+            <BuyPlanPopup
+                closePopup={() => {
+                    setShowBuyPlanPopup(false);
+                }}
+            />}
         </div>
     )
 }
