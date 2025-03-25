@@ -9,6 +9,5 @@ export default function SEOPagesLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    console.log("SEO Page Layout...")
     return children;
 }
