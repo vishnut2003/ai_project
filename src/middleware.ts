@@ -13,6 +13,9 @@ export default authkitMiddleware({
             '/support/terms-conditions',
             '/support/cookies-policy',
             '/sitemap',
+            // SEO Inner Pages
+            '/ai-prompts-for-legal-research',
+            '/legal-prompts-for-consumers',
         ],
     },
 });
