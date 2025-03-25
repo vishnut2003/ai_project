@@ -22,6 +22,7 @@ export default authkitMiddleware({
             '/employment-law-prompts',
             '/immigration-law-prompts',
             '/business-law-prompts',
+            '/tax-law-prompts',
         ],
     },
 });
