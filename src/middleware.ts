@@ -20,7 +20,8 @@ export default authkitMiddleware({
             '/family-law-prompts',
             '/personal-injury-prompts',
             '/employment-law-prompts',
-            '/immigration-law-prompts'
+            '/immigration-law-prompts',
+            '/business-law-prompts',
         ],
     },
 });
