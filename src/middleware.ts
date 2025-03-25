@@ -16,6 +16,7 @@ export default authkitMiddleware({
             // SEO Inner Pages
             '/ai-prompts-for-legal-research',
             '/legal-prompts-for-consumers',
+            '/legal-document-drafting-prompts',
         ],
     },
 });
