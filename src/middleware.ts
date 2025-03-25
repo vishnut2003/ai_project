@@ -19,6 +19,7 @@ export default authkitMiddleware({
             '/legal-document-drafting-prompts',
             '/family-law-prompts',
             '/personal-injury-prompts',
+            '/employment-law-prompts',
         ],
     },
 });
