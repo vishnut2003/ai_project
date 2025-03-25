@@ -24,6 +24,7 @@ export default authkitMiddleware({
             '/business-law-prompts',
             '/tax-law-prompts',
             '/real-estate-law-prompts',
+            '/intellectual-property-law-prompts'
         ],
     },
 });
