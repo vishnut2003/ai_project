@@ -7,6 +7,12 @@ import { RiBardFill } from '@remixicon/react'
 import BasicLayout from '@/layouts/BasicLayout'
 import ParaText from '@/components/Common/ParaText'
 import SEOPageListView from '../ListView'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+    title: "AI Prompts for Legal Research | Smart GPT Tools",
+    description: "Use AI prompts for legal research to streamline case law analysis. GPT for legal research delivers automated case law research prompts and legal AI tools."
+}
 
 const AiPromptsToSuperchargeLegalResearch = () => {
     const checkListPoints: {

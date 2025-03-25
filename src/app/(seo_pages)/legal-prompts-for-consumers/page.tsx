@@ -7,6 +7,12 @@ import SEOPageFaqAccordion from '../FaqAccordion'
 import prebuildPrompts from '@/components/AiPage/PromptTextarea/PrebuildPrompts/PromptItems'
 import Link from 'next/link'
 import { RiBardFill } from '@remixicon/react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+    title: "AI Legal Prompts for Consumers | Get Instant Advice",
+    description: "Get AI legal advice for consumers with tailored legal GPT prompts. Easily navigate consumer legal questions with AI-powered legal help and insights."
+}
 
 const LegalPromptsForConsumers = () => {
 
