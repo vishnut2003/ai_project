@@ -22,7 +22,7 @@ const ContactDetails = () => {
             value: "(+91) 93 183 49 265",
             nValue: "(+91) 93 107 16 023",
             icon: RiPhoneLine,
-            href: "tel:+919898898889"
+            href: "tel:+919318349265"
         }
     ]
 
