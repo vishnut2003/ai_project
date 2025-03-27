@@ -20,7 +20,9 @@ const DesktopSubmenuTemplate = ({ menuItem }: {
     return (
         <div>
             <Popover>
-                <PopoverTrigger>
+                <PopoverTrigger
+                    className="pb-[3px]"
+                >
                     <li className='text-sm font-medium hover:text-slate-300 hover:scale-105 transition-all m-0 flex items-center gap-1'>
                         {menuItem.text}
                         <RiArrowDownSLine
