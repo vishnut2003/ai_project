@@ -37,7 +37,7 @@ function AccordionItem({ item }: {
         >
             <button
                 onClick={() => setOpen(prev => !prev)}
-                className='py-3 px-5 flex items-center justify-between w-full text-left'
+                className='py-3 px-5 flex items-center justify-between w-full text-left shadow-md border border-black/10 rounded-md'
             >
                 <p
                     className='m-0'
@@ -53,10 +53,10 @@ function AccordionItem({ item }: {
 
                 open &&
                 <div
-                    className='py-3 px-5 border-t border-secodary-color'
+                    className='py-3 px-5 border rounded-md mt-2 border-secodary-color'
                 >
                     <p
-                        className='m-0 text-white/80'
+                        className='m-0 text-secodary-color'
                     >{item.answer}</p>
                 </div>
             }

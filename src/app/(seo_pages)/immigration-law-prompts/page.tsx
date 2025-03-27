@@ -72,7 +72,7 @@ const AiLegalPromptsForImmigrationLawyers = () => {
                             operational speed as well as complete immigration law procedures accurately.
                         </ParaText>
                         <Link
-                            className='py-3 px-5 w-full bg-white text-black/80 rounded-2xl font-semibold flex justify-center'
+                            className='py-3 px-5 w-full bg-secodary-color text-white rounded-2xl font-semibold flex justify-center'
                             href={'/ai'}
                         >
                             Get Started Here
@@ -128,14 +128,14 @@ const AiLegalPromptsForImmigrationLawyers = () => {
                     />
 
                     <Link
-                        className='py-3 px-6 w-max bg-white text-black/80 rounded-2xl font-semibold flex'
+                        className='py-3 px-6 w-max bg-secodary-color text-white rounded-2xl font-semibold flex'
                         href={'/ai'}
                     >
                         Get Started Here
                     </Link>
                 </div>
                 <div
-                    className='max-w-[400px] w-full py-4 px-6 rounded-md bg-white/5 space-y-4'
+                    className='max-w-[400px] w-full py-4 px-6 rounded-md bg-black/5 space-y-4'
                 >
                     <h2
                         className='text-2xl font-light'
@@ -181,7 +181,7 @@ const AiLegalPromptsForImmigrationLawyers = () => {
                                     <div key={index} className="p-8 max-w-[250px] min-w-[250px] md:max-w-[300px] md:min-w-[300px] w-full bg-gradient-to-r from-[#ffffff01] to-[#ffffff03] rounded-lg shadow-md flex flex-col justify-between items-start gap-5 md:hover:-translate-y-4 transition-all">
                                         <p className="text-sm font-extralight m-0">{prompt}</p>
                                         <Link href={`/ai?prompt=${prompt}`}>
-                                            <button className="flex flex-nowrap gap-2 justify-center items-center py-2 px-4 bg-[#ffffff10] hover:bg-white hover:text-secodary-color rounded-lg">
+                                            <button className="flex flex-nowrap gap-2 justify-center items-center py-2 px-4 bg-secodary-color text-white hover:bg-white hover:text-secodary-color rounded-lg">
                                                 <RiBardFill size={15} />
                                                 <p className="m-0 text-xs">Ask AI</p>
                                             </button>

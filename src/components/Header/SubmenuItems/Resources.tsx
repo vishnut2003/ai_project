@@ -20,39 +20,39 @@ const ResourcessSubmenuLinks: {
     },
     {
       text: "Prompts for Family Lawyers",
-      url: "https://ailawgpt.com/family-law-prompts",
+      url: "/family-law-prompts",
     },
     {
       text: "Prompts for Personal Injury Lawyers",
-      url: "https://ailawgpt.com/personal-injury-prompts",
+      url: "/personal-injury-prompts",
     },
     {
       text: "Prompts for Employment and Labor lawyers",
-      url: "https://ailawgpt.com/employment-law-prompts",
+      url: "/employment-law-prompts",
     },
     {
       text: "Prompts for Immigration lawyers",
-      url: "https://ailawgpt.com/immigration-law-prompts",
+      url: "/immigration-law-prompts",
     },
     {
       text: "Prompts for Business Lawyers",
-      url: "https://ailawgpt.com/business-law-prompts",
+      url: "/business-law-prompts",
     },
     {
       text: "Prompts for Tax Lawyers",
-      url: "https://ailawgpt.com/tax-law-prompts",
+      url: "/tax-law-prompts",
     },
     {
       text: "Prompts for Real Estate Lawyers",
-      url: "https://ailawgpt.com/real-estate-law-prompts",
+      url: "/real-estate-law-prompts",
     },
     {
       text: "Prompts for Intellectual Property (IP) Lawyers",
-      url: "https://ailawgpt.com/intellectual-property-law-prompts",
+      url: "/intellectual-property-law-prompts",
     },
     {
       text: "Prompts for Criminal Defense Lawyers",
-      url: "https://ailawgpt.com/criminal-defense-law-prompts",
+      url: "/criminal-defense-law-prompts",
     },
   ];
 

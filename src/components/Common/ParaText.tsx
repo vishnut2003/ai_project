@@ -6,7 +6,7 @@ const ParaText = ({ className, children }: {
 }) => {
     return (
         <p
-            className={`text-base leading-8 text-white/80 ${className}`}
+            className={`text-base leading-8 text-secodary-color/80 ${className}`}
         >{children}</p>
     )
 }
