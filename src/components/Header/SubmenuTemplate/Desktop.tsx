@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from "react";
 import { HeaderMenuItemsInterface } from "../MenuItems"
 import { RiArrowDownSLine } from "@remixicon/react";
 

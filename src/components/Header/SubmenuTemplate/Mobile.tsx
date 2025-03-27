@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState } from 'react'
-import { HeaderMenuItemsInterface } from '../MenuItems'
-import Link from 'next/link';
+import { HeaderMenuItemsInterface } from '../MenuItems';
 import { motion } from "framer-motion";
 import { RiArrowDownSLine } from '@remixicon/react';
 
