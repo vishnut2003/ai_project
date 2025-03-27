@@ -1,4 +1,13 @@
-const HeaderMenuItems = [
+import { ComponentType } from "react"
+import Resources from "./SubmenuItems/Resources"
+
+export interface HeaderMenuItemsInterface {
+    text: string,
+    url: string,
+    submenu?: ComponentType,
+}
+
+const HeaderMenuItems: HeaderMenuItemsInterface[] = [
     {
         text: 'Home',
         url: '/'
@@ -14,6 +23,11 @@ const HeaderMenuItems = [
     {
         text: 'Contact Us',
         url: '/contact'
+    },
+    {
+        text: "Resources",
+        url: "#",
+        submenu: Resources,
     }
 ]
 

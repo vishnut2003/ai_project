@@ -8,6 +8,8 @@ import SidebarSigninButton from './AuthComponents/MobileSidebarComponents/Sideba
 import { authVerify } from '@/utils/client/authHelper';
 import { NoUserInfo, UserInfo } from '@workos-inc/authkit-nextjs/dist/esm/interfaces';
 import MobileUserCard from './AuthComponents/MobileSidebarComponents/MobileUserCard';
+import MobileSubmenuItem from './SubmenuTemplate/Mobile';
+import Image from 'next/image';
 
 const MobileSidebarMenu = () => {
     const [mobileSidebar, setMobileSibar] = useState(false)
@@ -31,27 +33,47 @@ const MobileSidebarMenu = () => {
             </button>
 
             {/* Mobile sidebar */}
-            <div className={`fixed top-0 left-0 p-10 bg-secodary-color h-full shadow-lg shadow-black flex flex-col justify-between overflow-hidden transition-all z-10 ${!mobileSidebar ? 'w-0 px-0' : 'w-3/4'}`}>
-                <div className='flex flex-col gap-10'>
-                    <div className='z-10'>
-                        <h2 className="text-3xl font-bold">LOGO</h2>
+            <div className={`fixed top-0 left-0 bg-secodary-color h-full shadow-lg shadow-black flex flex-col justify-between overflow-hidden transition-all z-10 ${!mobileSidebar ? 'w-0 px-0' : 'w-3/4'}`}>
+                <div className='flex flex-col gap-2 h-full overflow-auto'>
+                    <div className='z-10 p-7 pb-0'>
+                        <Image
+                            width={403}
+                            height={157}
+                            priority
+                            src={'/legallyours-logo.png'}
+                            alt="site-logo"
+                            style={{ width: "150px", borderRadius: "8px" }}
+                        />
                     </div>
-                    <ol className='flex flex-col gap-5 z-10 list-none p-0'>
-                        {menuItems.map((menuItem) => (
-                            <li key={menuItem.text} className='text-xl font-thin hover:text-slate-300 hover:scale-105 transition-all whitespace-nowrap m-0'><Link href={menuItem.url}>{menuItem.text}</Link></li>
-                        ))}
-                    </ol>
+                    <div
+                        className='h-full overflow-auto z-10 p-7'
+                    >
+                        <ol className='flex flex-col gap-5 z-10 list-none p-0'>
+                            {menuItems.map((menuItem, index) => {
+                                if (menuItem.submenu) {
+                                    return <MobileSubmenuItem
+                                        menuItem={menuItem}
+                                        key={index}
+                                    />
+                                } else {
+                                    return (
+                                        <li key={index} className='text-xl font-thin hover:text-slate-300 hover:scale-105 transition-all whitespace-nowrap m-0'><Link href={menuItem.url}>{menuItem.text}</Link></li>
+                                    )
+                                }
+                            })}
+                        </ol>
+                    </div>
                 </div>
 
                 {/* Mobile sidebar signin signup button or user card for signin user */}
-                <div className='flex flex-nowrap justify-center items-center gap-2 z-10'>
+                <div className='flex flex-nowrap justify-center items-center gap-2 z-10 p-7'>
                     {
                         !userInfo.user ?
-                        <>
-                            <SidebarSigninButton />
-                            <SidebarSignupButton />
-                        </>:
-                        <MobileUserCard userInfo={userInfo}/>
+                            <>
+                                <SidebarSigninButton />
+                                <SidebarSignupButton />
+                            </> :
+                            <MobileUserCard userInfo={userInfo} />
                     }
                 </div>
 
