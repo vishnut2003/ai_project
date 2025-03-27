@@ -10,7 +10,7 @@ import SEOPageFaqAccordion from '../FaqAccordion'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: "AI Prompts for Legal Drafting | Smart Document Tools",
+    title: "AI Prompts for Legal Drafting | Smart Document Tools - Legallyours",
     description: "Use AI prompts for legal drafting to streamline contracts and documents. Get contract drafting with GPT and AI document generation for lawyers with ease."
 }
 

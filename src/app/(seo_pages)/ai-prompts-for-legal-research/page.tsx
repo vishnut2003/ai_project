@@ -10,7 +10,7 @@ import SEOPageListView from '../ListView'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: "AI Prompts for Legal Research | Smart GPT Tools",
+    title: "AI Prompts for Legal Research | Smart GPT Tools - Legallyours",
     description: "Use AI prompts for legal research to streamline case law analysis. GPT for legal research delivers automated case law research prompts and legal AI tools."
 }
 

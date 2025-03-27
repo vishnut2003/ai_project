@@ -10,7 +10,7 @@ import SEOPageFaqAccordion from '../FaqAccordion'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: "Business Law AI Prompts | Smart Legal GPT Tools",
+    title: "Business Law AI Prompts | Smart Legal GPT Tools - Legallyours",
     description: "Use AI prompts for corporate law, GPT for business contracts, and legal compliance prompts for startups. Streamline legal tasks with commercial law AI tools.",
 }
 

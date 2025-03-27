@@ -10,7 +10,7 @@ import { RiBardFill } from '@remixicon/react'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: "AI Legal Prompts for Consumers | Get Instant Advice",
+    title: "AI Legal Prompts for Consumers | Get Instant Advice - Legallyours",
     description: "Get AI legal advice for consumers with tailored legal GPT prompts. Easily navigate consumer legal questions with AI-powered legal help and insights."
 }
 
