@@ -1,7 +1,8 @@
 export const revalidate = 3600 // one hour
 
 import { fetchBlogs, totalBlogsPageCount } from "@/utils/server/blogsHelper";
-import { SITEMAP_BASEURL } from "../(sitemaps)/sitemap_index.xml/route";
+
+const SITEMAP_BASEURL = "https://ailawgpt.com";
 
 export default async function sitemap() {
     try {

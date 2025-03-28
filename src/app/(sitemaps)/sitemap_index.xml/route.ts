@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export const SITEMAP_BASEURL = "https://ailawgpt.com";
+const SITEMAP_BASEURL = "https://ailawgpt.com";
 
 export async function GET() {
     try {
