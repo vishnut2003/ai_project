@@ -168,8 +168,10 @@ function SingleLinkItem({ itemList }: {
     <ul
       className='list-disc pl-4 space-y-3'
     >
-      {itemList.map((item) => (
-        <li>
+      {itemList.map((item, index) => (
+        <li
+          key={index}
+        >
           <Link
             href={item.url}
           >
