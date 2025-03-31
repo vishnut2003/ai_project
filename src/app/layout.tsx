@@ -1,12 +1,10 @@
 import { AuthKitProvider } from "@workos-inc/authkit-nextjs";
 import { GoogleAnalytics } from '@next/third-parties/google';
-import Head from "next/head";
 import { headers } from "next/headers"
 
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Script from "next/script";
 
 const rubik = localFont({
   src: './fonts/RubikFont.ttf',
