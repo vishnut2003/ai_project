@@ -4,6 +4,7 @@ import Menu from "./Menu"
 import UserCard from "./AuthComponents/UserCard";
 import Image from "next/image";
 import SearchBar from "./SearchPost/SearchBar";
+import Link from "next/link";
 
 const Header = async () => {
   const { user } = await withAuth();
@@ -13,14 +14,18 @@ const Header = async () => {
 
         {/* Logo col */}
         <div >
-          <Image
-            width={403}
-            height={157}
-            priority
-            src={'/legallyours-logo.png'}
-            alt="site-logo"
-            style={{ width: "150px", borderRadius: "8px" }}
-          />
+          <Link
+            href={'/'}
+          >
+            <Image
+              width={403}
+              height={157}
+              priority
+              src={'/legallyours-logo.png'}
+              alt="site-logo"
+              style={{ width: "150px", borderRadius: "8px" }}
+            />
+          </Link>
         </div>
 
         {/* Menu col */}
