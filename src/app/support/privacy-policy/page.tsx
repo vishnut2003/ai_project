@@ -7,7 +7,9 @@ import React from 'react'
 export const metadata: Metadata = {
   alternates: {
     canonical: "https://ailawgpt.com/support/privacy-policy",
-  }
+  },
+  title: "Privacy Policy | Your Data Protection - Legallyours",
+  description: "Understand how Legallyours collects, uses, and protects your personal data. Review our privacy policy to know your rights and our data practices.",
 }
 
 const PrivacyPolicy = () => {
