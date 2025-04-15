@@ -44,10 +44,10 @@ const Footer = () => {
           </div>
 
           {/* Widget 3 */}
-          {/* <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5">
             <h3 className="text-base text-white opacity-50 font-light">Follow</h3>
             <FooterMenu menu="widgetMenuThree" />
-          </div> */}
+          </div>
 
         </div>
       </div>

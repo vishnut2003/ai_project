@@ -13,6 +13,20 @@ export default authkitMiddleware({
             '/support/terms-conditions',
             '/support/cookies-policy',
             '/sitemap',
+            
+            // SEO Inner Pages
+            '/ai-prompts-for-legal-research',
+            '/legal-prompts-for-consumers',
+            '/legal-document-drafting-prompts',
+            '/family-law-prompts',
+            '/personal-injury-prompts',
+            '/employment-law-prompts',
+            '/immigration-law-prompts',
+            '/business-law-prompts',
+            '/tax-law-prompts',
+            '/real-estate-law-prompts',
+            '/intellectual-property-law-prompts',
+            '/criminal-defense-law-prompts',
         ],
     },
 });

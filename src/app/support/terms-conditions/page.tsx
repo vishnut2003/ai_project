@@ -6,7 +6,9 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   alternates: {
     canonical: "https://ailawgpt.com/support/terms-contitions",
-  }
+  },
+  title: "Terms & Conditions | Legallyours",
+  description: "Review Legallyours Terms & Conditions to understand user responsibilities, service use, limitations, and legal guidelines. Learn more."
 }
 
 const TermsCondition = () => {

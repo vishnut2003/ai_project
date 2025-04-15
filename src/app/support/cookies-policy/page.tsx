@@ -6,7 +6,9 @@ import { Metadata } from "next"
 export const metadata: Metadata = {
   alternates: {
     canonical: "https://ailawgpt.com/support/cookies-policy",
-  }
+  },
+  title: "Cookies Policy Data & Privacy Info | Legallyours",
+  description: "Learn how Legallyours uses cookies to enhance your experience. Read our detailed cookies policy to understand data use, privacy, and your consent options.",
 }
 
 const page = () => {

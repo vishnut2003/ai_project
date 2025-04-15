@@ -7,7 +7,9 @@ import React from 'react'
 export const metadata: Metadata = {
   alternates: {
     canonical: "https://ailawgpt.com/contact"
-  }
+  },
+  title: "Contact Legallyours | We're here for You",
+  description: "Have questions or need support? Contact the Legallyours team for help with services, policies, or legal AI solutions. We're here to assist you.",
 }
 
 const Contact = () => {

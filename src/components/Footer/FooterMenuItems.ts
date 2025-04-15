@@ -1,4 +1,12 @@
-const widgetMenuOne = [
+import { RemixiconComponentType, RiInstagramLine } from "@remixicon/react"
+
+interface FooterMenuItemsInterface {
+    icon?: RemixiconComponentType,
+    text: string,
+    url: string,
+}
+
+const widgetMenuOne: FooterMenuItemsInterface[] = [
     {
         text: 'Home',
         url: '/'
@@ -17,7 +25,7 @@ const widgetMenuOne = [
     }
 ]
 
-const widgetMenuTwo = [
+const widgetMenuTwo: FooterMenuItemsInterface[] = [
     {
         text: 'Privacy Policy',
         url: '/support/privacy-policy'
@@ -32,19 +40,12 @@ const widgetMenuTwo = [
     }
 ]
 
-const widgetMenuThree = [
-    {
-        text: 'Facebook',
-        url: '#'
-    },
+const widgetMenuThree: FooterMenuItemsInterface[] = [
     {
         text: 'Instagram',
-        url: '#'
+        icon: RiInstagramLine,
+        url: 'https://www.instagram.com/_legallyours/'
     },
-    {
-        text: 'LinkedIn',
-        url: '#'
-    }
 ]
 
 const FooterMenuItems = { widgetMenuOne, widgetMenuTwo, widgetMenuThree }

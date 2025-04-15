@@ -1,3 +1,4 @@
+import RelatedBlogsGrid from "@/components/BlogsPage/RelatedBlogs/RelatedBlogs"
 import ContentSection from "@/components/BlogsPage/SingleBlog/ContentSection"
 import BasicLayout from "@/layouts/BasicLayout"
 import { getSingleBlog } from "@/utils/server/blogsHelper"
@@ -44,6 +45,8 @@ const page = async ({ params }: {
 
           {/* Content section */}
           <ContentSection blogContent={singleBlog} />
+
+          <RelatedBlogsGrid/>
           
         </div>
       </div>
