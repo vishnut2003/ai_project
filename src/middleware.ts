@@ -5,7 +5,9 @@ export default authkitMiddleware({
         enabled: true,
         // Allow logged out users to view these paths
         unauthenticatedPaths: [
+            // Pages
             '/', 
+            '/ai',
             '/blogs/:path*', 
             '/contact', 
             '/contact/thank-you',

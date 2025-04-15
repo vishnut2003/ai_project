@@ -1,17 +1,19 @@
 import axiosConfig from "@/configs/axiosConfig";
 import ConversationInterface from "@/interfaces/conversation";
 import { ChatHistoryInterface } from "@/models/ChatHistoryModel";
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 
 export function getHistoryChat () {
-    return new Promise<ChatHistoryInterface>((resolve) => {
+    return new Promise<ChatHistoryInterface>((resolve, reject) => {
         axios.get('/api/chat-history/get-all')
             .then((res) => {
                 const userChatHistory: ChatHistoryInterface = res.data;
                 return resolve(userChatHistory);
             })
             .catch((err) => {
-                console.log(err);
+                if (err instanceof AxiosError) {
+                    return reject(err.status)
+                }
             })
     })
 }

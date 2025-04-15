@@ -11,6 +11,7 @@ const ChatHistory = () => {
   const [chatHistory, setChatHistory] = useState<ChatHistoryInterface>();
   const [chatOptionPopup, setChatOptionPopup] = useState({})
   const [historyLoading, setHistoryLoading] = useState(false);
+  const [notLoggedIn, setNotLoggedIn] = useState<boolean>(false);
 
   function refreshChatHistory() {
     setHistoryLoading(true)
@@ -18,6 +19,12 @@ const ChatHistory = () => {
       .then((userHistory: ChatHistoryInterface) => {
         setChatHistory(userHistory)
         setHistoryLoading(false);
+      })
+      .catch((err) => {
+        if (err === 400) {
+          setNotLoggedIn(true);
+          setHistoryLoading(false);
+        }
       })
   }
 
@@ -36,6 +43,15 @@ const ChatHistory = () => {
           {/* Loading Effect */}
           {historyLoading && <TripleDotLoading />}
 
+          {/* Show template for not logged in users */}
+          {
+              notLoggedIn &&
+              <div>
+                <p
+                  className="text-sm text-center"
+                >Please login for access history!</p>
+              </div>
+          }
 
           {/* Loop the chats */}
           {
