@@ -9,6 +9,8 @@ import { useSearchParams } from 'next/navigation';
 import { udateHistoryChat } from '@/utils/client/historyHelper';
 import { validateUserSubscription } from '@/utils/client/subscriptionsHelper';
 import BuyPlanPopup from './BuyPlanPopup';
+import { authVerify } from '@/utils/client/authHelper';
+import ClientLoginButton from '@/components/Header/AuthComponents/ClientLoginButton';
 
 const PromptTextarea = ({ setConversation, conversation, setRequestInProgress, chatId, setChatId }: Readonly<{
     setConversation: Dispatch<SetStateAction<ConversationInterface[]>>,
@@ -22,11 +24,19 @@ const PromptTextarea = ({ setConversation, conversation, setRequestInProgress, c
 
     const [submitInProgress, setSubmitInProgress] = useState(false);
     const [inputPrompt, setInputPrompt] = useState<string>(queryPrompt ? queryPrompt : '');
+    const [notLoggedIn, setNotLoggedIn] = useState<boolean>(false);
 
     const [showBuyPlanPopup, setShowBuyPlanPopup] = useState<boolean>(false);
 
     async function _PromptSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
+
+        const userSession = await authVerify();
+
+        if (!userSession || !userSession.user) {
+            setNotLoggedIn(true);
+            return;
+        }
 
         // return if submit in progress
         if (submitInProgress) return;
@@ -77,10 +87,10 @@ const PromptTextarea = ({ setConversation, conversation, setRequestInProgress, c
                         message: response
                     }
                 })
-                .then((newChatId) => {
-                    // Assign the newChatid or updated chatid
-                    setChatId(newChatId);
-                })
+                    .then((newChatId) => {
+                        // Assign the newChatid or updated chatid
+                        setChatId(newChatId);
+                    })
             })
             .catch((errResponse) => {
                 // Add new response to conversation
@@ -97,6 +107,17 @@ const PromptTextarea = ({ setConversation, conversation, setRequestInProgress, c
                 // Change status disable of request inprogress for loading effect in conversation template
                 setRequestInProgress(false);
             })
+    }
+
+    if (notLoggedIn) {
+        return (
+            <div
+                className='flex items-center flex-col justify-center gap-3 my-5'
+            >
+                <p>Please Login to Continue!</p>
+                <ClientLoginButton/>
+            </div>
+        )
     }
 
     return (
@@ -130,12 +151,12 @@ const PromptTextarea = ({ setConversation, conversation, setRequestInProgress, c
                     </button>
                 </form>
             </div>
-            {showBuyPlanPopup && 
-            <BuyPlanPopup
-                closePopup={() => {
-                    setShowBuyPlanPopup(false);
-                }}
-            />}
+            {showBuyPlanPopup &&
+                <BuyPlanPopup
+                    closePopup={() => {
+                        setShowBuyPlanPopup(false);
+                    }}
+                />}
         </div>
     )
 }
