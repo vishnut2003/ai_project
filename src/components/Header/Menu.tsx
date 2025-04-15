@@ -17,7 +17,7 @@ const Menu = () => {
             />;
           } else {
             return (
-              <li key={index} className='text-sm font-medium hover:text-slate-300 hover:scale-105 transition-all m-0'><Link href={menuItem.url} className='text-white'>{menuItem.text}</Link></li>
+              <li key={index} className='text-sm font-medium hover:text-slate-300 hover:scale-105 transition-all m-0 flex items-center'><Link href={menuItem.url} className='text-white'>{menuItem.text}</Link></li>
             )
           }
         })}
