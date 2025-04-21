@@ -14,6 +14,7 @@ export default authkitMiddleware({
             '/support/privacy-policy',
             '/support/terms-conditions',
             '/support/cookies-policy',
+            '/support/refund-policy',
             '/sitemap',
             
             // SEO Inner Pages

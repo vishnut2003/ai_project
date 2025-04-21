@@ -1,3 +1,5 @@
+import React from "react"
+
 export function HeadingText({ children }: Readonly<{
     children: React.ReactNode
   }>) {
@@ -15,7 +17,7 @@ export function HeadingText({ children }: Readonly<{
   }
   
   export function ListItems({ items }: Readonly<{
-    items: string[]
+    items: string[] | React.ReactNode[]
   }>) {
     return (
       <ul className='list-disc pl-8'>

@@ -37,6 +37,10 @@ const widgetMenuTwo: FooterMenuItemsInterface[] = [
     {
         text: 'Cookies Policy',
         url: '/support/cookies-policy'
+    },
+    {
+        text: 'Refund Policy',
+        url: '/support/refund-policy'
     }
 ]
 
