@@ -62,7 +62,9 @@ const RefundPolicyPage = () => {
                         />
 
                         <ParaText>
-                            Contact <a href='mailto:legallyours23@gmail.com' rel="noopener nofollow">legallyours23@gmail.com</a> directly within seven days of purchase to seek a refund if you encounter such exceptional situations. We will evaluate the request and respond to your inquiry inside a 3–5 day business period.
+                            Contact <a href='mailto:legallyours23@gmail.com' rel="noopener nofollow">legallyours23@gmail.com</a> directly
+                            within seven days of purchase to seek a refund if you encounter such exceptional situations.
+                            We will evaluate the request and respond to your inquiry inside a 3–5 day business period.
                         </ParaText>
 
                         <HeadingText>3. Subscription Cancellations</HeadingText>
@@ -71,7 +73,7 @@ const RefundPolicyPage = () => {
                             Subscribers can terminate their membership at any time and will retain
                             full service access through the present billing cycle. The service will
                             stay accessible to you until your current billing period concludes following
-                            subscription cancellation. The subscription service doesn't provide any
+                            subscription cancellation. The subscription service doesn&apos;t provide any
                             remainder of payment refunds for the unutilized period following cancellation.
                         </ParaText>
 
@@ -83,7 +85,7 @@ const RefundPolicyPage = () => {
 
                         <ListItems
                             items={[
-                                (<p>Email: <a rel='nofollow noopener' href='mailto:legallyours23@gmail.com'>legallyours23@gmail.com</a></p>),
+                                (<p key={1}>Email: <a rel='nofollow noopener' href='mailto:legallyours23@gmail.com'>legallyours23@gmail.com</a></p>),
                             ]}
                         />
                     </div>

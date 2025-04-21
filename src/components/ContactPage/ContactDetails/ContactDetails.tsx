@@ -1,4 +1,4 @@
-import { RemixiconComponentType, RiAtLine, RiPhoneLine } from '@remixicon/react'
+import { RemixiconComponentType, RiAtLine, RiMapPin2Line, RiPhoneLine } from '@remixicon/react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -23,6 +23,11 @@ const ContactDetails = () => {
             nValue: "(+91) 93 107 16 023",
             icon: RiPhoneLine,
             href: "tel:+919318349265"
+        },
+        {
+            icon: RiMapPin2Line,
+            key: "Address",
+            value: "Chamber No. 409, Western Wing Tis Hazari Courts",
         }
     ]
 
