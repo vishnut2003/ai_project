@@ -1,5 +1,5 @@
 import prebuildPrompts from "@/components/AiPage/PromptTextarea/PrebuildPrompts/PromptItems";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 const allowedOrigin = "*";
 
