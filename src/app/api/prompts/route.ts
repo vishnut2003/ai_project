@@ -1,33 +1,32 @@
 import prebuildPrompts from "@/components/AiPage/PromptTextarea/PrebuildPrompts/PromptItems";
 import { NextRequest, NextResponse } from "next/server";
 
-const allowedOrigins = [
-    "https://wordpress.ailawgpt.com",
-    "https://ailawgpt.com",
-];
+const allowedOrigin = "*";
 
-export async function OPTIONS(request: NextRequest) {
-    const origin = request.headers.get('origin') || '';
-    const isAllowed = allowedOrigins.includes(origin);
+export async function OPTIONS() {
+    const response = new NextResponse(null, { status: 204 });
 
-    return new NextResponse(null, {
-        status: 200,
-        headers: {
-            'Access-Control-Allow-Origin': isAllowed ? origin : '',
-            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-            'Vary': 'Origin',
-        },
-    });
+    response.headers.set('Access-Control-Allow-Origin', allowedOrigin);
+    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+
+    return response;
 }
 
 export async function GET() {
     try {
+        let response: NextResponse | null;
         if (prebuildPrompts) {
-            return NextResponse.json(prebuildPrompts);
+            response = NextResponse.json(prebuildPrompts);
         } else {
-            return NextResponse.json([]);
+            response = NextResponse.json([]);
         }
+
+        response.headers.set('Access-Control-Allow-Origin', allowedOrigin);
+        response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+
+        return response;
     } catch (err) {
         return NextResponse.json(err, { status: 500 });
     }
