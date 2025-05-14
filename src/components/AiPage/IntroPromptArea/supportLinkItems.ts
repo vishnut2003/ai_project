@@ -1,15 +1,15 @@
 const supportLinkItems = [
     {
         text: 'Terms & Condition',
-        link: '/support/terms-conditions'
+        link: 'https://ailawgpt.com/terms-conditions'
     },
     {
         text: 'Privacy Policy',
-        link: '/support/privacy-policy'
+        link: 'https://ailawgpt.com/privacy-policy'
     },
     {
         text: 'Cookie Policy',
-        link: '/support/cookies-policy'
+        link: 'https://ailawgpt.com/cookies-policy'
     },
 ]
 
