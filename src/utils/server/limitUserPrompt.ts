@@ -22,6 +22,14 @@ export async function getRemainingAttempts({ userId }: {
                     const remainingPromptCount = MaxPromptCountPerUser - promptCountDetails.promptCount;
                     return resolve(remainingPromptCount);
                 } else {
+                    // if promptCountDetails exist and not todays data, then update the data with today date
+                    promptCountDetails.$set({
+                        lastPromptDate: today,
+                        promptCount: 0,
+                    })
+                    await promptCountDetails.save();
+
+                    // Return the max value per user
                     return resolve(MaxPromptCountPerUser);
                 }
             } else {
@@ -46,6 +54,7 @@ export async function incrementPromptsCount(userId?: string) {
 
             if (promptCountDetails) {
                 promptCountDetails.$inc("promptCount", 1);
+                console.log(promptCountDetails);
                 await promptCountDetails.save();
             } else {
                 const today = new Date().toISOString().split('T')[0];
