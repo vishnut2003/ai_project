@@ -1,6 +1,7 @@
 import { RiBarChartHorizontalLine } from "@remixicon/react"
 import { Dispatch, SetStateAction } from "react"
 import UserCard from "./UserCard"
+import Link from "next/link"
 
 const Header = ({ sidebarOpen, setSidebarOpen }: Readonly<{
   sidebarOpen: boolean,
@@ -27,6 +28,14 @@ const Header = ({ sidebarOpen, setSidebarOpen }: Readonly<{
         >
           Home
         </a>
+        
+        {/* Link to dashboard */}
+        <Link
+          href={'/dashboard'}
+          className="flex items-center justify-start gap-1 bg-transparent px-4 py-2 border-2 border-white rounded-md text-white text-sm font-semibold"
+        >
+          Dashboard
+        </Link>
 
         <div className="relative">
           <UserCard />
