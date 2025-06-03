@@ -3,7 +3,7 @@
 import DashboardLayout from '@/layouts/DashboardLayout/Layout'
 import { PurchaseOrdersModelInterface } from '@/models/PurchaseOrdersModel';
 import { GetPurchaseOrdersResponseInterface } from '@/utils/server/purchasePlanHelper';
-import { RiArrowLeftSLine, RiArrowRightSLine, RiCheckLine, RiLoader4Line } from '@remixicon/react';
+import { RiArrowLeftSLine, RiArrowRightSLine, RiCheckLine, RiLoader4Line, RiSearchLine } from '@remixicon/react';
 import axios, { AxiosError } from 'axios';
 import React, { useCallback, useEffect, useState } from 'react'
 
@@ -80,22 +80,22 @@ const PaymentHistory = () => {
 
           {/* Search order id */}
           <form
-            className=' w-max flex justify-between gap-3'
+            className='w-max flex justify-between gap-3 py-2 px-4 rounded-md bg-white/5'
             onSubmit={(e) => {
               e.preventDefault();
               fetchTableData();
             }}
           >
+            <RiSearchLine
+              size={20}
+            />
             <input
               type="text"
-              className='py-2 px-4 rounded-md bg-white/5 outline-none'
+              className='outline-none bg-transparent'
               placeholder='Enter Order Id'
               value={orderIdInput}
               onChange={(event) => setOrderIdInput(event.target.value)}
             />
-            <button
-              className='py-2 px-4 bg-white rounded-md text-black text-sm font-medium'
-            >Search</button>
           </form>
 
           {/* Status filter */}

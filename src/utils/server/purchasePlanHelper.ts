@@ -150,32 +150,35 @@ export async function getPurchaseOrders({ filters, userId }: {
         try {
             await dbConnect();
             const filter: {
-                orderId?: string,
+                userId: string,
                 status?: string,
-            } = {};
+                orderId?: {
+                    $regex: string,
+                    $options: "i",
+                }
+            } = {
+                userId,
+            };
 
-            if (filters.orderId) {
-                filter.orderId = filters.orderId;
-            }
-            
             if (filters.status) {
                 filter.status = filters.status;
+            }
+
+            if (filters.orderId) {
+                filter.orderId = {
+                    $regex: filters.orderId,
+                    $options: "i",
+                }
             }
 
             const limit = 10;
             const skipedItems = (filters.pageNo - 1) * limit;
 
-            const orders: PurchaseOrdersModelInterface[] | null = await PurchaseOrdersModel.find({
-                userId,
-                ...filter,
-            }, null, {
+            const orders: PurchaseOrdersModelInterface[] | null = await PurchaseOrdersModel.find(filter, null, {
                 limit,
                 skip: skipedItems,
             })
-            const ordersCount: number = await PurchaseOrdersModel.countDocuments({
-                userId,
-                ...filter,
-            });
+            const ordersCount: number = await PurchaseOrdersModel.countDocuments(filter);
 
             return resolve({
                 orders: orders || [],
