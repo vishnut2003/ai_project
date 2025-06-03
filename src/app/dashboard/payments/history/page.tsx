@@ -43,7 +43,6 @@ const PaymentHistory = () => {
       }
       const response = await axios.post('/api/razorpay/purchase-plan/get-orders', requestData);
       const data = response.data as GetPurchaseOrdersResponseInterface;
-      console.log(data);
       setTableData(data.orders);
       const decimalPageNo = data.count / 10;
       setPageNo(Math.ceil(decimalPageNo));

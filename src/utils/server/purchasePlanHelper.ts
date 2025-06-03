@@ -172,7 +172,10 @@ export async function getPurchaseOrders({ filters, userId }: {
                 limit,
                 skip: skipedItems,
             })
-            const ordersCount: number = await PurchaseOrdersModel.countDocuments();
+            const ordersCount: number = await PurchaseOrdersModel.countDocuments({
+                userId,
+                ...filter,
+            });
 
             return resolve({
                 orders: orders || [],
