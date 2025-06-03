@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 import { motion } from "framer-motion";
 import axios from 'axios';
 import Script from 'next/script';
-import { RazorpayOptions, RazorpayResponse } from '@/interfaces/Razorpay';
+import { RazorpayOptions, RazorpayPaymentFailedResponse, RazorpayResponse } from '@/interfaces/Razorpay';
 import { authVerify } from '@/utils/client/authHelper';
 import { useRouter } from 'next/navigation';
 import { validateUserSubscription, ValidUserSubscription } from '@/utils/client/subscriptionsHelper';
@@ -109,6 +109,9 @@ const Pricing = () => {
                         }
                     }
                 },
+                modal: {
+                    ondismiss: () => setInProgress(false)
+                },
                 prefill: {
                     name: session.user.firstName || "No name",
                     email: session.user.email,
@@ -125,6 +128,14 @@ const Pricing = () => {
             }
 
             const razorpay = new window.Razorpay(options);
+
+            // Handle payment failure
+            razorpay.on('payment.failed', function (response: RazorpayPaymentFailedResponse) {
+                setError(`Payment failed: ${response.description || response.code || "Something went wrong!"}`);
+            });
+
+
+            // Initiate Razorpay model popup
             razorpay.open();
 
         } catch (err) {

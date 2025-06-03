@@ -8,12 +8,20 @@ export interface RazorpayOptions {
     handler: (response: RazorpayResponse) => Promise<void>;
     prefill: RazorpayPrefill;
     theme: RazorpayTheme;
+    modal: {
+        ondismiss: () => void,
+    }
 }
 
 export interface RazorpayResponse {
     razorpay_payment_id: string;
     razorpay_order_id: string;
     razorpay_signature: string;
+}
+
+export interface RazorpayPaymentFailedResponse {
+    code: string,
+    description: string,
 }
 
 export interface RazorpayPrefill {
