@@ -685,6 +685,11 @@ const prebuildPrompts: PrebuildPrompts[] = [
             "What are the recommended provisions for a database rights agreement?",
             "Provide a template for a cease and desist response letter in an IP dispute",
             "What are the most common mistakes to avoid when drafting an intellectual property audit plan?",
+            "Draft a copyright assignment agreement under Indian Copyright Act, 1957",
+            "Summarize the trademark registration process in India",
+            "Explain the difference between design, patend, and copyright protection in India",
+            "Draft a cease and desist notice for trademark infringement",
+            "Compare Indian Patent Law with the TRIPS Agreement",
         ]
     },
     {
@@ -746,7 +751,48 @@ const prebuildPrompts: PrebuildPrompts[] = [
             "Provide a template for a notice of intent to introduce expert testimony",
             "What are the most common mistakes to avoid when drafting a motion to challenge the admissibility of a prior conviction?",
         ]
-    }
+    },
+    {
+        category: "Company Law Prompts",
+        prompts: [
+            "Draft MoA and AoA for a private Limited Company under Companies Act, 2013",
+            "Explain the role and duties of a Company Secretary under Indian law",
+            "Prepare a compliance checklist for a listed company under SEBI (LODR) Regulations",
+            "Summarize the process of striking off a company under Section 248",
+            "Draft Board Meeting minutes for appointment of a director",
+        ],
+    },
+    {
+        category: "CS/Compliance-Oriented Prompts",
+        prompts: [
+            "Draft a resolution for appointment of an auditor under Companies Act, 2013",
+            "List the annual ROC filing requirement for a private limited company",
+            "Prepare a checklist for compliance with FEMA for FDI in India",
+            "Draft an MGT-7 filing summary in plain language",
+            "Create a Q&A guide for directors on their responsibilities under Section 166",
+        ],
+    },
+    {
+        category: "Contract & Commercial Law Prompts",
+        prompts: [
+            "Draft an employment contract compliant with Indian Labour Laws",
+            "Explain the essentials of a valid contract under Section 10 of the Indian Contract Act, 1872",
+            "Draft  a termination clause for a service agreement",
+            "Summarize the law on specific performance after the 2018 amendment",
+            "Draft a legal notice for breach of a contract under Indian law",
+        ]
+    },
+    {
+        category: "Startup/Business Legal Prompts",
+        prompts: [
+            "Startup/Business Legal Prompts",
+            "List key legal document required for startup funding in India",
+            "Draft a simple shareholders agreement for a startup",
+            "Explain the process of startup registration under DPIIT",
+            "Create a 10 point legal checklist for new founders in India",
+            "Compare LLP vs Pvt Ltd Company from a compliance and taxation point of view",
+        ],
+    },
 ]
 
 export default prebuildPrompts;
