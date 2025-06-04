@@ -1,5 +1,5 @@
 import { isDeviceMobile } from "@/utils/client/common"
-import { RiChatAiLine, RiCloseCircleFill, RiLoader4Line, RiLogoutCircleLine, RiSidebarFoldLine } from "@remixicon/react"
+import { RiChatAiLine, RiCloseCircleFill, RiLoader4Line, RiLogoutCircleLine, RiSidebarFoldLine, RiSpeedUpLine } from "@remixicon/react"
 import { NoUserInfo, UserInfo } from "@workos-inc/authkit-nextjs/dist/esm/interfaces"
 import Image from "next/image"
 import Link from "next/link"
@@ -162,6 +162,16 @@ const Sidebar = ({
                             className="bg-white flex w-max whitespace-nowrap text-secodary-color py-2 px-4 font-semibold text-sm rounded-md"
                             href={'/dashboard/pricing'}
                         >{userSubscription && userSubscription !== "loading" ? "Extend Validity" : "View Pricing"}</Link>
+
+                        <Link
+                            href={'/dashboard'}
+                            className="py-2 px-4 bg-white/5 rounded-md text-white w-full text-left flex items-center gap-3"
+                        >
+                            <RiSpeedUpLine
+                                size={20}
+                            />
+                            Go to Dashboard
+                        </Link>
 
                         <h3
                             className="text-lg opacity-70"
