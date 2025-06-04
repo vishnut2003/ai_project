@@ -13,6 +13,9 @@ const ChatHistory = () => {
   const [historyLoading, setHistoryLoading] = useState(false);
   const [notLoggedIn, setNotLoggedIn] = useState<boolean>(false);
 
+  // used to enable pen icon on hover
+  const [isActive, setIsActive] = useState<{ [key: number]: boolean }>({});
+
   function refreshChatHistory() {
     setHistoryLoading(true)
     getHistoryChat()
@@ -45,37 +48,52 @@ const ChatHistory = () => {
 
           {/* Show template for not logged in users */}
           {
-              notLoggedIn &&
-              <div>
-                <p
-                  className="text-sm text-center"
-                >Please login for access history!</p>
-              </div>
+            notLoggedIn &&
+            <div>
+              <p
+                className="text-sm text-center"
+              >Please login for access history!</p>
+            </div>
           }
 
           {/* Loop the chats */}
           {
-          !historyLoading &&
-          chatHistory?.history.map((chat, index) => (
-            <div key={index} className="py-2 px-4 hover:bg-[#ffffff04] rounded-md relative">
-              <div className="flex flex-nowrap items-center justify-between gap-2">
-                <p className="truncate m-0">
-                  <Link href={`/ai/${chat.chatId}`} className="text-sm w-full">
-                    {chat.chatName}
-                  </Link>
-                </p>
-                <RiPencilLine
-                  onClick={() => setChatOptionPopup({ ...chatOptionPopup, [index]: !chatOptionPopup[index as keyof typeof chatOptionPopup] })}
-                  size={16}
-                  className="cursor-pointer min-w-6" />
-              </div>
+            !historyLoading &&
+            chatHistory?.history.map((chat, index) => (
+              <div key={index} className="py-2 px-4 hover:bg-[#ffffff04] rounded-md relative">
+                <div
+                  className="flex flex-nowrap items-center justify-between gap-2"
+                  onMouseEnter={() => {
+                    setIsActive({
+                      [index]: true,
+                    })
+                  }}
+                  onMouseLeave={() => {
+                    setIsActive({
+                      [index]: false,
+                    })
+                  }}
+                >
+                  <p className="truncate m-0">
+                    <Link href={`/ai/${chat.chatId}`} className="text-sm w-full">
+                      {chat.chatName}
+                    </Link>
+                  </p>
+                  {
+                    isActive[index] &&
+                    <RiPencilLine
+                      onClick={() => setChatOptionPopup({ ...chatOptionPopup, [index]: !chatOptionPopup[index as keyof typeof chatOptionPopup] })}
+                      size={16}
+                      className="cursor-pointer min-w-6" />
+                  }
+                </div>
 
-              {/* Chat edit option */
-                chatOptionPopup[index as keyof typeof chatOptionPopup] &&
-                <ChatItemOptions chatId={chat.chatId} refreshChatHistory={refreshChatHistory} />
-              }
-            </div>
-          ))}
+                {/* Chat edit option */
+                  chatOptionPopup[index as keyof typeof chatOptionPopup] &&
+                  <ChatItemOptions chatId={chat.chatId} refreshChatHistory={refreshChatHistory} />
+                }
+              </div>
+            ))}
 
           {!chatHistory || chatHistory.history.length === 0 ?
             <div>
