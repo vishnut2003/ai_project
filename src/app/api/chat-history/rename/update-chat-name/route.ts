@@ -1,13 +1,13 @@
 import { updateChatNameByChatId } from "@/utils/server/historyHelper";
 import { getSession } from "@workos-inc/authkit-nextjs";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export interface RenameChatRecordApiRequestDataInterface {
     chatId: string,
     newChatName: string,
 }
 
-export async function POST(request: NextResponse) {
+export async function POST(request: NextRequest) {
     try {
         const session = await getSession();
         if (!session?.user?.id) {
