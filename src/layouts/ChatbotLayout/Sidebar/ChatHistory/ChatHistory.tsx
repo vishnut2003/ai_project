@@ -90,7 +90,13 @@ const ChatHistory = () => {
 
                 {/* Chat edit option */
                   chatOptionPopup[index as keyof typeof chatOptionPopup] &&
-                  <ChatItemOptions chatId={chat.chatId} refreshChatHistory={refreshChatHistory} />
+                  <ChatItemOptions 
+                    chatId={chat.chatId} 
+                    refreshChatHistory={refreshChatHistory} 
+                    closePopup={() => {
+                      setChatOptionPopup({})
+                    }}
+                  />
                 }
               </div>
             ))}

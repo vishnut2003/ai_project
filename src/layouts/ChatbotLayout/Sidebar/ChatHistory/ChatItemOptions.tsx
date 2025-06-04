@@ -2,9 +2,10 @@ import { deleteChatRecordByChatId } from "@/utils/client/historyHelper"
 import { RiDeleteBin6Line, RiPencilLine } from "@remixicon/react"
 import { useState } from "react"
 
-const ChatItemOptions = ({chatId, refreshChatHistory}: {
+const ChatItemOptions = ({chatId, refreshChatHistory, closePopup}: {
   chatId: string,
-  refreshChatHistory: () => void
+  refreshChatHistory: () => void,
+  closePopup: () => void,
 }) => {
 
   const [deleteInprocess, setDeleteInProcess] = useState(false)
@@ -17,6 +18,7 @@ const ChatItemOptions = ({chatId, refreshChatHistory}: {
           const success = await deleteChatRecordByChatId(chatId);
           if (success) {
             setDeleteInProcess(false)
+            closePopup();
             return refreshChatHistory();
           }
         }}
