@@ -1,6 +1,7 @@
 import { deleteChatRecordByChatId } from "@/utils/client/historyHelper"
 import { RiDeleteBin6Line, RiPencilLine } from "@remixicon/react"
 import { useState } from "react"
+import RenameChat from "./RenameChat"
 
 const ChatItemOptions = ({chatId, refreshChatHistory, closePopup}: {
   chatId: string,
@@ -9,6 +10,7 @@ const ChatItemOptions = ({chatId, refreshChatHistory, closePopup}: {
 }) => {
 
   const [deleteInprocess, setDeleteInProcess] = useState(false)
+  const [enableRenamePopup, setEnableRenamePopup] = useState<boolean>(false);
 
   return (
     <div className="py-2 px-4 bg-[#ffffff08] rounded-lg mt-2 flex flex-col gap-2">
@@ -31,10 +33,28 @@ const ChatItemOptions = ({chatId, refreshChatHistory, closePopup}: {
             }
         </button>
         
-        <button className="flex flex-nowrap justify-between items-center gap-3 w-full py-2 px-3 rounded-md hover:bg-secodary-color">
+        <button 
+          className="flex flex-nowrap justify-between items-center gap-3 w-full py-2 px-3 rounded-md hover:bg-secodary-color"
+          onClick={() => {
+            setEnableRenamePopup(true);
+          }}
+        >
             <p className="m-0 text-sm font-thin">Edit Name</p>
             <RiPencilLine size={14}/>
         </button>
+
+        {
+          enableRenamePopup &&
+          <RenameChat
+            chatId={chatId}
+            onCancel={() => {
+              setEnableRenamePopup(false);
+            }}
+            onSuccess={() => {
+              refreshChatHistory();
+            }}
+          />
+        }
     </div>
   )
 }

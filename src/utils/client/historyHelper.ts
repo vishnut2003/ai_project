@@ -1,7 +1,9 @@
+import { RenameSectionGetChatNameApiRequestDataInterface } from "@/app/api/chat-history/rename/get-chat-name/route";
+import { RenameChatRecordApiRequestDataInterface } from "@/app/api/chat-history/rename/update-chat-name/route";
 import axiosConfig from "@/configs/axiosConfig";
 import ConversationInterface from "@/interfaces/conversation";
 import { ChatHistoryInterface } from "@/models/ChatHistoryModel";
-import axios, { AxiosError } from "axios"
+import axios, { AxiosError } from "axios";
 
 export function getHistoryChat () {
     return new Promise<ChatHistoryInterface>((resolve, reject) => {
@@ -50,6 +52,44 @@ export function deleteChatRecordByChatId (chatId: string) {
             const response = await axios.post('/api/chat-history/delete-by-chatid', {chatId}, axiosConfig);
             const data: {success: boolean} = response.data;
             return resolve(data.success);
+        } catch (err) {
+            console.log(err);
+        }
+    })
+}
+
+export function getChatNameByChatId (chatId: string) {
+    return new Promise<string>(async (resolve) => {
+        try {
+            const requestData: RenameSectionGetChatNameApiRequestDataInterface = {
+                chatId,
+            }
+            const response = await axios.post<string>('/api/chat-history/rename/get-chat-name', requestData);
+            return resolve(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    })
+} 
+
+export function updateChatNameByChatId ({
+    chatId,
+    newChatName,
+}: {
+    chatId: string,
+    newChatName: string,
+}) {
+    return new Promise<void>(async (resolve) => {
+        try {
+            const requestData: RenameChatRecordApiRequestDataInterface = {
+                chatId,
+                newChatName,
+            }
+
+            const response = await axios.post<boolean>('/api/chat-history/rename/update-chat-name', requestData);
+            if (response.data === true) {
+                return resolve()
+            }
         } catch (err) {
             console.log(err);
         }

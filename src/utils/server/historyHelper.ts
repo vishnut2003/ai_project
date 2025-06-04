@@ -159,19 +159,89 @@ async function findChatRecordFromHistory({ userHistory, chatId }: {
     })
 }
 
-export async function deleteChatRecordByChatId ({chatId, userId}: {
+export async function deleteChatRecordByChatId({ chatId, userId }: {
     chatId: string,
     userId: string
 }) {
-    return new Promise<void>( async (resolve, reject) => {
+    return new Promise<void>(async (resolve, reject) => {
         try {
-            await ChatHistoryModel.findOneAndUpdate({userId}, {
+            await ChatHistoryModel.findOneAndUpdate({ userId }, {
                 $pull: {
-                    history: {chatId}
+                    history: { chatId }
                 }
             })
 
             resolve()
+        } catch (err) {
+            return reject(err);
+        }
+    })
+}
+
+export async function getChatNameByChatId({
+    chatId,
+    userId,
+}: {
+    chatId: string,
+    userId: string,
+}) {
+    return new Promise<string>(async (resolve, reject) => {
+        try {
+            await dbConnect();
+            const result = await ChatHistoryModel.findOne({
+                userId,
+                "history.chatId": chatId,
+            },
+                {
+                    history: {
+                        $elemMatch: { chatId },
+                    },
+                }
+            ).lean() as {
+                history?: {
+                    chatName?: string,
+                }[],
+            };
+
+            const chatName = result?.history?.[0].chatName;
+            
+            if (!chatName) {
+                return reject("Chat record not found!");
+            }
+
+            return resolve(chatName)
+        } catch (err) {
+            return reject(err);
+        }
+    })
+}
+
+export async function updateChatNameByChatId ({
+    chatId,
+    userId,
+    newChatName,
+}: {
+    userId: string,
+    chatId: string,
+    newChatName: string,
+}) {
+    return new Promise<void>(async (resolve, reject) => {
+        try {
+            await dbConnect();
+
+            await ChatHistoryModel.findOneAndUpdate(
+                {
+                    userId,
+                    "history.chatId": chatId,
+                },
+                {
+                    $set: {
+                        "history.$.chatName": newChatName,
+                    }
+                }
+            )
+
+            return resolve();
         } catch (err) {
             return reject(err);
         }
