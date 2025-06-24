@@ -23,7 +23,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }: Readonly<{
       <div className="flex flex-nowrap gap-5">
         <a
           href={process.env.NEXT_PUBLIC_HOMEPAGE_URL}
-          rel="noopener nofollow"
+          rel="noopener"
           className="hidden md:flex items-center justify-start gap-1 bg-white px-4 py-2 rounded-md text-secodary-color text-sm font-semibold"
         >
           Home
