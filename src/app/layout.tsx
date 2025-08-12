@@ -11,8 +11,8 @@ const rubik = localFont({
 })
 
 export const metadata: Metadata = {
-  title: "Legallyours: India's First Legal AI Chatbot- Free Legal Advice",
-  description: "Legallyours, First Law Bot of India serves as a virtual advocate, providing answers to legal queries about Indian Laws. AI based Free online lawyer consultation 24x7.",
+  title: "AI Law GPT: India's First Legal AI Chatbot- Free Legal Advice",
+  description: "AI Law GPT, First Law Bot of India serves as a virtual advocate, providing answers to legal queries about Indian Laws. AI based Free online lawyer consultation 24x7.",
   verification: {
     google: 'qQHvXhb40X__9tqlbPRJPn6Dq4Xj_Kr3KykHAy0wuWM',
   }

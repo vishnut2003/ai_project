@@ -33,11 +33,11 @@ function TypingEffectText({
     }, [duration, i, text]);
 
     return (
-        <h2
+        <h1
             className={className}
         >
             {displayedText ? displayedText : text}
-        </h2>
+        </h1>
     );
 }
 
