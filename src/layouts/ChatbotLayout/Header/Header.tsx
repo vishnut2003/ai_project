@@ -2,6 +2,8 @@ import { RiBarChartHorizontalLine } from "@remixicon/react"
 import { Dispatch, SetStateAction } from "react"
 import UserCard from "./UserCard"
 import Link from "next/link"
+import Image from "next/image"
+import logo from "./legallyours-logo.png"
 
 const Header = ({ sidebarOpen, setSidebarOpen }: Readonly<{
   sidebarOpen: boolean,
@@ -10,7 +12,9 @@ const Header = ({ sidebarOpen, setSidebarOpen }: Readonly<{
 
   return (
     <div className="py-4 px-5 flex flex-nowrap justify-between items-center w-full backdrop-blur-md">
-      <div>
+      <div
+        className="flex items-center gap-[20px]"
+      >
         {
           !sidebarOpen &&
           <button
@@ -19,6 +23,11 @@ const Header = ({ sidebarOpen, setSidebarOpen }: Readonly<{
             <RiBarChartHorizontalLine size={25} />
           </button>
         }
+        <Image
+          src={logo}
+          alt="logo"
+          className="w-[100px] rounded-md"
+        />
       </div>
       <div className="flex flex-nowrap gap-5">
         <a
