@@ -15,7 +15,7 @@ const IntroPromptArea = ({ conversation, setConversation, setRequestInProgress, 
     return (
         <div className="w-full h-full flex justify-center items-center">
             <div className="max-w-4xl w-full flex flex-col gap-4">
-                <TypingEffectText text="Im AI Law, your legal expert!" className="text-2xl text-center" duration={100} />
+                <TypingEffectText text="Im LegallYours, your legal expert!" className="text-2xl text-center" duration={100} />
                 <Suspense>
                     <PromptTextarea
                         conversation={conversation}
