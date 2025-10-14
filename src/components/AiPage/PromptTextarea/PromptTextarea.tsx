@@ -3,7 +3,7 @@
 import ConversationInterface from '@/interfaces/conversation';
 import { getRemainingPromptCount, handlePromptSubmit, updatePromptLimitCount } from '@/utils/client/aiHelper';
 import { RiCloseLargeLine, RiSendPlaneFill } from '@remixicon/react'
-import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react'
+import React, { Dispatch, FormEvent, SetStateAction, useState, useRef, useEffect } from 'react'
 import PromptActions from './PromptActions';
 import { useSearchParams } from 'next/navigation';
 import { udateHistoryChat } from '@/utils/client/historyHelper';
@@ -13,152 +13,187 @@ import { authVerify } from '@/utils/client/authHelper';
 import ClientLoginButton from '@/components/Header/AuthComponents/ClientLoginButton';
 
 const PromptTextarea = ({ setConversation, conversation, setRequestInProgress, chatId, setChatId }: Readonly<{
-    setConversation: Dispatch<SetStateAction<ConversationInterface[]>>,
-    conversation: ConversationInterface[],
-    setRequestInProgress: Dispatch<SetStateAction<boolean>>,
-    chatId: string,
-    setChatId: Dispatch<SetStateAction<string>>
+  setConversation: Dispatch<SetStateAction<ConversationInterface[]>>,
+  conversation: ConversationInterface[],
+  setRequestInProgress: Dispatch<SetStateAction<boolean>>,
+  chatId: string,
+  setChatId: Dispatch<SetStateAction<string>>
 }>) => {
-    const queryParams = useSearchParams();
-    const queryPrompt = queryParams.get('prompt');
+  const queryParams = useSearchParams();
+  const queryPrompt = queryParams.get('prompt');
 
-    const [submitInProgress, setSubmitInProgress] = useState(false);
-    const [inputPrompt, setInputPrompt] = useState<string>(queryPrompt ? queryPrompt : '');
-    const [notLoggedIn, setNotLoggedIn] = useState<boolean>(false);
+  const [submitInProgress, setSubmitInProgress] = useState(false);
+  const [inputPrompt, setInputPrompt] = useState<string>(queryPrompt ? queryPrompt : '');
+  const [notLoggedIn, setNotLoggedIn] = useState<boolean>(false);
 
-    const [showBuyPlanPopup, setShowBuyPlanPopup] = useState<boolean>(false);
+  const [showBuyPlanPopup, setShowBuyPlanPopup] = useState<boolean>(false);
 
-    async function _PromptSubmit(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault();
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const autoResizeTextArea = (element: HTMLTextAreaElement) => {
+    const maxHeight = 24 * 5; // ~5 lines (24px per line, adjust if needed)
+    element.style.height = 'auto';
+    element.style.height = `${Math.min(element.scrollHeight, maxHeight)}px`;
+  };
 
-        const userSession = await authVerify();
+  useEffect(() => {
+    if (textareaRef.current) {
+      autoResizeTextArea(textareaRef.current);
+    }
+  }, []);
 
-        if (!userSession || !userSession.user) {
-            setNotLoggedIn(true);
-            return;
-        }
+  async function _PromptSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
 
-        // return if submit in progress
-        if (submitInProgress) return;
+    const userSession = await authVerify();
 
-        // Limit Prompt count for non-subscription users
-        const hasActivePlan = await validateUserSubscription();
-        const remainingPromptCount = await getRemainingPromptCount();
-
-        if (
-            !hasActivePlan &&
-            remainingPromptCount <= 0
-        ) {
-            setShowBuyPlanPopup(true);
-            return;
-        } else {
-            setShowBuyPlanPopup(false);
-            await updatePromptLimitCount();
-        }
-
-        const prompt: string = inputPrompt;
-
-        // reset form value
-        setInputPrompt('');
-
-        // change status to submit in progress for button loading effect
-        setSubmitInProgress(true);
-
-        // Change status enable of request inprogress for loading effect in conversation template
-        setRequestInProgress(true);
-
-        // Add user prompt to conversation
-        setConversation(prev => [...prev, { from: 'user', message: prompt }]);
-
-        handlePromptSubmit(prompt, conversation)
-            .then((response: string) => {
-                // Add new response to conversation
-                setConversation(prevConversation => [...prevConversation, { from: 'ai_assistant', message: response }]);
-
-                // update chat history
-                udateHistoryChat({
-                    chatId: chatId,
-                    userPrompt: {
-                        from: 'user',
-                        message: prompt,
-                    },
-                    modelPrompt: {
-                        from: 'ai_assistant',
-                        message: response
-                    }
-                })
-                    .then((newChatId) => {
-                        // Assign the newChatid or updated chatid
-                        setChatId(newChatId);
-                    })
-            })
-            .catch((errResponse) => {
-                // Add new response to conversation
-                setConversation(prevConversation => [...prevConversation, {
-                    from: 'ai_assistant',
-                    message: errResponse,
-                    error: true
-                }]);
-            })
-            .finally(() => {
-                // change status of submit in progress to false
-                setSubmitInProgress(false);
-
-                // Change status disable of request inprogress for loading effect in conversation template
-                setRequestInProgress(false);
-            })
+    if (!userSession || !userSession.user) {
+      setNotLoggedIn(true);
+      return;
     }
 
-    if (notLoggedIn) {
-        return (
-            <div
-                className='flex items-center flex-col justify-center gap-3 my-5'
-            >
-                <p>Please Login to Continue!</p>
-                <ClientLoginButton/>
-            </div>
-        )
+    // return if submit in progress
+    if (submitInProgress) return;
+
+    // Limit Prompt count for non-subscription users
+    const hasActivePlan = await validateUserSubscription();
+    const remainingPromptCount = await getRemainingPromptCount();
+
+    if (
+      !hasActivePlan &&
+      remainingPromptCount <= 0
+    ) {
+      setShowBuyPlanPopup(true);
+      return;
+    } else {
+      setShowBuyPlanPopup(false);
+      await updatePromptLimitCount();
     }
 
+    const prompt: string = inputPrompt;
+
+    // reset form value
+    setInputPrompt('');
+
+    // change status to submit in progress for button loading effect
+    setSubmitInProgress(true);
+
+    // Change status enable of request inprogress for loading effect in conversation template
+    setRequestInProgress(true);
+
+    // Add user prompt to conversation
+    setConversation(prev => [...prev, { from: 'user', message: prompt }]);
+
+    handlePromptSubmit(prompt, conversation)
+      .then((response: string) => {
+        // Add new response to conversation
+        setConversation(prevConversation => [...prevConversation, { from: 'ai_assistant', message: response }]);
+
+        // update chat history
+        udateHistoryChat({
+          chatId: chatId,
+          userPrompt: {
+            from: 'user',
+            message: prompt,
+          },
+          modelPrompt: {
+            from: 'ai_assistant',
+            message: response
+          }
+        })
+          .then((newChatId) => {
+            // Assign the newChatid or updated chatid
+            setChatId(newChatId);
+          })
+      })
+      .catch((errResponse) => {
+        // Add new response to conversation
+        setConversation(prevConversation => [...prevConversation, {
+          from: 'ai_assistant',
+          message: errResponse,
+          error: true
+        }]);
+      })
+      .finally(() => {
+        // change status of submit in progress to false
+        setSubmitInProgress(false);
+
+        // Change status disable of request inprogress for loading effect in conversation template
+        setRequestInProgress(false);
+      })
+  }
+
+  if (notLoggedIn) {
     return (
-        <div className='flex flex-col items-center justify-center px-5 md:px-0 h-max'>
-            <PromptActions setInputPrompt={setInputPrompt} />
-            <div className='flex flex-nowrap justify-between w-full md:w-3/4 bg-[#ffffff07] p-3 pl-6 rounded-lg rounded-tr-none shadow-md shadow-[#00000026]'>
-                <form onSubmit={_PromptSubmit} className='flex flex-nowrap justify-between items-center gap-2 w-full'>
-
-                    {/* Prompt Input area */}
-                    <input
-                        value={inputPrompt}
-                        onChange={(event) => setInputPrompt(event.target.value)}
-                        required type="text" name='prompt' placeholder='Type Something...' className='bg-transparent w-full outline-none' />
-
-                    {/* Clear Prompt button */}
-                    {
-                        inputPrompt &&
-                        <RiCloseLargeLine
-                            onClick={() => setInputPrompt('')}
-                            size={20}
-                            className='w-8 opacity-55 cursor-pointer' />
-                    }
-
-                    {/* Prompt Submit Button */}
-                    <button className='bg-gradient-to-br from-white to-[#ffffff80] text-secodary-color p-1 rounded-lg w-12 h-10 flex justify-center items-center'>
-                        {
-                            submitInProgress ?
-                                <div className='w-3 h-3 animate-bounce shadow-md shadow-black rounded-full bg-secodary-color'></div> :
-                                <RiSendPlaneFill size={20} />
-                        }
-                    </button>
-                </form>
-            </div>
-            {showBuyPlanPopup &&
-                <BuyPlanPopup
-                    closePopup={() => {
-                        setShowBuyPlanPopup(false);
-                    }}
-                />}
-        </div>
+      <div
+        className='flex items-center flex-col justify-center gap-3 my-5'
+      >
+        <p>Please Login to Continue!</p>
+        <ClientLoginButton/>
+      </div>
     )
+  }
+
+  return (
+    <div className='flex flex-col items-center justify-center px-5 md:px-0 h-max'>
+      <PromptActions setInputPrompt={setInputPrompt} />
+      <div className='flex w-full md:w-3/4 bg-[#ffffff07] p-3 pl-6 rounded-lg rounded-tr-none shadow-md shadow-[#00000026]'>
+        <form onSubmit={_PromptSubmit} className={`flex w-full items-end gap-2 ${inputPrompt.includes('\n') ? 'flex-col' : 'flex-row'
+          } transition-all duration-200`}
+        >
+          {/* Prompt Input area */}
+          <textarea
+            ref={textareaRef}
+            value={inputPrompt}
+            onChange={(event) => {
+              setInputPrompt(event.target.value);
+              autoResizeTextArea(event.target);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                const form = e.currentTarget.closest('form');
+                if (form) form.requestSubmit();
+              }
+            }}
+            required
+            name="prompt"
+            placeholder="Type Something..."
+            className={`bg-transparent outline-none resize-none overflow-y-auto text-base leading-[1.4] p-2 w-full ${inputPrompt.includes('\n') ? 'min-h-[60px]' : ''
+              }`}
+            rows={1}
+          />
+
+
+          {inputPrompt && !inputPrompt.includes('\n') &&
+            <RiCloseLargeLine
+              onClick={() => setInputPrompt('')}
+              size={20}
+              className='w-8 opacity-55 cursor-pointer' />
+          }
+
+          {/* Prompt Submit Button */}
+          <button 
+            className={`bg-gradient-to-br from-white to-[#ffffff80] text-secodary-color p-2 rounded-lg flex justify-center items-center ${inputPrompt.includes('\n')
+                ? 'self-end w-max mt-2'
+                : 'w-12 h-10'
+              }`}
+          >
+            {
+              submitInProgress ?
+                  <div className='w-3 h-3 animate-bounce shadow-md shadow-black rounded-full bg-secodary-color'></div> : 
+                  <RiSendPlaneFill size={20} />
+                }
+          </button>
+        </form>
+      </div>
+      {showBuyPlanPopup && 
+        <BuyPlanPopup
+          closePopup={() => {
+            setShowBuyPlanPopup(false);
+          }}
+        />}
+    </div>
+  )
 }
 
 export default PromptTextarea
